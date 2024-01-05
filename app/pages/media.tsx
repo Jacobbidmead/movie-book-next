@@ -5,6 +5,7 @@ import Search from "../components/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import UserMedia from "../components/userMedia";
 import { Movie } from "../types/interfaces";
+
 // import LoginPage from "./login.page";
 
 // displays movie search
@@ -53,10 +54,16 @@ const MoviePage: React.FC = () => {
               <h2>{movie.original_title}</h2>
               <p>Release Date: {movie.release_date}</p>
               <p>Rating: {movie.vote_average}</p>
+
               <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                    : "/image.png"
+                }
                 alt={movie.original_title}
               />
+
               <button onClick={() => addMovie(movie)}>Save</button>
             </div>
           ))}
