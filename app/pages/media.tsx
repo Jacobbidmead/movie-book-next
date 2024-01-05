@@ -1,15 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import Search from "../components/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import UserMedia from "../components/userMedia";
 import { Movie } from "../types/interfaces";
 // import LoginPage from "./login.page";
 
+// displays movie search
+
 const MoviePage: React.FC = () => {
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const [savedMovies, setSavedMovies] = useState<Movie[]>([]);
+  const [showUserMedia, setShowUserMedia] = useState<boolean>(false);
 
   const addMovie = (movieToSave: Movie) => {
     setSavedMovies((prevSavedMovies) => {
@@ -32,7 +35,10 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <Search onSearch={fetchMovies} />
+      <div className="flex place-content-center">
+        <Search onSearch={fetchMovies} />
+        <div>My list</div>
+      </div>
       <div className="grid grid-cols-6">
         {movies.map((movie, i) => (
           <div className="flex flex-col p-2" key={i}>
@@ -46,8 +52,8 @@ const MoviePage: React.FC = () => {
             <button onClick={() => addMovie(movie)}>Save</button>
           </div>
         ))}
-
         {/* <LoginPage /> */}
+        {/* log in feature doesnt work yet */}
       </div>
       <UserMedia savedMovies={savedMovies} removeMovie={removeMovie} />
     </>
