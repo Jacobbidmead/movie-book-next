@@ -24,7 +24,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMovies, removeMovie }) => {
               src={`https://image.tmdb.org/t/p/w500${savedMovie.poster_path}`}
               alt={savedMovie.original_title}
             />
-            <button onClick={() => removeMovie(savedMovie.id)}></button>
+            <button onClick={() => removeMovie(savedMovie.id)}>remove</button>
           </div>
         ))}
       </div>
