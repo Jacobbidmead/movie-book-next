@@ -5,7 +5,6 @@ import Search from "../components/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import UserMedia from "../components/userMedia";
 import { Movie } from "../types/interfaces";
-
 // import LoginPage from "./login.page";
 
 // displays movie search
@@ -42,7 +41,16 @@ const MoviePage: React.FC = () => {
     <>
       <div className="flex place-content-center">
         <Search onSearch={fetchMovies} />
-        <div onClick={showMedia}>My list</div>
+
+        {showUserMedia ? (
+          <div onClick={showMedia} className="cursor-pointer">
+            Search movies
+          </div>
+        ) : (
+          <div onClick={showMedia} className="cursor-pointer">
+            My list
+          </div>
+        )}
       </div>
 
       {showUserMedia ? (
@@ -54,7 +62,6 @@ const MoviePage: React.FC = () => {
               <h2>{movie.original_title}</h2>
               <p>Release Date: {movie.release_date}</p>
               <p>Rating: {movie.vote_average}</p>
-
               <img
                 src={
                   movie.poster_path
@@ -63,7 +70,6 @@ const MoviePage: React.FC = () => {
                 }
                 alt={movie.original_title}
               />
-
               <button onClick={() => addMovie(movie)}>Save</button>
             </div>
           ))}
