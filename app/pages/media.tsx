@@ -24,6 +24,12 @@ const MoviePage: React.FC = () => {
     });
   };
 
+  const removeMovie = (movieToRemoveId: string) => {
+    setSavedMovies((prevSavedMovies) => {
+      return prevSavedMovies.filter((movie) => movie.id != movieToRemoveId);
+    });
+  };
+
   return (
     <>
       <Search onSearch={fetchMovies} />
@@ -40,9 +46,10 @@ const MoviePage: React.FC = () => {
             <button onClick={() => addMovie(movie)}>Save</button>
           </div>
         ))}
-        <UserMedia savedMovies={savedMovies} />
+
         {/* <LoginPage /> */}
       </div>
+      <UserMedia savedMovies={savedMovies} removeMovie={removeMovie} />
     </>
   );
 };
