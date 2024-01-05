@@ -33,29 +33,36 @@ const MoviePage: React.FC = () => {
     });
   };
 
+  const showMedia = () => {
+    setShowUserMedia((prevState) => !prevState);
+  };
+
   return (
     <>
       <div className="flex place-content-center">
         <Search onSearch={fetchMovies} />
-        <div>My list</div>
+        <div onClick={showMedia}>My list</div>
       </div>
-      <div className="grid grid-cols-6">
-        {movies.map((movie, i) => (
-          <div className="flex flex-col p-2" key={i}>
-            <h2>{movie.original_title}</h2>
-            <p>Release Date: {movie.release_date}</p>
-            <p>Rating: {movie.vote_average}</p>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.original_title}
-            />
-            <button onClick={() => addMovie(movie)}>Save</button>
-          </div>
-        ))}
-        {/* <LoginPage /> */}
-        {/* log in feature doesnt work yet */}
-      </div>
-      <UserMedia savedMovies={savedMovies} removeMovie={removeMovie} />
+
+      {showUserMedia ? (
+        <UserMedia savedMovies={savedMovies} removeMovie={removeMovie} />
+      ) : (
+        <div className="grid grid-cols-6">
+          {movies.map((movie, i) => (
+            <div className="flex flex-col p-2" key={i}>
+              <h2>{movie.original_title}</h2>
+              <p>Release Date: {movie.release_date}</p>
+              <p>Rating: {movie.vote_average}</p>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.original_title}
+              />
+              <button onClick={() => addMovie(movie)}>Save</button>
+            </div>
+          ))}
+          {/* Other components or JSX */}
+        </div>
+      )}
     </>
   );
 };
