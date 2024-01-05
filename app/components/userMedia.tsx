@@ -11,7 +11,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMovies }) => {
     <>
       {" "}
       {savedMovies.map((savedMovie) => (
-        <div key={savedMovie.id}>
+        <div className="flex flex-col-reverse w-10 m-1" key={savedMovie.id}>
           {" "}
           <h2>{savedMovie.original_title}</h2>
           <p>Release Date: {savedMovie.release_date}</p>
