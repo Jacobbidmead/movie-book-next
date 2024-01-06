@@ -47,6 +47,13 @@ const MoviePage: React.FC = () => {
     }));
   };
 
+  const handleRemoveFromList = (movieId: string) => {
+    setAddedMovies((prevAdded) => ({
+      ...prevAdded,
+      [movieId]: false,
+    }));
+  };
+
   return (
     <>
       <div className="flex place-content-center">
@@ -64,7 +71,11 @@ const MoviePage: React.FC = () => {
       </div>
 
       {showUserMedia ? (
-        <UserMedia savedMovies={savedMovies} removeMovie={removeMovie} />
+        <UserMedia
+          savedMovies={savedMovies}
+          removeMovie={removeMovie}
+          handleRemoveFromList={handleRemoveFromList}
+        />
       ) : (
         <div className="grid grid-cols-6">
           {movies.map((movie, i) => (
@@ -75,7 +86,9 @@ const MoviePage: React.FC = () => {
                     ? `${movie.original_title.substring(0, 20)}...`
                     : movie.original_title}
                 </h2>
-                <div className="tooltiptext">{movie.original_title}</div>
+                {movie.original_title.length > 20 && (
+                  <div className="tooltiptext">{movie.original_title}</div>
+                )}
               </div>
               <p>Rating: {movie.vote_average}</p>
               <img
