@@ -17,7 +17,11 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMovies, removeMovie }) => {
         {savedMovies.map((savedMovie) => (
           <div className="flex flex-col p-2" key={savedMovie.id}>
             {" "}
-            <h2>{savedMovie.original_title}</h2>
+            <h2>
+              {savedMovie.original_title.length > 20
+                ? `${savedMovie.original_title.substring(0, 20)}...`
+                : savedMovie.original_title}
+            </h2>
             <p>Release Date: {savedMovie.release_date}</p>
             <p>Rating: {savedMovie.vote_average}</p>
             <img
