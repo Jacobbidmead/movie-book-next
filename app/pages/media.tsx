@@ -13,6 +13,7 @@ const MoviePage: React.FC = () => {
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const [savedMovies, setSavedMovies] = useState<Movie[]>([]);
   const [showUserMedia, setShowUserMedia] = useState<boolean>(false);
+  const [addToList, setAddToList] = useState<boolean>(false);
 
   const addMovie = (movieToSave: Movie) => {
     setSavedMovies((prevSavedMovies) => {
@@ -35,6 +36,10 @@ const MoviePage: React.FC = () => {
 
   const showMedia = () => {
     setShowUserMedia((prevState) => !prevState);
+  };
+
+  const handleAddToList = () => {
+    setAddToList(true);
   };
 
   return (
@@ -70,7 +75,19 @@ const MoviePage: React.FC = () => {
                 }
                 alt={movie.original_title}
               />
-              <button onClick={() => addMovie(movie)}>Save</button>
+
+              {addToList ? (
+                <div>Added to youre list!</div>
+              ) : (
+                <button
+                  onClick={() => {
+                    addMovie(movie);
+                    handleAddToList();
+                  }}
+                >
+                  Save
+                </button>
+              )}
             </div>
           ))}
           {/* Other components or JSX */}
