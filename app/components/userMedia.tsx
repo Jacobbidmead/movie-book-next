@@ -17,11 +17,14 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMovies, removeMovie }) => {
         {savedMovies.map((savedMovie) => (
           <div className="flex flex-col p-2" key={savedMovie.id}>
             {" "}
-            <h2>
-              {savedMovie.original_title.length > 20
-                ? `${savedMovie.original_title.substring(0, 20)}...`
-                : savedMovie.original_title}
-            </h2>
+            <div className="tooltip">
+              <h2 className="truncate">
+                {savedMovie.original_title.length > 20
+                  ? `${savedMovie.original_title.substring(0, 20)}...`
+                  : savedMovie.original_title}
+              </h2>
+              <div className="tooltiptext">{savedMovie.original_title}</div>
+            </div>
             <p>Rating: {savedMovie.vote_average}</p>
             <img
               src={`https://image.tmdb.org/t/p/w500${savedMovie.poster_path}`}
