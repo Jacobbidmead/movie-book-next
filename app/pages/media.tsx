@@ -69,12 +69,14 @@ const MoviePage: React.FC = () => {
         <div className="grid grid-cols-6">
           {movies.map((movie, i) => (
             <div className="flex flex-col p-2" key={i}>
-              <h2>
-                {movie.original_title.length > 20
-                  ? `${movie.original_title.substring(0, 20)}...`
-                  : movie.original_title}
-              </h2>
-              <p>Release Date: {movie.release_date}</p>
+              <div className="tooltip">
+                <h2 className="truncate">
+                  {movie.original_title.length > 20
+                    ? `${movie.original_title.substring(0, 20)}...`
+                    : movie.original_title}
+                </h2>
+                <div className="tooltiptext">{movie.original_title}</div>
+              </div>
               <p>Rating: {movie.vote_average}</p>
               <img
                 src={
