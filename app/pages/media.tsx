@@ -88,7 +88,7 @@ const MoviePage: React.FC = () => {
               />
 
               {addedMovies[movie.id] ? (
-                <div>Added to youre list!</div>
+                <div>Saved to list</div>
               ) : (
                 <button
                   onClick={() => {
@@ -101,7 +101,6 @@ const MoviePage: React.FC = () => {
               )}
             </div>
           ))}
-          {/* Other components or JSX */}
         </div>
       )}
     </>
