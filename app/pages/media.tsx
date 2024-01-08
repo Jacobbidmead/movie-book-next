@@ -7,9 +7,12 @@ import { useFetchShows } from "../hooks/useFetchShows";
 import UserMedia from "../components/userMedia";
 import { Movie } from "../types/interfaces";
 import Movies from "../components/Movies";
+import Shows from "../components/Shows";
 // import LoginPage from "./login.page";
 
 // displays movie search
+
+type MediaView = "movies" | "shows";
 
 const MoviePage: React.FC = () => {
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
@@ -19,6 +22,7 @@ const MoviePage: React.FC = () => {
   const [addedMovies, setAddedMovies] = useState<{ [key: string]: boolean }>(
     {}
   );
+  const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
 
   const addMovie = (movieToSave: Movie) => {
     setSavedMovies((prevSavedMovies) => {
@@ -66,6 +70,13 @@ const MoviePage: React.FC = () => {
     <>
       <div className="flex place-content-center">
         <Search onSearch={handleSearch} />
+        <button
+          onClick={() =>
+            setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
+          }
+        >
+          Toggle View
+        </button>
 
         {showUserMedia ? (
           <div onClick={showMedia} className="cursor-pointer">
@@ -85,12 +96,18 @@ const MoviePage: React.FC = () => {
           handleRemoveFromList={handleRemoveFromList}
         />
       ) : (
-        <Movies
-          movies={movies}
-          addMovie={addMovie}
-          handleAddToList={handleAddToList}
-          addedMovies={addedMovies}
-        />
+        <>
+          {toggleMedia === "movies" ? (
+            <Movies
+              movies={movies}
+              addMovie={addMovie}
+              handleAddToList={handleAddToList}
+              addedMovies={addedMovies}
+            />
+          ) : (
+            <Shows />
+          )}
+        </>
       )}
     </>
   );
