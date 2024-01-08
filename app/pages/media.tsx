@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Search from "../components/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
+import { useFetchShows } from "../hooks/useFetchShows";
 import UserMedia from "../components/userMedia";
 import { Movie } from "../types/interfaces";
 // import LoginPage from "./login.page";
@@ -11,6 +12,7 @@ import { Movie } from "../types/interfaces";
 
 const MoviePage: React.FC = () => {
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
+  const { shows, fetchShows } = useFetchShows();
   const [savedMovies, setSavedMovies] = useState<Movie[]>([]);
   const [showUserMedia, setShowUserMedia] = useState<boolean>(false);
   const [addedMovies, setAddedMovies] = useState<{ [key: string]: boolean }>(
