@@ -1,29 +1,40 @@
-const Shows: React.FC = () => {
+"use client";
+
+import { Show } from "../types/interfaces";
+
+interface ShowProps {
+  shows: Show[];
+  // addMovie: (movieToSave: Movie) => void;
+  // handleAddToList: (movieId: string) => void;
+  // addedMovies: { [key: string]: boolean };
+}
+
+const Shows: React.FC<ShowProps> = ({ shows }) => {
   return (
     <div className="grid grid-cols-6">
       {shows.map((show, i) => (
         <div className="flex flex-col p-2" key={i}>
           <div className="tooltip">
             <h2 className="truncate">
-              {show.original_title.length > 20
-                ? `${show.original_title.substring(0, 20)}...`
-                : show.original_title}
+              {show.original_name.length > 20
+                ? `${show.original_name.substring(0, 20)}...`
+                : show.original_name}
             </h2>
-            {show.original_title.length > 20 && (
-              <div className="tooltiptext">{show.original_title}</div>
+            {show.original_name.length > 20 && (
+              <div className="tooltiptext">{show.original_name}</div>
             )}
           </div>
           <p>Rating: {show.vote_average}</p>
           <img
             src={
               show.poster_path
-                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
                 : "/image.png"
             }
-            alt={movie.original_title}
+            alt={show.original_title}
           />
 
-          {addedShows[show.id] ? (
+          {/* {addedShows[show.id] ? (
             <div>Saved to list</div>
           ) : (
             <button
@@ -34,7 +45,7 @@ const Shows: React.FC = () => {
             >
               Save
             </button>
-          )}
+          )} */}
         </div>
       ))}
     </div>

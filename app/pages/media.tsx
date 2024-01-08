@@ -105,7 +105,7 @@ const MoviePage: React.FC = () => {
               addedMovies={addedMovies}
             />
           ) : (
-            <Shows />
+            <Shows shows={shows} />
           )}
         </>
       )}
