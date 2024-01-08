@@ -56,10 +56,15 @@ const MoviePage: React.FC = () => {
     }));
   };
 
+  const handleSearch = (query: string) => {
+    fetchMovies(query);
+    fetchShows(query);
+  };
+
   return (
     <>
       <div className="flex place-content-center">
-        <Search onSearch={fetchMovies} />
+        <Search onSearch={handleSearch} />
 
         {showUserMedia ? (
           <div onClick={showMedia} className="cursor-pointer">

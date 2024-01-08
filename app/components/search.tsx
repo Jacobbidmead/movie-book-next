@@ -22,7 +22,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
       type="text"
       value={inputValue}
       onChange={(e) => setInputValue(e.target.value)}
-      placeholder="Search for a movie..."
+      placeholder="Search..."
     />
   );
 };
