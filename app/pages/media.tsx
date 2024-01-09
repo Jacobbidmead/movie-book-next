@@ -61,10 +61,12 @@ const MoviePage: React.FC = () => {
       setSavedMovies((prevMovies) =>
         prevMovies.filter((movie) => movie.id !== mediaId)
       );
+      setAddedMovies((prev) => ({ ...prev, [mediaId]: false }));
     } else if (mediaType === "show") {
       setSavedShows((prevShows) =>
         prevShows.filter((show) => show.id !== mediaId)
       );
+      setAddedShows((prev) => ({ ...prev, [mediaId]: false }));
     }
   };
 
