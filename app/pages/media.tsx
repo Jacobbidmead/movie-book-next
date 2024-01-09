@@ -104,7 +104,8 @@ const MoviePage: React.FC = () => {
             setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
           }
         >
-          {toggleMedia === "movies" ? <span>TV</span> : <span>Movies</span>}
+          {!showUserMedia &&
+            (toggleMedia === "movies" ? <span>TV</span> : <span>Movies</span>)}
         </button>
 
         {showUserMedia ? (
