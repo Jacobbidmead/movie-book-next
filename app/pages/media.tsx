@@ -55,11 +55,17 @@ const MoviePage: React.FC = () => {
     });
   };
 
-  // remove movie from saved movie list
-  const removeMovie = (movieToRemoveId: string) => {
-    setSavedMovies((prevSavedMovies) => {
-      return prevSavedMovies.filter((movie) => movie.id != movieToRemoveId);
-    });
+  // remove media from saved movie list
+  const removeMedia = (mediaId: string, mediaType: "movie" | "show") => {
+    if (mediaType === "movie") {
+      setSavedMovies((prevMovies) =>
+        prevMovies.filter((movie) => movie.id !== mediaId)
+      );
+    } else if (mediaType === "show") {
+      setSavedShows((prevShows) =>
+        prevShows.filter((show) => show.id !== mediaId)
+      );
+    }
   };
 
   const showMedia = () => {
@@ -116,7 +122,7 @@ const MoviePage: React.FC = () => {
         <UserMedia
           savedMovies={savedMovies}
           savedShows={savedShows}
-          removeMovie={removeMovie}
+          removeMedia={removeMedia}
           handleRemoveFromList={handleRemoveFromList}
         />
       ) : (

@@ -5,7 +5,7 @@ import { Movie, Show } from "../types/interfaces";
 interface UserMediaProps {
   savedMovies: Movie[];
   savedShows: Show[];
-  removeMovie: (movieId: string) => void;
+  removeMedia: (mediaId: string, mediaType: "movie" | "show") => void;
   handleRemoveFromList: (movieId: string) => void;
   // setSavedMovie: Movie[];
 }
@@ -15,7 +15,7 @@ interface UserMediaProps {
 const UserMedia: React.FC<UserMediaProps> = ({
   savedShows,
   savedMovies,
-  removeMovie,
+  removeMedia,
   handleRemoveFromList,
 }) => {
   return (
