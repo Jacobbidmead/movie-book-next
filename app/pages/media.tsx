@@ -5,10 +5,12 @@ import Search from "../components/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import { useFetchShows } from "../hooks/useFetchShows";
 import UserMedia from "../components/userMedia";
-import { Movie } from "../types/interfaces";
+import { Movie, Show } from "../types/interfaces";
 import Movies from "../components/Movies";
 import Shows from "../components/Shows";
 // import LoginPage from "./login.page";
+
+// TODO: refactor, addMovie & addShow functions can be combined
 
 // displays movie search
 
@@ -17,6 +19,7 @@ type MediaView = "movies" | "shows";
 const MoviePage: React.FC = () => {
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const { shows, fetchShows } = useFetchShows();
+  const [savedShows, setSavedShows] = useState<Show[]>([]);
   const [savedMovies, setSavedMovies] = useState<Movie[]>([]);
   const [showUserMedia, setShowUserMedia] = useState<boolean>(false);
   const [addedMovies, setAddedMovies] = useState<{ [key: string]: boolean }>(
@@ -24,6 +27,7 @@ const MoviePage: React.FC = () => {
   );
   const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
 
+  // add movies to user list
   const addMovie = (movieToSave: Movie) => {
     setSavedMovies((prevSavedMovies) => {
       // Check if the movie already exists in the saved list
@@ -37,6 +41,20 @@ const MoviePage: React.FC = () => {
     });
   };
 
+  // add show to user list
+  const addShow = (showToSave: Show) => {
+    setSavedShows((prevSavedShows) => {
+      const isShowSaved = prevSavedShows.some(
+        (show) => show.id === showToSave.id
+      );
+      if (!isShowSaved) {
+        return [...prevSavedShows, showToSave];
+      }
+      return prevSavedShows;
+    });
+  };
+
+  // remove movie from saved movie list
   const removeMovie = (movieToRemoveId: string) => {
     setSavedMovies((prevSavedMovies) => {
       return prevSavedMovies.filter((movie) => movie.id != movieToRemoveId);
@@ -105,7 +123,7 @@ const MoviePage: React.FC = () => {
               addedMovies={addedMovies}
             />
           ) : (
-            <Shows shows={shows} />
+            <Shows shows={shows} addShow={addShow} />
           )}
         </>
       )}

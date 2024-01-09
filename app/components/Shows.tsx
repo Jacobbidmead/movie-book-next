@@ -4,9 +4,10 @@ import { Show } from "../types/interfaces";
 
 interface ShowProps {
   shows: Show[];
+  addShow: (showToSave: Show) => void;
 }
 
-const Shows: React.FC<ShowProps> = ({ shows }) => {
+const Shows: React.FC<ShowProps> = ({ shows, addShow }) => {
   return (
     <div className="grid grid-cols-6">
       {shows.map((show, i) => (
