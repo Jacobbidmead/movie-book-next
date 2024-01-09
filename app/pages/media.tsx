@@ -98,7 +98,8 @@ const MoviePage: React.FC = () => {
   return (
     <>
       <div className="flex place-content-center">
-        <Search onSearch={handleSearch} />
+        {!showUserMedia && <Search onSearch={handleSearch} />}
+
         <button
           onClick={() =>
             setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
