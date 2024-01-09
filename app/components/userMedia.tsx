@@ -4,6 +4,7 @@ import { Movie, Show } from "../types/interfaces";
 
 interface UserMediaProps {
   savedMovies: Movie[];
+  savedShows: Show[];
   removeMovie: (movieId: string) => void;
   handleRemoveFromList: (movieId: string) => void;
   // setSavedMovie: Movie[];
@@ -12,6 +13,7 @@ interface UserMediaProps {
 // displays users saved media
 
 const UserMedia: React.FC<UserMediaProps> = ({
+  savedShows,
   savedMovies,
   removeMovie,
   handleRemoveFromList,
@@ -19,6 +21,7 @@ const UserMedia: React.FC<UserMediaProps> = ({
   return (
     <>
       <div className="grid grid-cols-6">
+        {/* render saved movies */}
         {savedMovies.map((savedMovie) => (
           <div className="flex flex-col p-2" key={savedMovie.id}>
             {" "}
@@ -41,6 +44,35 @@ const UserMedia: React.FC<UserMediaProps> = ({
               onClick={() => {
                 removeMovie(savedMovie.id);
                 handleRemoveFromList(savedMovie.id);
+              }}
+            >
+              remove
+            </button>
+          </div>
+        ))}
+        {/* render saved shows */}
+        {savedShows.map((savedShow) => (
+          <div className="flex flex-col p-2" key={savedShow.id}>
+            {" "}
+            <div className="tooltip">
+              <h2 className="truncate">
+                {savedShow.original_name.length > 20
+                  ? `${savedShow.original_name.substring(0, 20)}...`
+                  : savedShow.original_name}
+              </h2>
+              {savedShow.original_name.length > 20 && (
+                <div className="tooltiptext">{savedShow.original_name}</div>
+              )}
+            </div>
+            <p>Rating: {savedShow.vote_average}</p>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${savedShow.poster_path}`}
+              alt={savedShow.original_name}
+            />
+            <button
+              onClick={() => {
+                removeMovie(savedShow.id);
+                handleRemoveFromList(savedShow.id);
               }}
             >
               remove

@@ -115,6 +115,7 @@ const MoviePage: React.FC = () => {
       {showUserMedia ? (
         <UserMedia
           savedMovies={savedMovies}
+          savedShows={savedShows}
           removeMovie={removeMovie}
           handleRemoveFromList={handleRemoveFromList}
         />
