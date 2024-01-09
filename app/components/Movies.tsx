@@ -3,7 +3,7 @@ import { Movie } from "../types/interfaces";
 interface MovieProps {
   movies: Movie[];
   addMovie: (movieToSave: Movie) => void;
-  handleAddToList: (movieId: string) => void;
+  handleAddToList: (mediaId: string, mediaType: "movie" | "show") => void;
   addedMovies: { [key: string]: boolean };
 }
 
@@ -43,7 +43,7 @@ const Movies: React.FC<MovieProps> = ({
             <button
               onClick={() => {
                 addMovie(movie);
-                handleAddToList(movie.id);
+                handleAddToList(movie.id, "movie");
               }}
             >
               Save

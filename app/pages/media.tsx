@@ -68,15 +68,24 @@ const MoviePage: React.FC = () => {
     }
   };
 
+  // toggles between searched media and saved media
   const showMedia = () => {
     setShowUserMedia((prevState) => !prevState);
   };
 
-  const handleAddToList = (movieId: string) => {
-    setAddedMovies((prevAdded) => ({
-      ...prevAdded,
-      [movieId]: true,
-    }));
+  // changes the state of the button ui to let the user know when some media has succesfully been saved to thier list
+  const handleAddToList = (mediaId: string, mediaType: "movie" | "show") => {
+    if (mediaType === "movie") {
+      setAddedMovies((prevAdded) => ({
+        ...prevAdded,
+        [mediaId]: true,
+      }));
+    } else if (mediaType === "show") {
+      setAddedShows((prevAdded) => ({
+        ...prevAdded,
+        [mediaId]: true,
+      }));
+    }
   };
 
   const handleSearch = (query: string) => {
