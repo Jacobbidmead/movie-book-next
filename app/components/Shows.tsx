@@ -5,9 +5,16 @@ import { Show } from "../types/interfaces";
 interface ShowProps {
   shows: Show[];
   addShow: (showToSave: Show) => void;
+  handleAddToList: (showId: string) => void;
+  addedShows: { [key: string]: boolean };
 }
 
-const Shows: React.FC<ShowProps> = ({ shows, addShow }) => {
+const Shows: React.FC<ShowProps> = ({
+  shows,
+  addShow,
+  handleAddToList,
+  addedShows,
+}) => {
   return (
     <div className="grid grid-cols-6">
       {shows.map((show, i) => (
@@ -32,7 +39,7 @@ const Shows: React.FC<ShowProps> = ({ shows, addShow }) => {
             alt={show.original_name}
           />
 
-          {/* {addedShows[show.id] ? (
+          {addedShows[show.id] ? (
             <div>Saved to list</div>
           ) : (
             <button
@@ -43,7 +50,7 @@ const Shows: React.FC<ShowProps> = ({ shows, addShow }) => {
             >
               Save
             </button>
-          )} */}
+          )}
         </div>
       ))}
     </div>

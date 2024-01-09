@@ -1,6 +1,6 @@
 "use client";
 
-import { Movie } from "../types/interfaces";
+import { Movie, Show } from "../types/interfaces";
 
 interface UserMediaProps {
   savedMovies: Movie[];

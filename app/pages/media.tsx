@@ -25,6 +25,7 @@ const MoviePage: React.FC = () => {
   const [addedMovies, setAddedMovies] = useState<{ [key: string]: boolean }>(
     {}
   );
+  const [addedShows, setAddedShows] = useState<{ [key: string]: boolean }>({});
   const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
 
   // add movies to user list
@@ -65,10 +66,14 @@ const MoviePage: React.FC = () => {
     setShowUserMedia((prevState) => !prevState);
   };
 
-  const handleAddToList = (movieId: string) => {
+  const handleAddToList = (movieId: string, showId: string) => {
     setAddedMovies((prevAdded) => ({
       ...prevAdded,
       [movieId]: true,
+    }));
+    setAddedShows((prevAdded) => ({
+      ...prevAdded,
+      [showId]: true,
     }));
   };
 
@@ -123,7 +128,12 @@ const MoviePage: React.FC = () => {
               addedMovies={addedMovies}
             />
           ) : (
-            <Shows shows={shows} addShow={addShow} />
+            <Shows
+              shows={shows}
+              addShow={addShow}
+              addedShows={addedShows}
+              handleAddToList={handleAddToList}
+            />
           )}
         </>
       )}
