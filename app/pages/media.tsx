@@ -72,21 +72,10 @@ const MoviePage: React.FC = () => {
     setShowUserMedia((prevState) => !prevState);
   };
 
-  const handleAddToList = (movieId: string, showId: string) => {
+  const handleAddToList = (movieId: string) => {
     setAddedMovies((prevAdded) => ({
       ...prevAdded,
       [movieId]: true,
-    }));
-    setAddedShows((prevAdded) => ({
-      ...prevAdded,
-      [showId]: true,
-    }));
-  };
-
-  const handleRemoveFromList = (movieId: string) => {
-    setAddedMovies((prevAdded) => ({
-      ...prevAdded,
-      [movieId]: false,
     }));
   };
 
@@ -123,7 +112,6 @@ const MoviePage: React.FC = () => {
           savedMovies={savedMovies}
           savedShows={savedShows}
           removeMedia={removeMedia}
-          handleRemoveFromList={handleRemoveFromList}
         />
       ) : (
         <>

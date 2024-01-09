@@ -6,8 +6,6 @@ interface UserMediaProps {
   savedMovies: Movie[];
   savedShows: Show[];
   removeMedia: (mediaId: string, mediaType: "movie" | "show") => void;
-  handleRemoveFromList: (movieId: string) => void;
-  // setSavedMovie: Movie[];
 }
 
 // displays users saved media
@@ -16,7 +14,6 @@ const UserMedia: React.FC<UserMediaProps> = ({
   savedShows,
   savedMovies,
   removeMedia,
-  handleRemoveFromList,
 }) => {
   return (
     <>
@@ -42,8 +39,7 @@ const UserMedia: React.FC<UserMediaProps> = ({
             />
             <button
               onClick={() => {
-                removeMovie(savedMovie.id);
-                handleRemoveFromList(savedMovie.id);
+                removeMedia(savedMovie.id, "movie");
               }}
             >
               remove
@@ -71,8 +67,7 @@ const UserMedia: React.FC<UserMediaProps> = ({
             />
             <button
               onClick={() => {
-                removeMovie(savedShow.id);
-                handleRemoveFromList(savedShow.id);
+                removeMedia(savedShow.id, "show");
               }}
             >
               remove
