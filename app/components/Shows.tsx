@@ -4,9 +4,6 @@ import { Show } from "../types/interfaces";
 
 interface ShowProps {
   shows: Show[];
-  // addMovie: (movieToSave: Movie) => void;
-  // handleAddToList: (movieId: string) => void;
-  // addedMovies: { [key: string]: boolean };
 }
 
 const Shows: React.FC<ShowProps> = ({ shows }) => {
@@ -31,7 +28,7 @@ const Shows: React.FC<ShowProps> = ({ shows }) => {
                 ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
                 : "/image.png"
             }
-            alt={show.original_title}
+            alt={show.original_name}
           />
 
           {/* {addedShows[show.id] ? (

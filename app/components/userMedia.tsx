@@ -9,7 +9,7 @@ interface UserMediaProps {
   // setSavedMovie: Movie[];
 }
 
-// displays users saved movies
+// displays users saved media
 
 const UserMedia: React.FC<UserMediaProps> = ({
   savedMovies,
