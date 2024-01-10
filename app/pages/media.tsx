@@ -97,27 +97,36 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <div className="flex place-content-center">
+      <div className="flex justify-around">
+        <div>
+          <button
+            onClick={() =>
+              setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
+            }
+          >
+            {!showUserMedia &&
+              (toggleMedia === "movies" ? (
+                <span>TV</span>
+              ) : (
+                <span>Movies</span>
+              ))}
+          </button>
+        </div>
+        <div>
+          {showUserMedia ? (
+            <div onClick={showMedia} className="cursor-pointer">
+              Search movies
+            </div>
+          ) : (
+            <div onClick={showMedia} className="cursor-pointer">
+              My list
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="flex justify-center">
         {!showUserMedia && <Search onSearch={handleSearch} />}
-
-        <button
-          onClick={() =>
-            setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
-          }
-        >
-          {!showUserMedia &&
-            (toggleMedia === "movies" ? <span>TV</span> : <span>Movies</span>)}
-        </button>
-
-        {showUserMedia ? (
-          <div onClick={showMedia} className="cursor-pointer">
-            Search movies
-          </div>
-        ) : (
-          <div onClick={showMedia} className="cursor-pointer">
-            My list
-          </div>
-        )}
       </div>
 
       {showUserMedia ? (
