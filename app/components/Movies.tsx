@@ -2,14 +2,14 @@ import { Movie } from "../types/interfaces";
 
 interface MovieProps {
   movies: Movie[];
-  addMovie: (movieToSave: Movie) => void;
+  addMedia: (mediaToSave: Movie) => void;
   handleAddToList: (mediaId: string, mediaType: "movie" | "show") => void;
   addedMovies: { [key: string]: boolean };
 }
 
 const Movies: React.FC<MovieProps> = ({
   movies,
-  addMovie,
+  addMedia,
   addedMovies,
   handleAddToList,
 }) => {
@@ -42,7 +42,7 @@ const Movies: React.FC<MovieProps> = ({
           ) : (
             <button
               onClick={() => {
-                addMovie(movie);
+                addMedia(movie);
                 handleAddToList(movie.id, "movie");
               }}
             >

@@ -4,14 +4,14 @@ import { Show } from "../types/interfaces";
 
 interface ShowProps {
   shows: Show[];
-  addShow: (showToSave: Show) => void;
+  addMedia: (mediaToSave: Show) => void;
   handleAddToList: (mediaId: string, mediaType: "movie" | "show") => void;
   addedShows: { [key: string]: boolean };
 }
 
 const Shows: React.FC<ShowProps> = ({
   shows,
-  addShow,
+  addMedia,
   handleAddToList,
   addedShows,
 }) => {
@@ -44,7 +44,7 @@ const Shows: React.FC<ShowProps> = ({
           ) : (
             <button
               onClick={() => {
-                addShow(show);
+                addMedia(show);
                 handleAddToList(show.id, "show");
               }}
             >

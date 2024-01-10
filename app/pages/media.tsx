@@ -10,8 +10,6 @@ import Movies from "../components/Movies";
 import Shows from "../components/Shows";
 // import LoginPage from "./login.page";
 
-// TODO: refactor, addMovie & addShow functions can be combined
-
 // displays movie search
 
 type MediaView = "movies" | "shows";
@@ -19,8 +17,7 @@ type MediaView = "movies" | "shows";
 const MoviePage: React.FC = () => {
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const { shows, fetchShows } = useFetchShows();
-  const [savedShows, setSavedShows] = useState<Show[]>([]);
-  const [savedMovies, setSavedMovies] = useState<Movie[]>([]);
+  const [savedMedia, setSavedMedia] = useState<(Movie | Show)[]>([]);
   const [showUserMedia, setShowUserMedia] = useState<boolean>(false);
   const [addedMovies, setAddedMovies] = useState<{ [key: string]: boolean }>(
     {}
@@ -28,45 +25,37 @@ const MoviePage: React.FC = () => {
   const [addedShows, setAddedShows] = useState<{ [key: string]: boolean }>({});
   const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
 
-  // add movies to user list
-  const addMovie = (movieToSave: Movie) => {
-    setSavedMovies((prevSavedMovies) => {
-      // Check if the movie already exists in the saved list
-      const isMovieSaved = prevSavedMovies.some(
-        (movie) => movie.id === movieToSave.id
-      );
-      if (!isMovieSaved) {
-        return [...prevSavedMovies, movieToSave]; // Add new movie
+  const addMedia = (media: Movie | Show) => {
+    setSavedMedia((prevMedia) => {
+      const isMediaSaved = prevMedia.some((item) => item.id === media.id);
+      if (!isMediaSaved) {
+        const updatedMedia = { ...media, type: media.type } as
+          | Movie
+          | (Show & { type: "movie" | "show" });
+        return [...prevMedia, updatedMedia];
       }
-      return prevSavedMovies; // Return existing list if movie is already saved
-    });
-  };
-
-  // add show to user list
-  const addShow = (showToSave: Show) => {
-    setSavedShows((prevSavedShows) => {
-      const isShowSaved = prevSavedShows.some(
-        (show) => show.id === showToSave.id
-      );
-      if (!isShowSaved) {
-        return [...prevSavedShows, showToSave];
-      }
-      return prevSavedShows;
+      return prevMedia;
     });
   };
 
   // remove media from saved movie list
   const removeMedia = (mediaId: string, mediaType: "movie" | "show") => {
+    setSavedMedia((prevMedia) =>
+      prevMedia.filter(
+        (media) => !(media.id === mediaId && media.type === mediaType)
+      )
+    );
+
     if (mediaType === "movie") {
-      setSavedMovies((prevMovies) =>
-        prevMovies.filter((movie) => movie.id !== mediaId)
-      );
-      setAddedMovies((prev) => ({ ...prev, [mediaId]: false }));
+      setAddedMovies((prevAdded) => ({
+        ...prevAdded,
+        [mediaId]: false,
+      }));
     } else if (mediaType === "show") {
-      setSavedShows((prevShows) =>
-        prevShows.filter((show) => show.id !== mediaId)
-      );
-      setAddedShows((prev) => ({ ...prev, [mediaId]: false }));
+      setAddedShows((prevAdded) => ({
+        ...prevAdded,
+        [mediaId]: false,
+      }));
     }
   };
 
@@ -130,24 +119,20 @@ const MoviePage: React.FC = () => {
       </div>
 
       {showUserMedia ? (
-        <UserMedia
-          savedMovies={savedMovies}
-          savedShows={savedShows}
-          removeMedia={removeMedia}
-        />
+        <UserMedia savedMedia={savedMedia} removeMedia={removeMedia} />
       ) : (
         <>
           {toggleMedia === "movies" ? (
             <Movies
               movies={movies}
-              addMovie={addMovie}
+              addMedia={addMedia}
               handleAddToList={handleAddToList}
               addedMovies={addedMovies}
             />
           ) : (
             <Shows
               shows={shows}
-              addShow={addShow}
+              addMedia={addMedia}
               addedShows={addedShows}
               handleAddToList={handleAddToList}
             />

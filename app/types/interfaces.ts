@@ -4,6 +4,7 @@ export interface Movie {
   vote_average: string;
   id: string;
   poster_path: string;
+  type: "movie";
 }
 
 export interface Show {
@@ -12,4 +13,5 @@ export interface Show {
   vote_average: string;
   id: string;
   poster_path: string;
+  type: "show";
 }
