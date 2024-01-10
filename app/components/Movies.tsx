@@ -4,13 +4,13 @@ interface MovieProps {
   movies: Movie[];
   addMedia: (mediaToSave: Movie) => void;
   handleAddToList: (mediaId: string, mediaType: "movie" | "show") => void;
-  addedMovies: { [key: string]: boolean };
+  addedMedia: { [key: string]: boolean };
 }
 
 const Movies: React.FC<MovieProps> = ({
   movies,
   addMedia,
-  addedMovies,
+  addedMedia,
   handleAddToList,
 }) => {
   return (
@@ -37,7 +37,7 @@ const Movies: React.FC<MovieProps> = ({
             alt={movie.original_title}
           />
 
-          {addedMovies[movie.id] ? (
+          {addedMedia[movie.id] ? (
             <div>Saved to list</div>
           ) : (
             <button

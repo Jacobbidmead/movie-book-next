@@ -3,7 +3,7 @@
 import { Movie, Show } from "../types/interfaces";
 
 interface UserMediaProps {
-  savedMedia: Movie[] | Show[];
+  savedMedia: (Movie | Show)[];
   removeMedia: (mediaId: string, mediaType: "movie" | "show") => void;
 }
 
@@ -14,7 +14,6 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
   return (
     <>
       <div className="grid grid-cols-6">
-        {/* render saved media */}
         {mediaArray.map((savedMedia) => (
           <div className="flex flex-col p-2" key={savedMedia.id}>
             <div className="tooltip">
@@ -53,7 +52,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
                 removeMedia(savedMedia.id, savedMedia.type);
               }}
             >
-              remove
+              Remove
             </button>
           </div>
         ))}

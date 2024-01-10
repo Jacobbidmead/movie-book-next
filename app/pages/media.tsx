@@ -19,10 +19,10 @@ const MoviePage: React.FC = () => {
   const { shows, fetchShows } = useFetchShows();
   const [savedMedia, setSavedMedia] = useState<(Movie | Show)[]>([]);
   const [showUserMedia, setShowUserMedia] = useState<boolean>(false);
-  const [addedMovies, setAddedMovies] = useState<{ [key: string]: boolean }>(
-    {}
-  );
-  const [addedShows, setAddedShows] = useState<{ [key: string]: boolean }>({});
+  const [addedMedia, setAddedMedia] = useState({
+    movies: {},
+    shows: {},
+  });
   const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
 
   const addMedia = (media: Movie | Show) => {
@@ -46,17 +46,13 @@ const MoviePage: React.FC = () => {
       )
     );
 
-    if (mediaType === "movie") {
-      setAddedMovies((prevAdded) => ({
-        ...prevAdded,
+    setAddedMedia((prevAdded) => ({
+      ...prevAdded,
+      [mediaType === "movie" ? "movies" : "shows"]: {
+        ...prevAdded[mediaType === "movie" ? "movies" : "shows"],
         [mediaId]: false,
-      }));
-    } else if (mediaType === "show") {
-      setAddedShows((prevAdded) => ({
-        ...prevAdded,
-        [mediaId]: false,
-      }));
-    }
+      },
+    }));
   };
 
   // toggles between searched media and saved media
@@ -66,17 +62,13 @@ const MoviePage: React.FC = () => {
 
   // changes the state of the button ui to let the user know when some media has succesfully been saved to thier list
   const handleAddToList = (mediaId: string, mediaType: "movie" | "show") => {
-    if (mediaType === "movie") {
-      setAddedMovies((prevAdded) => ({
-        ...prevAdded,
+    setAddedMedia((prevAdded) => ({
+      ...prevAdded,
+      [mediaType === "movie" ? "movies" : "shows"]: {
+        ...prevAdded[mediaType === "movie" ? "movies" : "shows"],
         [mediaId]: true,
-      }));
-    } else if (mediaType === "show") {
-      setAddedShows((prevAdded) => ({
-        ...prevAdded,
-        [mediaId]: true,
-      }));
-    }
+      },
+    }));
   };
 
   const handleSearch = (query: string) => {
@@ -127,13 +119,13 @@ const MoviePage: React.FC = () => {
               movies={movies}
               addMedia={addMedia}
               handleAddToList={handleAddToList}
-              addedMovies={addedMovies}
+              addedMedia={addedMedia}
             />
           ) : (
             <Shows
               shows={shows}
               addMedia={addMedia}
-              addedShows={addedShows}
+              addedMedia={addedMedia}
               handleAddToList={handleAddToList}
             />
           )}

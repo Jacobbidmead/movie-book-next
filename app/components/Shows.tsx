@@ -6,14 +6,14 @@ interface ShowProps {
   shows: Show[];
   addMedia: (mediaToSave: Show) => void;
   handleAddToList: (mediaId: string, mediaType: "movie" | "show") => void;
-  addedShows: { [key: string]: boolean };
+  addedMedia: { [key: string]: boolean };
 }
 
 const Shows: React.FC<ShowProps> = ({
   shows,
   addMedia,
   handleAddToList,
-  addedShows,
+  addedMedia,
 }) => {
   return (
     <div className="grid grid-cols-6">
@@ -39,13 +39,13 @@ const Shows: React.FC<ShowProps> = ({
             alt={show.original_name}
           />
 
-          {addedShows[show.id] ? (
+          {addedMedia[show.id] ? (
             <div>Saved to list</div>
           ) : (
             <button
               onClick={() => {
                 addMedia(show);
-                handleAddToList(show.id, "show");
+                handleAddToList(show.id, "movie");
               }}
             >
               Save
