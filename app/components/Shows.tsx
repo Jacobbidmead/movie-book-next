@@ -2,11 +2,16 @@
 
 import { Show } from "../types/interfaces";
 
+interface AddedMediaState {
+  movies: { [key: string]: boolean };
+  shows: { [key: string]: boolean };
+}
+
 interface ShowProps {
   shows: Show[];
   addMedia: (mediaToSave: Show) => void;
   handleAddToList: (mediaId: string, mediaType: "movie" | "show") => void;
-  addedMedia: { [key: string]: boolean };
+  addedMedia: AddedMediaState;
 }
 
 const Shows: React.FC<ShowProps> = ({
@@ -39,7 +44,7 @@ const Shows: React.FC<ShowProps> = ({
             alt={show.original_name}
           />
 
-          {addedMedia[show.id] ? (
+          {addedMedia.shows[show.id] ? (
             <div>Saved to list</div>
           ) : (
             <button

@@ -1,10 +1,15 @@
 import { Movie } from "../types/interfaces";
 
+interface AddedMediaState {
+  movies: { [key: string]: boolean };
+  shows: { [key: string]: boolean };
+}
+
 interface MovieProps {
   movies: Movie[];
   addMedia: (mediaToSave: Movie) => void;
   handleAddToList: (mediaId: string, mediaType: "movie" | "show") => void;
-  addedMedia: { [key: string]: boolean };
+  addedMedia: AddedMediaState;
 }
 
 const Movies: React.FC<MovieProps> = ({
@@ -37,7 +42,7 @@ const Movies: React.FC<MovieProps> = ({
             alt={movie.original_title}
           />
 
-          {addedMedia[movie.id] ? (
+          {addedMedia.movies[movie.id] ? (
             <div>Saved to list</div>
           ) : (
             <button
