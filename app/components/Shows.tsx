@@ -27,12 +27,12 @@ const Shows: React.FC<ShowProps> = ({
         <div className="flex flex-col p-2" key={show.id}>
           <div className="tooltip">
             <h2 className="truncate">
-              {show.original_name.length > 20
-                ? `${show.original_name.substring(0, 20)}...`
-                : show.original_name}
+              {show.title.length > 20
+                ? `${show.title.substring(0, 20)}...`
+                : show.title}
             </h2>
-            {show.original_name.length > 20 && (
-              <div className="tooltiptext">{show.original_name}</div>
+            {show.title.length > 20 && (
+              <div className="tooltiptext">{show.title}</div>
             )}
           </div>
           <p>Rating: {show.vote_average}</p>
@@ -42,7 +42,7 @@ const Shows: React.FC<ShowProps> = ({
                 ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
                 : "/image.png"
             }
-            alt={show.original_name}
+            alt={show.title}
           />
 
           {addedMedia.shows[show.id] ? (

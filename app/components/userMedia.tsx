@@ -4,7 +4,7 @@ import { Movie, Show } from "../types/interfaces";
 
 interface UserMediaProps {
   savedMedia: (Movie | Show)[];
-  removeMedia: (mediaId: string, mediaType: "movie" | "show") => void;
+  removeMedia: (mediaId: string) => void;
 }
 
 // displays users saved media
@@ -23,37 +23,26 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
           <div className="flex flex-col p-2" key={savedMediaItem.id}>
             <div className="tooltip">
               <h2 className="truncate">
-                Title:{" "}
-                {savedMediaItem.type === "movie"
-                  ? savedMediaItem.title?.length > 20
-                    ? `${savedMediaItem.title.substring(0, 20)}...`
-                    : savedMediaItem.title
-                  : savedMediaItem.original_name?.length > 20
-                  ? `${savedMediaItem.original_name.substring(0, 20)}...`
-                  : savedMediaItem.original_name}
+                {savedMediaItem.title.length > 20
+                  ? `${savedMediaItem.title.substring(0, 20)}...`
+                  : savedMediaItem.title}
               </h2>
-              {savedMediaItem.type === "movie"
-                ? savedMediaItem.title?.length > 20 && (
-                    <div className="tooltiptext">{savedMediaItem.title}</div>
-                  )
-                : savedMediaItem.original_name?.length > 20 && (
-                    <div className="tooltiptext">
-                      {savedMediaItem.original_name}
-                    </div>
-                  )}
+              {savedMediaItem.title.length > 20 && (
+                <div className="tooltiptext">{savedMediaItem.title}</div>
+              )}
             </div>
             <p>Rating: {savedMediaItem.vote_average}</p>
             <img
-              src={`https://image.tmdb.org/t/p/w500${savedMediaItem.poster_path}`}
-              alt={
-                savedMediaItem.type === "movie"
-                  ? savedMediaItem.title
-                  : savedMediaItem.original_name
+              src={
+                savedMediaItem.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${savedMediaItem.poster_path}`
+                  : "/image.png"
               }
+              alt={savedMediaItem.title}
             />
             <button
               onClick={() => {
-                removeMedia(savedMediaItem.id, savedMediaItem.type);
+                removeMedia(savedMediaItem.id);
               }}
             >
               Remove

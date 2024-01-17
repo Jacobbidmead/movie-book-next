@@ -44,15 +44,13 @@ const MoviePage: React.FC = () => {
 
   // Function to remove a media item (either a movie or a show) from the saved list.
 
-  const removeMedia = (mediaId: string, mediaType: "movie" | "show") => {
+  const removeMedia = (mediaId: string) => {
     // Update the 'savedMedia' state.
     // This state holds an array of all saved media items.
     setSavedMedia((prevMedia) =>
-      // Filter out the media item that matches the given 'mediaId' and 'mediaType'.
+      // Filter out the media item that matches the given 'mediaId'.
       // This effectively removes the item from the list of saved media.
-      prevMedia.filter(
-        (media) => !(media.id === mediaId && media.type === mediaType)
-      )
+      prevMedia.filter((media) => media.id !== mediaId)
     );
     // Update the 'addedMedia' state.
 
@@ -60,11 +58,9 @@ const MoviePage: React.FC = () => {
     // It has a structure that differentiates between 'movies' and 'shows'.
     setAddedMedia((prevAdded) => ({
       ...prevAdded, // Spread the existing state to maintain other entries.
-      // Based on the 'mediaType', update either the 'movies' or 'shows' part of the state.
-      [mediaType === "movie" ? "movies" : "shows"]: {
-        ...prevAdded[mediaType === "movie" ? "movies" : "shows"], // Spread the existing 'movies' or 'shows' state.
-        [mediaId]: false, // Set the specific media item's saved status to false, indicating it is no longer saved.
-      },
+      // Remove the entry with the given 'mediaId' from both 'movies' and 'shows'.
+      movies: { ...prevAdded.movies, [mediaId]: undefined },
+      shows: { ...prevAdded.shows, [mediaId]: undefined },
     }));
   };
 

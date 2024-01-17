@@ -9,6 +9,7 @@ export interface Movie {
 
 export interface Show {
   original_name: string;
+  title: string;
   release_date: string;
   vote_average: string;
   id: string;

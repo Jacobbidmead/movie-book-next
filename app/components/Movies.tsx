@@ -40,7 +40,7 @@ const Movies: React.FC<MovieProps> = ({
                 ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
                 : "/image.png"
             }
-            alt={movie.original_title}
+            alt={movie.title}
           />
 
           {addedMedia.movies[movie.id] ? (
