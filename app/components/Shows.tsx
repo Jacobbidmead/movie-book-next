@@ -50,7 +50,7 @@ const Shows: React.FC<ShowProps> = ({
             <button
               onClick={() => {
                 addMedia(show);
-                handleAddToList(show.id, "movie");
+                handleAddToList(show.id, "show");
               }}
             >
               Save

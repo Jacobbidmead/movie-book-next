@@ -11,7 +11,7 @@ interface UserMediaProps {
 
 const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
   const mediaArray = savedMedia as (Movie | Show)[];
-  console.log("Saved media:", mediaArray);
+
   return (
     <>
       <div className="grid grid-cols-6">
