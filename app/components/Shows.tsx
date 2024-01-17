@@ -20,10 +20,11 @@ const Shows: React.FC<ShowProps> = ({
   handleAddToList,
   addedMedia,
 }) => {
+  console.log("Rendering Shows component");
   return (
     <div className="grid grid-cols-6">
-      {shows.map((show, i) => (
-        <div className="flex flex-col p-2" key={i}>
+      {shows.map((show) => (
+        <div className="flex flex-col p-2" key={show.id}>
           <div className="tooltip">
             <h2 className="truncate">
               {show.original_name.length > 20

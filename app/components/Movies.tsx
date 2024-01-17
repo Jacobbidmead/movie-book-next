@@ -18,10 +18,11 @@ const Movies: React.FC<MovieProps> = ({
   addedMedia,
   handleAddToList,
 }) => {
+  console.log("Rendering Movies component");
   return (
     <div className="grid grid-cols-6">
-      {movies.map((movie, i) => (
-        <div className="flex flex-col p-2" key={i}>
+      {movies.map((movie) => (
+        <div className="flex flex-col p-2" key={movie.id}>
           <div className="tooltip">
             <h2 className="truncate">
               {movie.original_title.length > 20

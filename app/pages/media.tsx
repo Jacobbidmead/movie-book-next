@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import Search from "../components/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import { useFetchShows } from "../hooks/useFetchShows";
@@ -24,23 +24,23 @@ const MoviePage: React.FC = () => {
     shows: {},
   });
   const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
+  const memoizedMovies = useMemo(() => movies, [movies]);
+  const memoizedShows = useMemo(() => shows, [shows]);
 
-  const addMedia = (media: Movie | Show) => {
+  const addMedia = useCallback((media: Movie | Show) => {
+    console.log("addMedia called for:", media.id);
     setSavedMedia((prevMedia) => {
-      // if the element id (item) is matched an id of the media, save as variable isMediaSaved
       const isMediaSaved = prevMedia.some((item) => item.id === media.id);
-      // if the element id (item) is not === media.id, then we call it updatedMedia
-      // we can return the previous elements (items) and the new item
       if (!isMediaSaved) {
+        console.log("Media being added:", media);
         const updatedMedia = { ...media, type: media.type } as
           | Movie
           | (Show & { type: "movie" | "show" });
         return [...prevMedia, updatedMedia];
       }
-      // if it is === media.id, then we return the previous elements
       return prevMedia;
     });
-  };
+  }, []);
 
   // Function to remove a media item (either a movie or a show) from the saved list.
 
@@ -130,14 +130,14 @@ const MoviePage: React.FC = () => {
         <>
           {toggleMedia === "movies" ? (
             <Movies
-              movies={movies}
+              movies={memoizedMovies}
               addMedia={addMedia}
               handleAddToList={handleAddToList}
               addedMedia={addedMedia}
             />
           ) : (
             <Shows
-              shows={shows}
+              shows={memoizedShows}
               addMedia={addMedia}
               addedMedia={addedMedia}
               handleAddToList={handleAddToList}
