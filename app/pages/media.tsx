@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback } from "react";
 import Search from "../components/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import { useFetchShows } from "../hooks/useFetchShows";
@@ -24,8 +24,8 @@ const MoviePage: React.FC = () => {
     shows: {},
   });
   const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
-  const memoizedMovies = useMemo(() => movies, [movies]);
-  const memoizedShows = useMemo(() => shows, [shows]);
+  const MemoizedMovies = React.memo(Movies);
+  const MemoizedShows = React.memo(Shows);
 
   const addMedia = useCallback((media: Movie | Show) => {
     console.log("addMedia called for:", media.id);
@@ -129,15 +129,15 @@ const MoviePage: React.FC = () => {
       ) : (
         <>
           {toggleMedia === "movies" ? (
-            <Movies
-              movies={memoizedMovies}
+            <MemoizedMovies
+              movies={movies}
               addMedia={addMedia}
               handleAddToList={handleAddToList}
               addedMedia={addedMedia}
             />
           ) : (
-            <Shows
-              shows={memoizedShows}
+            <MemoizedShows
+              shows={shows}
               addMedia={addMedia}
               addedMedia={addedMedia}
               handleAddToList={handleAddToList}
