@@ -68,6 +68,12 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
           </div>
         ))}
       </div>
+      <div>
+        <h2>Recommendations</h2>
+        {recommendations.map((recommendation, index) => (
+          <p key={index}>{recommendation}</p>
+        ))}
+      </div>
     </>
   );
 };
