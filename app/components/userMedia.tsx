@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Movie, Show } from "../types/interfaces";
 
 interface UserMediaProps {
@@ -11,10 +11,28 @@ interface UserMediaProps {
 
 const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
   const mediaArray = savedMedia as (Movie | Show)[];
+  const [recommendations, setRecommendations] = useState<string[]>([]);
 
-  useEffect(() => {
-    console.log("media", savedMedia);
-  }, [savedMedia]); // Run this effect when mediaArray changes
+  const fetchRecommendations = async () => {
+    try {
+      const response = await fetch("/api/auth/recommend", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(savedMedia),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setRecommendations(data.recommendations);
+      } else {
+        console.error("Failed to fetch recommendations");
+      }
+    } catch (error) {
+      console.error("Error fetching recommendations:", error);
+    }
+  };
 
   return (
     <>
