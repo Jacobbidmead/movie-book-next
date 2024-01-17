@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useCallback } from "react";
 import { Movie } from "../types/interfaces";
 
@@ -7,10 +5,11 @@ const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
 export const useFetchMovies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false); // Add type annotation for isLoading
+  const [error, setError] = useState<string | null>(null); // Add type annotation for error
 
-  const fetchMovies = useCallback((query = "") => {
+  const fetchMovies = useCallback((query: string = "") => {
+    // Add type annotation for query
     setIsLoading(true);
     setError(null);
 
@@ -25,12 +24,22 @@ export const useFetchMovies = () => {
         }
         return res.json();
       })
-      .then((data) => {
+      .then((data: { results: Movie[] }) => {
+        // Add type annotation for data
         if (data && data.results) {
+          // Log movies with missing titles
+          const moviesWithMissingTitles = data.results.filter(
+            (movie: Movie) => !movie.title
+          );
+          if (moviesWithMissingTitles.length > 0) {
+            console.log("Movies with missing titles:", moviesWithMissingTitles);
+          }
+
           setMovies(data.results);
         }
       })
-      .catch((error) => {
+      .catch((error: Error) => {
+        // Add type annotation for error
         setError(error.message);
       })
       .finally(() => {

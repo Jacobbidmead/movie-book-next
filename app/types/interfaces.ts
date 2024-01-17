@@ -1,5 +1,5 @@
 export interface Movie {
-  original_title: string;
+  title: string;
   release_date: string;
   vote_average: string;
   id: string;

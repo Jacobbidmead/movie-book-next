@@ -25,12 +25,12 @@ const Movies: React.FC<MovieProps> = ({
         <div className="flex flex-col p-2" key={movie.id}>
           <div className="tooltip">
             <h2 className="truncate">
-              {movie.original_title.length > 20
-                ? `${movie.original_title.substring(0, 20)}...`
-                : movie.original_title}
+              {movie.title.length > 20
+                ? `${movie.title.substring(0, 20)}...`
+                : movie.title}
             </h2>
-            {movie.original_title.length > 20 && (
-              <div className="tooltiptext">{movie.original_title}</div>
+            {movie.title.length > 20 && (
+              <div className="tooltiptext">{movie.title}</div>
             )}
           </div>
           <p>Rating: {movie.vote_average}</p>
