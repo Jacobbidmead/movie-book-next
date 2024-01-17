@@ -11,45 +11,47 @@ interface UserMediaProps {
 
 const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
   const mediaArray = savedMedia as (Movie | Show)[];
+  console.log("Saved media:", mediaArray);
   return (
     <>
       <div className="grid grid-cols-6">
-        {mediaArray.map((savedMedia) => (
-          <div className="flex flex-col p-2" key={savedMedia.id}>
+        {mediaArray.map((savedMediaItem) => (
+          <div className="flex flex-col p-2" key={savedMediaItem.id}>
             <div className="tooltip">
               <h2 className="truncate">
-                {savedMedia.type === "movie"
-                  ? savedMedia.original_title?.length > 20
-                    ? `${savedMedia.original_title.substring(0, 20)}...`
-                    : savedMedia.original_title
-                  : savedMedia.original_name?.length > 20
-                  ? `${savedMedia.original_name.substring(0, 20)}...`
-                  : savedMedia.original_name}
+                Title:{" "}
+                {savedMediaItem.type === "movie"
+                  ? savedMediaItem.original_title?.length > 20
+                    ? `${savedMediaItem.original_title.substring(0, 20)}...`
+                    : savedMediaItem.original_title
+                  : savedMediaItem.original_name?.length > 20
+                  ? `${savedMediaItem.original_name.substring(0, 20)}...`
+                  : savedMediaItem.original_name}
               </h2>
-              {savedMedia.type === "movie"
-                ? savedMedia.original_title?.length > 20 && (
+              {savedMediaItem.type === "movie"
+                ? savedMediaItem.original_title?.length > 20 && (
                     <div className="tooltiptext">
-                      {savedMedia.original_title}
+                      {savedMediaItem.original_title}
                     </div>
                   )
-                : savedMedia.original_name?.length > 20 && (
+                : savedMediaItem.original_name?.length > 20 && (
                     <div className="tooltiptext">
-                      {savedMedia.original_name}
+                      {savedMediaItem.original_name}
                     </div>
                   )}
             </div>
-            <p>Rating: {savedMedia.vote_average}</p>
+            <p>Rating: {savedMediaItem.vote_average}</p>
             <img
-              src={`https://image.tmdb.org/t/p/w500${savedMedia.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500${savedMediaItem.poster_path}`}
               alt={
-                savedMedia.type === "movie"
-                  ? savedMedia.original_title
-                  : savedMedia.original_name
+                savedMediaItem.type === "movie"
+                  ? savedMediaItem.original_title
+                  : savedMediaItem.original_name
               }
             />
             <button
               onClick={() => {
-                removeMedia(savedMedia.id, savedMedia.type);
+                removeMedia(savedMediaItem.id, savedMediaItem.type);
               }}
             >
               Remove
