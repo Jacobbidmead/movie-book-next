@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
+import SendUserMedia from ".//sendUserMedia";
 
 interface UserMediaProps {
   savedMedia: (Movie | Show)[];
@@ -12,27 +13,6 @@ interface UserMediaProps {
 const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
   const mediaArray = savedMedia as (Movie | Show)[];
   const [recommendations, setRecommendations] = useState<string[]>([]);
-
-  const fetchRecommendations = async () => {
-    try {
-      const response = await fetch("/api/auth/recommend", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(savedMedia),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setRecommendations(data.recommendations);
-      } else {
-        console.error("Failed to fetch recommendations");
-      }
-    } catch (error) {
-      console.error("Error fetching recommendations:", error);
-    }
-  };
 
   return (
     <>
@@ -68,12 +48,15 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
           </div>
         ))}
       </div>
-      <div>
+      {/* <div>
         <h2>Recommendations</h2>
         {recommendations.map((recommendation, index) => (
           <p key={index}>{recommendation}</p>
         ))}
-      </div>
+        <button onClick={fetchRecommendations}>Get Recommendations</button>
+
+      </div> */}
+      <SendUserMedia savedMedia={savedMedia} />
     </>
   );
 };
