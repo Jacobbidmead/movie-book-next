@@ -8,7 +8,7 @@ const LoginForm: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    await fetch("/api/auth/login", {
+    await fetch("/api/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,7 +1,6 @@
-// // pages/api/recommend.ts
-
 // import OpenAI from "openai";
 
+// Test
 export async function POST(req: Request) {
   const body = await req.json();
   console.log(body);
@@ -9,6 +8,7 @@ export async function POST(req: Request) {
   return new Response("OK");
 }
 
+// ChatGPT connection
 // export default async function handler(
 //   req: NextApiRequest,
 //   res: NextApiResponse<ApiResponse>

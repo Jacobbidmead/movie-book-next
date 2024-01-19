@@ -4,8 +4,7 @@ export interface IUser extends Document {
   username: string;
   email: string;
   password: string;
-  movieID: string;
-  tvID: string;
+  savedMedia: string[];
 }
 
 const userSchema: Schema = new mongoose.Schema({
@@ -22,14 +21,12 @@ const userSchema: Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  movieID: {
-    type: String,
-    required: false,
-  },
-  tvID: {
-    type: String,
-    required: false,
-  },
+  savedMedia: [
+    {
+      type: String,
+      required: false,
+    },
+  ],
 });
 
 const User: Model<IUser> =
