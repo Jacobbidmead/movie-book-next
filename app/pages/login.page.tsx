@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { LoginRequestBody } from "../types/interfaces";
 
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState("");

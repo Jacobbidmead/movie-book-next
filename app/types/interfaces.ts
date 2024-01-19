@@ -16,3 +16,8 @@ export interface Show {
   poster_path: string;
   type: "show";
 }
+
+export interface LoginRequestBody {
+  username: string;
+  password: string;
+}
