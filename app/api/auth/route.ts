@@ -3,14 +3,6 @@ import { connectToDatabase } from "@/app/lib/dbConnect";
 import { LoginRequestBody } from "@/app/types/interfaces";
 import User from "@/app/models/User";
 
-// Test
-// export async function POST(req: Request) {
-//   const body = await req.json();
-//   console.log(body);
-
-//   return new Response("OK");
-// }import type { NextApiResponse } from 'next';
-
 // Define the expected structure of the request body
 
 export async function POST(
