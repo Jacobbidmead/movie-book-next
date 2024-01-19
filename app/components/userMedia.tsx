@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
-import SendUserMedia from ".//sendUserMedia";
+import SendUserMedia from "../atoms/sendUserMedia";
 
 interface UserMediaProps {
   savedMedia: (Movie | Show)[];

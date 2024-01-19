@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import Search from "../components/search";
+import Search from "../atoms/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import { useFetchShows } from "../hooks/useFetchShows";
 import UserMedia from "../components/userMedia";
