@@ -1,37 +1,33 @@
-import OpenAI from "openai";
+// import { Movie, Show } from "@/app/types/interfaces";
 
-interface MediaItem {
-  title: string;
-  overview: string;
-}
+// interface UserMediaProps {
+//   savedMedia: (Movie | Show)[];
+// }
 
-export async function POST({ body }: { body: MediaItem[] }) {
-  try {
-    const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
+// const getRecommendations = async (props: UserMediaProps) => {
+//   // Extract titles from savedMedia
+//   let titles = props.savedMedia.map((media) => `"${media.title}"`).join(", ");
 
-    const prompt = body
-      .map((item) => `Title: ${item.title}\nOverview: ${item.overview}`)
-      .join("\n\n");
+//   // Formulate the query for OpenAI
+//   const prompt = `I have enjoyed the following movies and TV shows: ${titles}. Can you recommend similar titles?`;
 
-    const response = await openai.completions.create({
-      model: "text-davinci-003",
-      prompt: `Based on this list of movies and shows, suggest similar media the user might like:\n\n${prompt}`,
-      max_tokens: 150,
-    });
+//   const systemMessage = {
+//     role: "system",
+//     content: prompt,
+//   };
 
-    const recommendations = response.choices[0].text.trim().split("\n");
-    return new Response(JSON.stringify({ recommendations }), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  } catch (error: any) {
-    console.error("Error in ChatGPT API handler:", error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-    });
-  }
-}
+//   const conversation = [systemMessage];
+
+//   // Send request to OpenAI
+//   try {
+//     const response = await makeRequest(conversation);
+//     // Parse the response to extract recommendations
+//     const recommendations = response.choices[0].text;
+//     return recommendations;
+//   } catch (error) {
+//     console.error("Error in getting recommendations from OpenAI:", error);
+//     return null;
+//   }
+// };
+
+// export default getRecommendations;

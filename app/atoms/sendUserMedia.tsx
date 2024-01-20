@@ -9,7 +9,7 @@ interface SavedUserMediaProps {
 const SendUserMedia: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
   const makeApiCall = async () => {
     try {
-      const response = await fetch("/api/test", {
+      const response = await fetch("/api/ai", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
