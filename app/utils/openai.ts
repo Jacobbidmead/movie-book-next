@@ -8,4 +8,4 @@ if (!apiKey) {
 
 const openai = new OpenAI({ apiKey });
 
-export default OpenAI;
+export default openai;
