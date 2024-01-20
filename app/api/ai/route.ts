@@ -6,18 +6,15 @@ const openai = new OpenAI({
 
 interface mediaList {
   title: string;
-  rating: string;
-  genre: string;
+  // rating: string;
+  // genre: string;
 }
 
 async function getRecommendations(mediaList: mediaList[]) {
   try {
     // Convert the list of movies and TV shows into a formatted string
     const mediaString = mediaList
-      .map(
-        (media) =>
-          `Title: ${media.title}, Genre: ${media.genre}, Rating: ${media.rating}`
-      )
+      .map((media) => `Title: ${media.title}`)
       .join("; ");
 
     // Prepare the prompt for OpenAI
@@ -39,10 +36,7 @@ async function getRecommendations(mediaList: mediaList[]) {
 }
 
 // Example usage:
-const mediaList = [
-  { title: "Inception", genre: "Sci-Fi", rating: "8.8" },
-  { title: "Breaking Bad", genre: "Crime Drama", rating: "9.5" },
-];
+const mediaList = [{ title: "Inception" }, { title: "Breaking Bad" }];
 
 getRecommendations(mediaList).then((recommendations) =>
   console.log(recommendations)
