@@ -12,16 +12,16 @@ type MediaItem = Movie | Show;
 // app/api/recommendations.ts
 export async function POST(req: NextRequest) {
   try {
-    const savedMedia: MediaItem[] = await req.json(); // Ensure the type of savedMedia
+    const savedMedia: MediaItem[] = await req.json();
 
-    const mediaString = savedMedia
-      .map((media) => media.title) // Type is already specified in MediaItem[]
-      .join("; ");
+    console.log("Received savedMedia:", savedMedia);
+    const mediaString = savedMedia.map((media) => media.title).join("; ");
     const prompt = `Based on these movies and TV shows: ${mediaString}, provide recommendations for similar movies and TV shows.`;
 
     const openAIResponse = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
       messages: [{ role: "system", content: prompt }],
+      model: "gpt-3.5-turbo",
+      response_format: { type: "json_object" },
       max_tokens: 200,
     });
 
