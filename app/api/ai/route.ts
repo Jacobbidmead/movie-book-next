@@ -1,43 +1,38 @@
 const { OpenAI } = require("openai");
+import { NextRequest, NextResponse } from "next/server";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-interface mediaList {
+interface MediaItem {
   title: string;
   // rating: string;
   // genre: string;
-}
+} // pages/api/recommendations.js
 
-async function getRecommendations(mediaList: mediaList[]) {
+// app/api/recommendations.ts
+
+export async function POST(req: NextRequest) {
   try {
-    // Convert the list of movies and TV shows into a formatted string
+    const body = await req.json(); // Parse the JSON body from the request
+    const mediaList: MediaItem[] = body.mediaList; // Annotate mediaList with the type
     const mediaString = mediaList
       .map((media) => `Title: ${media.title}`)
       .join("; ");
-
-    // Prepare the prompt for OpenAI
     const prompt = `Based on these movies and TV shows: ${mediaString}, provide recommendations for similar movies and TV shows.`;
 
-    // Make the API call
     const response = await openai.chat.completions.create({
-      model: "text-davinci-003", // or another suitable model
-      prompt: prompt,
-      max_tokens: 200, // Adjust token limit as needed
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "system", content: prompt }],
+      max_tokens: 200,
     });
 
-    // Extract and return the recommendations
-    return response.data.choices[0].text;
+    return NextResponse.json({
+      recommendations: response.data.choices[0].text,
+    });
   } catch (error) {
     console.error("Error fetching recommendations:", error);
-    return "An error occurred while fetching recommendations.";
+    return NextResponse.error();
   }
 }
-
-// Example usage:
-const mediaList = [{ title: "Inception" }, { title: "Breaking Bad" }];
-
-getRecommendations(mediaList).then((recommendations) =>
-  console.log(recommendations)
-);
