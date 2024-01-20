@@ -11,11 +11,18 @@ type MediaItem = Movie | Show;
 
 // app/api/recommendations.ts
 export async function POST(req: NextRequest) {
+  let mediaArray;
   try {
     const savedMedia: MediaItem[] = await req.json();
 
     console.log("Received savedMedia:", savedMedia);
-    const mediaString = savedMedia.map((media) => media.title).join("; ");
+
+    if (Array.isArray(savedMedia)) {
+      mediaArray = savedMedia;
+    } else {
+      mediaArray = [savedMedia]; // Make it an array with a single element
+    }
+    const mediaString = mediaArray.map((media) => media.title).join(", ");
     const prompt = `Based on these movies and TV shows: ${mediaString}, provide recommendations for similar movies and TV shows.`;
 
     const openAIResponse = await openai.chat.completions.create({
