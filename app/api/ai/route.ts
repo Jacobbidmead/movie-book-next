@@ -1,5 +1,12 @@
+const { OpenAI } = require("openai");
+
 export async function POST(req: Request) {
-  const body = await req.json();
-  console.log(body.title);
-  return new Response("OK");
+  console.log("end point works");
+  // const completion = await openai.createCompletion({
+  //   model: "text-davinci-003",
+  //   prompt: "what is 2 + 2",
+  // });
+
+  // console.log(completion.data.choices[0].text);
+  // return new Response("OK");
 }
