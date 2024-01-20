@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
-// Assuming you have a way to import or call the getRecommendations function from the backend
-// import { getRecommendations } from 'path-to-your-backend-function';
+import { Movie, Show } from "../types/interfaces";
 
 interface Media {
   title: string;
@@ -9,34 +7,36 @@ interface Media {
   // genre: string;
 }
 
-const RecommendationsComponent: React.FC = () => {
-  const [mediaList, setMediaList] = useState<Media[]>([]);
+interface SavedUserMediaProps {
+  savedMedia: (Movie | Show)[];
+}
+
+const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
   const [title, setTitle] = useState<string>("");
   const [recommendations, setRecommendations] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleAddMedia = () => {
-    setMediaList([...mediaList, { title }]);
-    setTitle("");
-  };
-
   const handleGetRecommendations = async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/recommendations", {
+      const response = await fetch("/api/ai", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(mediaList),
+        body: JSON.stringify(savedMedia),
       });
 
+      console.log("Status Code:", response.status);
+
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error(
+          `Network response was not ok, status: ${response.status}`
+        );
       }
 
       const data = await response.json();
-      setRecommendations(data.recommendations);
+      setRecommendations(data.recommendations); // Update the state with the recommendations
     } catch (error) {
       console.error("Error fetching recommendations:", error);
       setRecommendations("An error occurred while fetching recommendations.");
@@ -47,22 +47,6 @@ const RecommendationsComponent: React.FC = () => {
 
   return (
     <div>
-      <h2>Add Movie/TV Show</h2>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
-      />
-      <button onClick={handleAddMedia}>Add to List</button>
-
-      <h2>Media List</h2>
-      <ul>
-        {mediaList.map((media, index) => (
-          <li key={index}>{media.title}</li>
-        ))}
-      </ul>
-
       <button onClick={handleGetRecommendations} disabled={loading}>
         {loading ? "Loading..." : "Get Recommendations"}
       </button>
@@ -73,4 +57,4 @@ const RecommendationsComponent: React.FC = () => {
   );
 };
 
-export default RecommendationsComponent;
+export default Recommendations;

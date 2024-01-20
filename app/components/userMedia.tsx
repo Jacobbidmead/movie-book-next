@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
 import SendUserMedia from "../atoms/sendUserMedia";
-import RecommendationsComponent from "./recommendations";
+import Recommendations from "./Recommendations";
 
 interface UserMediaProps {
   savedMedia: (Movie | Show)[];
@@ -58,7 +58,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
 
       </div> */}
       <SendUserMedia savedMedia={savedMedia} />
-      <RecommendationsComponent />
+      <Recommendations savedMedia={savedMedia} />
     </>
   );
 };
