@@ -33,19 +33,22 @@ export async function POST(req: NextRequest) {
     });
 
     // Check if the response structure is as expected
-    if (
-      !openAIResponse ||
-      !openAIResponse.data ||
-      !openAIResponse.data.choices
-    ) {
+    // if (
+    //   !openAIResponse ||
+    //   !openAIResponse.data ||
+    //   !openAIResponse.data.choices
+    // ) {
+    //   throw new Error("Invalid response structure from OpenAI API");
+    // }
+    console.log(openAIResponse);
+    if (openAIResponse && openAIResponse.choices && openAIResponse.choices.length > 0) {
+      const recommendations = openAIResponse.choices[0].message.content; // Accessing the message content
+      return NextResponse.json({
+        recommendations: recommendations,
+      });
+    } else {
       throw new Error("Invalid response structure from OpenAI API");
     }
-
-    return NextResponse.json({
-      recommendations: openAIResponse.data.choices[0].text,
-    });
-  } catch (error) {
-    console.error("Error fetching recommendations:", error);
 
     // Return a more informative error response
     return new NextResponse(JSON.stringify({ error }), {
