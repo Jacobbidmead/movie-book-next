@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     if (Array.isArray(savedMedia)) {
       mediaArray = savedMedia;
     } else {
-      mediaArray = [savedMedia]; // Make it an array with a single element
+      mediaArray = [savedMedia];
     }
     const mediaString = mediaArray
       .map((media) => media.title)
@@ -32,25 +32,22 @@ export async function POST(req: NextRequest) {
       max_tokens: 200,
     });
 
-    // Check if the response structure is as expected
-    // if (
-    //   !openAIResponse ||
-    //   !openAIResponse.data ||
-    //   !openAIResponse.data.choices
-    // ) {
-    //   throw new Error("Invalid response structure from OpenAI API");
-    // }
     console.log(openAIResponse);
-    if (openAIResponse && openAIResponse.choices && openAIResponse.choices.length > 0) {
-      const recommendations = openAIResponse.choices[0].message.content; // Accessing the message content
+
+    if (
+      openAIResponse &&
+      openAIResponse.choices &&
+      openAIResponse.choices.length > 0
+    ) {
+      const recommendations = openAIResponse.choices[0].message.content;
       return NextResponse.json({
         recommendations: recommendations,
       });
     } else {
       throw new Error("Invalid response structure from OpenAI API");
     }
-
-    // Return a more informative error response
+  } catch (error) {
+    console.error("Error fetching recommendations:", error);
     return new NextResponse(JSON.stringify({ error }), {
       status: 500,
       headers: {
