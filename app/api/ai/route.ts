@@ -6,10 +6,8 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// You already have MediaItem type defined
 type MediaItem = Movie | Show;
 
-// app/api/recommendations.ts
 export async function POST(req: NextRequest) {
   let mediaArray;
   try {
@@ -22,13 +20,15 @@ export async function POST(req: NextRequest) {
     } else {
       mediaArray = [savedMedia]; // Make it an array with a single element
     }
-    const mediaString = mediaArray.map((media) => media.title).join(", ");
+    const mediaString = mediaArray
+      .map((media) => media.title)
+      .join(", ")
+      .replace(/^"|"$/g, "");
     const prompt = `Based on these movies and TV shows: ${mediaString}, provide recommendations for similar movies and TV shows.`;
 
     const openAIResponse = await openai.chat.completions.create({
       messages: [{ role: "system", content: prompt }],
       model: "gpt-3.5-turbo",
-      response_format: { type: "json_object" },
       max_tokens: 200,
     });
 
