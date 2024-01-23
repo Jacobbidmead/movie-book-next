@@ -56,7 +56,6 @@ export async function POST(req: NextRequest) {
     const openAIResponse = await openai.chat.completions.create({
       messages: [{ role: "system", content: prompt }],
       model: "gpt-3.5-turbo",
-      max_tokens: 200,
     });
 
     console.log(openAIResponse);

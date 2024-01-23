@@ -1,11 +1,7 @@
 import LoginForm from "./login.page";
 
 const LandingPage: React.FC = () => {
-  return (
-    <>
-      <LoginForm />
-    </>
-  );
+  return <></>;
 };
 
 export default LandingPage;

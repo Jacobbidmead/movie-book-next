@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
-import SendUserMedia from "../atoms/sendUserMedia";
 import Recommendations from "./Recommendations";
 
 interface UserMediaProps {
@@ -49,15 +48,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
           </div>
         ))}
       </div>
-      {/* <div>
-        <h2>Recommendations</h2>
-        {recommendations.map((recommendation, index) => (
-          <p key={index}>{recommendation}</p>
-        ))}
-        <button onClick={fetchRecommendations}>Get Recommendations</button>
 
-      </div> */}
-      <SendUserMedia savedMedia={savedMedia} />
       <Recommendations savedMedia={savedMedia} />
     </>
   );
