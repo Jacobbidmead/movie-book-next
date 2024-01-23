@@ -42,12 +42,14 @@ export async function POST(req: NextRequest) {
       "recommendations": [
         {
           "title": "Movie/Show Name",
-          "rating": "IMDb Rating",
-          "poster_link": "TMDB Poster URL"
+          "description": "a description about the film/show",
+          "poster_path": "TMDB Poster URL"
         },
         
       ]
     }
+
+    Please provide at least 3 recommendations
     
     `;
 
