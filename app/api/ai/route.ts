@@ -20,37 +20,39 @@ export async function POST(req: NextRequest) {
     } else {
       mediaArray = [savedMedia];
     }
+
     const mediaString = mediaArray
       .map((media) => media.title)
       .join(", ")
       .replace(/^"|"$/g, "");
+
     const prompt = `
-    You are a movie and TV show recommendation bot with an extensive knowledge of films and television series. Upon receiving a string in the format ${mediaString}, you will analyze and provide recommendations for movies and TV shows similar to those mentioned in the input. 
+      You are a movie and TV show recommendation bot with an extensive knowledge of films and television series. Upon receiving a string in the format ${mediaString}, you will analyze and provide recommendations for movies and TV shows similar to those mentioned in the input. 
 
-    When multiple movies or shows are provided, you will consider them collectively to make your recommendations. Your analysis will focus on:
-    
-    - The genre of the films/shows,
-    - The main actors involved,
-    - The release year,
-    - The director(s),
-    - The overall mood and tone of the films/shows.
-    
-    Based on these factors, you will generate recommendations. Your response will be formatted in JSON, including the title of the recommended media, a description, and a link to the movie poster from TMDB (The Movie Database). Ensure your recommendations are diverse and cater to the nuances of the input received.
-    
-    Example output format:
-    {
-      "recommendations": [
-        {
-          "title": "Movie/Show Name",
-          "description": "a description about the film/show",
-          "poster_path": "TMDB Poster URL"
-        },
-        
-      ]
-    }
+      When multiple movies or shows are provided, you will consider them collectively to make your recommendations. Your analysis will focus on:
+      
+      - The genre of the films/shows,
+      - The main actors involved,
+      - The release year,
+      - The director(s),
+      - The overall mood and tone of the films/shows.
+      
+      Based on these factors, you will generate recommendations. Your response will be formatted in JSON, including the title of the recommended media, a description, and a link to the movie poster from TMDB (The Movie Database). Ensure your recommendations are diverse and cater to the nuances of the input received.
+      
+      Example output format:
+      
+      {
+        "recommendations": [
+          {
+            "title": "Movie/Show Name",
+            "description": "a description about the film/show",
+            "poster_path": "TMDB Poster URL"
+          },
+          // Additional recommendations
+        ]
+      }
 
-    Please provide at least 3 recommendations
-    
+      Please provide at least 3 recommendations
     `;
 
     const openAIResponse = await openai.chat.completions.create({
@@ -58,22 +60,38 @@ export async function POST(req: NextRequest) {
       model: "gpt-3.5-turbo",
     });
 
-    console.log(openAIResponse);
+    console.log("OpenAI Response:", openAIResponse);
 
     if (
       openAIResponse &&
       openAIResponse.choices &&
       openAIResponse.choices.length > 0
     ) {
-      const recommendations = openAIResponse.choices[0].message.content;
-      return NextResponse.json({
-        recommendations: recommendations,
-      });
+      let recommendations;
+
+      try {
+        // Attempt to parse the content as JSON
+        recommendations = JSON.parse(openAIResponse.choices[0].message.content);
+      } catch (parseError) {
+        // Handle the case where parsing fails
+        console.error("Error parsing OpenAI response:", parseError);
+        return new NextResponse(
+          JSON.stringify({ error: "Error parsing recommendations" }),
+          {
+            status: 500,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
+
+      return NextResponse.json(recommendations);
     } else {
       throw new Error("Invalid response structure from OpenAI API");
     }
   } catch (error) {
-    console.error("Error fetching recommendations:", error);
+    console.error("Error in API function:", error);
     return new NextResponse(JSON.stringify({ error }), {
       status: 500,
       headers: {

@@ -3,10 +3,14 @@
 import React, { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
 
-interface Media {
+interface Recommendation {
   title: string;
-  // rating: string;
-  // genre: string;
+  description: string;
+  poster_path: string;
+}
+
+interface RecommendationsState {
+  recommendations: Recommendation[];
 }
 
 interface SavedUserMediaProps {
@@ -15,7 +19,11 @@ interface SavedUserMediaProps {
 
 const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
   const [title, setTitle] = useState<string>("");
-  const [recommendations, setRecommendations] = useState<string>("");
+  const [recommendations, setRecommendations] = useState<RecommendationsState>({
+    recommendations: [],
+  });
+  const [error, setError] = useState<string>("");
+
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleGetRecommendations = async () => {
@@ -38,10 +46,13 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
       }
 
       const data = await response.json();
-      setRecommendations(data.recommendations); // Update the state with the recommendations
+      console.log("Fetched data:", data);
+      setRecommendations(data);
+      console.log("Updated state:", recommendations);
     } catch (error) {
       console.error("Error fetching recommendations:", error);
-      setRecommendations("An error occurred while fetching recommendations.");
+      setError("An error occurred while fetching recommendations.");
+      setRecommendations({ recommendations: [] }); // Reset to initial empty state
     } finally {
       setLoading(false);
     }
@@ -53,8 +64,19 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
         {loading ? "Loading..." : "Get Recommendations"}
       </button>
 
-      <h2>Recommendations</h2>
-      <p>{recommendations}</p>
+      {error && <p>Error: {error}</p>}
+
+      {/* <p>{recommendations}</p> */}
+      <div>
+        {Array.isArray(recommendations.recommendations) &&
+          recommendations.recommendations.map((recItem, index) => (
+            <div key={index}>
+              <h3>{recItem.title}</h3>
+              <p>{recItem.description}</p>
+              <img src={recItem.poster_path} alt={recItem.title} />
+            </div>
+          ))}
+      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
-import Recommendations from "./Recommendations";
+import Recommendations from "./recommendations";
 
 interface UserMediaProps {
   savedMedia: (Movie | Show)[];
