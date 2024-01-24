@@ -1,5 +1,9 @@
 "use client";
 
+// TODO: fetch movie posters from tmbd
+// TODO: add loading spinner for loading state
+// TODO: show recommendations only and not saved media once get recommendation button is pushed
+
 import React, { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
 
