@@ -62,7 +62,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
   };
 
   return (
-    <div>
+    <div className="h-screen flex ">
       <button onClick={handleGetRecommendations} disabled={loading}>
         {loading ? (
           <div className="flex items-center space-x-4">
