@@ -22,7 +22,6 @@ interface SavedUserMediaProps {
 }
 
 const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
-  const [title, setTitle] = useState<string>("");
   const [recommendations, setRecommendations] = useState<RecommendationsState>({
     recommendations: [],
   });
@@ -54,7 +53,6 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
       setRecommendations(data);
       console.log("Updated state:", recommendations);
     } catch (error) {
-      console.error("Error fetching recommendations:", error);
       setError("An error occurred while fetching recommendations.");
       setRecommendations({ recommendations: [] }); // Reset to initial empty state
     } finally {
