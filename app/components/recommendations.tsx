@@ -69,13 +69,15 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
       {error && <p>Error: {error}</p>}
 
       {/* <p>{recommendations}</p> */}
-      <div className="grid grid-cols-6">
+      <div className="grid grid-cols-3">
         {Array.isArray(recommendations.recommendations) &&
           recommendations.recommendations.map((recItem, index) => (
-            <div className="flex flex-col p-2" key={index}>
-              <h3>{recItem.title}</h3>
-              <p>{recItem.description}</p>
-              <img src={recItem.poster_path} alt={recItem.title} />
+            <div className="flex flex-col p-2 text-center" key={index}>
+              <div>
+                <h3>{recItem.title}</h3>
+                <p>{recItem.description}</p>
+              </div>
+              {/* <img src={recItem.poster_path} alt={recItem.title} /> */}
             </div>
           ))}
       </div>

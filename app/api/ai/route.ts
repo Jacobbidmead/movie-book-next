@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       - The director(s),
       - The overall mood and tone of the films/shows.
       
-      Based on these factors, you will generate recommendations. Your response will be formatted in JSON, including the title of the recommended media, a description, and a link to the movie poster from TMDB (The Movie Database). Ensure your recommendations are diverse and cater to the nuances of the input received.
+      Based on these factors, you will generate recommendations. Your response will be formatted in JSON, including the title of the recommended media and a description. Ensure your recommendations are diverse and cater to the nuances of the input received.
       
       Example output format:
       
@@ -46,7 +46,6 @@ export async function POST(req: NextRequest) {
           {
             "title": "Movie/Show Name",
             "description": "a description about the film/show",
-            "poster_path": "TMDB Poster URL"
           },
           // Additional recommendations
         ]

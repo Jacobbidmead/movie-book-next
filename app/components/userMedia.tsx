@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+
 import { Movie, Show } from "../types/interfaces";
 import Recommendations from "./recommendations";
 
@@ -12,7 +12,6 @@ interface UserMediaProps {
 
 const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
   const mediaArray = savedMedia as (Movie | Show)[];
-  const [recommendations, setRecommendations] = useState<string[]>([]);
 
   return (
     <>
