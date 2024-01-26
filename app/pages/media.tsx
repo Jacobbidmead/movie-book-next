@@ -106,7 +106,7 @@ const MoviePage: React.FC = () => {
         <div>
           {showUserMedia ? (
             <div onClick={showMedia} className="cursor-pointer">
-              Search movies
+              Back to search
             </div>
           ) : (
             <div onClick={showMedia} className="cursor-pointer">

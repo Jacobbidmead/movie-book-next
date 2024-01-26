@@ -19,7 +19,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
         {mediaArray.map((savedMediaItem) => (
           <div className="flex flex-col p-2" key={savedMediaItem.id}>
             <div className="tooltip">
-              <h2 className="truncate">
+              <h2 className="truncate text-center pb-2">
                 {savedMediaItem.title.length > 20
                   ? `${savedMediaItem.title.substring(0, 20)}...`
                   : savedMediaItem.title}
@@ -28,7 +28,9 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
                 <div className="tooltiptext">{savedMediaItem.title}</div>
               )}
             </div>
-            <p>Rating: {savedMediaItem.vote_average}</p>
+            <p className="text-center pb-2">
+              Rating: {savedMediaItem.vote_average}
+            </p>
             <img
               src={
                 savedMediaItem.poster_path
@@ -38,6 +40,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
               alt={savedMediaItem.title}
             />
             <button
+              className="pt-2"
               onClick={() => {
                 removeMedia(savedMediaItem.id);
               }}
