@@ -89,61 +89,62 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <div className="flex justify-around">
-        <div>
-          <button
-            onClick={() =>
-              setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
-            }
-          >
-            {!showUserMedia &&
-              (toggleMedia === "movies" ? (
-                <span>TV</span>
-              ) : (
-                <span>Movies</span>
-              ))}
-          </button>
-        </div>
-        <div>
-          {showUserMedia ? (
-            <div onClick={showMedia} className="cursor-pointer">
-              Back to search
-            </div>
-          ) : (
-            <div onClick={showMedia} className="cursor-pointer">
-              My list
-            </div>
-          )}
-        </div>
-      </div>
-
       <LandingPage />
+      <div>
+        <div className="flex justify-end">
+          <div>
+            <button
+              onClick={() =>
+                setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
+              }
+            >
+              {!showUserMedia &&
+                (toggleMedia === "movies" ? (
+                  <span>TV</span>
+                ) : (
+                  <span>Movies</span>
+                ))}
+            </button>
+          </div>
+        </div>
 
-      <div className="flex justify-center">
-        {!showUserMedia && <Search onSearch={handleSearch} />}
+        <div className="flex place-items-center justify-center flex-col">
+          {!showUserMedia && <Search onSearch={handleSearch} />}
+          <div>
+            {showUserMedia ? (
+              <div onClick={showMedia} className="cursor-pointer">
+                Back to search
+              </div>
+            ) : (
+              <div onClick={showMedia} className="cursor-pointer">
+                My list
+              </div>
+            )}
+          </div>
+        </div>
+
+        {showUserMedia ? (
+          <UserMedia savedMedia={savedMedia} removeMedia={removeMedia} />
+        ) : (
+          <>
+            {toggleMedia === "movies" ? (
+              <MemoizedMovies
+                movies={movies}
+                addMedia={addMedia}
+                handleAddToList={handleAddToList}
+                addedMedia={addedMedia}
+              />
+            ) : (
+              <MemoizedShows
+                shows={shows}
+                addMedia={addMedia}
+                addedMedia={addedMedia}
+                handleAddToList={handleAddToList}
+              />
+            )}
+          </>
+        )}
       </div>
-
-      {showUserMedia ? (
-        <UserMedia savedMedia={savedMedia} removeMedia={removeMedia} />
-      ) : (
-        <>
-          {toggleMedia === "movies" ? (
-            <MemoizedMovies
-              movies={movies}
-              addMedia={addMedia}
-              handleAddToList={handleAddToList}
-              addedMedia={addedMedia}
-            />
-          ) : (
-            <MemoizedShows
-              shows={shows}
-              addMedia={addMedia}
-              addedMedia={addedMedia}
-              handleAddToList={handleAddToList}
-            />
-          )}
-        </>
-      )}
     </>
   );
 };
