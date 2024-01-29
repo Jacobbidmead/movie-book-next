@@ -8,6 +8,7 @@ import UserMedia from "../components/userMedia";
 import { Movie, Show } from "../types/interfaces";
 import Movies from "../components/Movies";
 import Shows from "../components/Shows";
+import LandingPage from "./landingPage";
 // import LoginPage from "./login.page";
 
 // displays movie search
@@ -115,6 +116,8 @@ const MoviePage: React.FC = () => {
           )}
         </div>
       </div>
+
+      <LandingPage />
 
       <div className="flex justify-center">
         {!showUserMedia && <Search onSearch={handleSearch} />}
