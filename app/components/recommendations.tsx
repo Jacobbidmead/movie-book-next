@@ -6,7 +6,7 @@
 
 import React, { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
-import { Skeleton } from "@/components/ui/skeleton";
+import { CircularProgress } from "@mui/material";
 
 interface Recommendation {
   title: string;
@@ -64,17 +64,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
   return (
     <div className="h-screen ">
       <button onClick={handleGetRecommendations} disabled={loading}>
-        {loading ? (
-          <div className="flex items-center space-x-4">
-            <Skeleton className="h-8 w-8 rounded-full" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-28" />
-              <Skeleton className="h-4 w-28" />
-            </div>
-          </div>
-        ) : (
-          "Get Recommendations"
-        )}
+        {loading ? <CircularProgress /> : "Get Recommendations"}
       </button>
 
       {error && <p>Error: {error}</p>}
