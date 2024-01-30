@@ -8,9 +8,6 @@ import UserMedia from "../components/userMedia";
 import { Movie, Show } from "../types/interfaces";
 import Movies from "../components/Movies";
 import Shows from "../components/Shows";
-import Link from "next/link";
-
-// import LoginPage from "./login.page";
 
 // displays movie search
 
@@ -90,8 +87,7 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <Link href="/landingPage">link</Link>
-      <div className=" flex flex-col place-items-center justify-center gap-3">
+      <div className="flex flex-col place-items-center justify-center gap-3 pb-9 overflow-auto ">
         <div className="flex justify-end">
           <div className="pt-8">
             <button

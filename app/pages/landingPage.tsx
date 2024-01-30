@@ -21,7 +21,6 @@ const LandingPage: React.FC = () => {
             choices
           </p>
           <p>Use as a guest or create an account to interact with friends!</p>
-          <Link href="/media">click here to get started</Link>
         </div>
       </div>
     </>

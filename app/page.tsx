@@ -1,11 +1,13 @@
-import Media from "./pages/media";
 import LandingPage from "./pages/landingPage";
+import Media from "./pages/media";
 
 export default function Home() {
   return (
     <>
-      <LandingPage />
-      <Media />
+      <div className="flex flex-col">
+        <LandingPage />
+        <Media />
+      </div>
     </>
   );
 }
