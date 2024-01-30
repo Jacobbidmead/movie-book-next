@@ -20,7 +20,7 @@ const Movies: React.FC<MovieProps> = ({
 }) => {
   console.log("Rendering Movies component");
   return (
-    <div className="grid grid-cols-6">
+    <div className="grid grid-cols-6 text-light">
       {movies.map((movie) => (
         <div className="flex flex-col p-2" key={movie.id}>
           <div className="tooltip">

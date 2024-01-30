@@ -15,7 +15,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
 
   return (
     <>
-      <div className="grid grid-cols-6">
+      <div className="grid grid-cols-6 text-light">
         {mediaArray.map((savedMediaItem) => (
           <div className="flex flex-col p-2" key={savedMediaItem.id}>
             <div className="tooltip">

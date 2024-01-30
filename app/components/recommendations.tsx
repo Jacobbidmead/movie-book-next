@@ -73,7 +73,10 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
       <div className="grid grid-cols-3 text-sm text-light">
         {Array.isArray(recommendations.recommendations) &&
           recommendations.recommendations.map((recItem, index) => (
-            <div className="flex flex-col p-2 text-center" key={index}>
+            <div
+              className="flex flex-col p-2 text-center text-light"
+              key={index}
+            >
               <div>
                 <h3>{recItem.title}</h3>
                 <p>{recItem.description}</p>
