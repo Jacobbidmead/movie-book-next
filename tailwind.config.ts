@@ -20,7 +20,7 @@ const config = {
       darkline: "#18181b",
       primary: "#16a34a",
       muted: "#71717a",
-      border: "#e4e4e7",
+      border: "rgba(224, 211, 218, 0.26)",
     },
     borderRadius: {
       button: "4rem",

@@ -19,10 +19,10 @@ const LandingPage: React.FC = () => {
             choices
           </p>
           <p>Use as a guest or create an account to interact with friends!</p>
-          <button className="p-2 border-border border-button rounded-button w-1/3">
-            Click here to get started
-          </button>
         </div>
+        <button className="py-2 mt-12 border-border border-button rounded-button w-2/12 text-xs text-light">
+          Click here to get started
+        </button>
       </div>
     </>
   );
