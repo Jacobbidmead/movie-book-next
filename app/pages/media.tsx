@@ -114,19 +114,20 @@ const MoviePage: React.FC = () => {
       <div className="flex flex-col place-items-center justify-center gap-3 pb-64 overflow-auto ">
         <div className="flex justify-end">
           <div className="pt-8 text-primary">
-            <button
-              onClick={() =>
-                setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
-              }
-              className="p-3 border-border border-button rounded-button text-xs text-light"
-            >
-              {!showUserMedia &&
-                (toggleMedia === "movies" ? (
+            {!showUserMedia && (
+              <button
+                onClick={() =>
+                  setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
+                }
+                className="p-3 border-border border-button rounded-button text-xs text-light"
+              >
+                {toggleMedia === "movies" ? (
                   <span>Click to search Shows</span>
                 ) : (
                   <span>Click to search Movies</span>
-                ))}
-            </button>
+                )}
+              </button>
+            )}
           </div>
         </div>
 
