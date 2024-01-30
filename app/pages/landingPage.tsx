@@ -1,3 +1,7 @@
+"use client";
+
+import Link from "next/link";
+
 const LandingPage: React.FC = () => {
   return (
     <>
@@ -17,7 +21,7 @@ const LandingPage: React.FC = () => {
             choices
           </p>
           <p>Use as a guest or create an account to interact with friends!</p>
-          <button>click here to get started</button>
+          <Link href="/media">click here to get started</Link>
         </div>
       </div>
     </>
