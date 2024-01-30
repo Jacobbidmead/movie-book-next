@@ -87,11 +87,22 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <div className="p-4 text-2xl">
+      <div className="px-4 text-2xl">
         {toggleMedia === "movies" ? (
           <div>Searching Movies</div>
         ) : (
           <div> Searching Shows</div>
+        )}
+      </div>
+      <div className="px-4 text-sm">
+        {showUserMedia ? (
+          <div onClick={showMedia} className="cursor-pointer">
+            Back to search
+          </div>
+        ) : (
+          <div onClick={showMedia} className="cursor-pointer">
+            My list
+          </div>
         )}
       </div>
       <div className="flex flex-col place-items-center justify-center gap-3 pb-64 overflow-auto ">
@@ -114,17 +125,6 @@ const MoviePage: React.FC = () => {
 
         <div className="flex place-items-center justify-center flex-col">
           {!showUserMedia && <Search onSearch={handleSearch} />}
-          <div>
-            {showUserMedia ? (
-              <div onClick={showMedia} className="cursor-pointer">
-                Back to search
-              </div>
-            ) : (
-              <div onClick={showMedia} className="cursor-pointer">
-                My list
-              </div>
-            )}
-          </div>
         </div>
 
         {showUserMedia ? (

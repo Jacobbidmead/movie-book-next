@@ -10,6 +10,17 @@ const config = {
   ],
   prefix: "",
   theme: {
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      white: "#ffffff",
+      dark: "#0c0a09",
+      card: "#181816",
+      tahiti: "#3ab7bf",
+      silver: "#ecebff",
+      primary: "#16a34a",
+      bermuda: "#78dcca",
+    },
     container: {
       center: true,
       padding: "2rem",
