@@ -16,10 +16,17 @@ const config = {
       white: "#ffffff",
       dark: "#0c0a09",
       card: "#181816",
-      tahiti: "#3ab7bf",
-      silver: "#ecebff",
+      light: "#f4f4f5",
+      darkline: "#18181b",
       primary: "#16a34a",
-      bermuda: "#78dcca",
+      muted: "#71717a",
+      border: "#e4e4e7",
+    },
+    borderRadius: {
+      button: "4rem",
+    },
+    borderWidth: {
+      button: "0.1em",
     },
     container: {
       center: true,

@@ -4,10 +4,10 @@ const LandingPage: React.FC = () => {
   return (
     <>
       <div className="h-screen flex place-items-center justify-center flex-col">
-        <div className="text-8xl p-6 text-primary">Movie Book AI.</div>
-        <div className="text-center flex gap-2 flex-col text-sm text-white w-86">
+        <div className="text-8xl pb-16 text-primary">MediaBook AI.</div>
+        <div className=" flex gap-4 flex-col text-sm text-light w-5/12">
           <p>
-            Welcome to movie book AI, the movie recommendation site that helps
+            Welcome to MediaBook AI, the media recommendation site that helps
             you choose what to watch.
           </p>
           <p className="">
@@ -19,7 +19,9 @@ const LandingPage: React.FC = () => {
             choices
           </p>
           <p>Use as a guest or create an account to interact with friends!</p>
-          <button>Click here to get started</button>
+          <button className="p-2 border-border border-button rounded-button w-1/3">
+            Click here to get started
+          </button>
         </div>
       </div>
     </>
