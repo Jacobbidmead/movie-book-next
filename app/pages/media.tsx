@@ -9,8 +9,6 @@ import { Movie, Show } from "../types/interfaces";
 import Movies from "../components/Movies";
 import Shows from "../components/Shows";
 
-// TODO: ifx the issue with the empty border showing when on user list
-
 // displays movie search
 
 type MediaView = "movies" | "shows";
