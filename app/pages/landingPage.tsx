@@ -1,9 +1,9 @@
 const LandingPage: React.FC = () => {
   return (
     <>
-      <div className="h-[500px] flex place-items-center justify-center flex-col ">
+      <div className="h-screen flex place-items-center justify-center flex-col ">
         <div className="text-6xl p-4">Movie Book AI.</div>
-        <div className="text-">
+        <div className="text-center flex gap-2 flex-col">
           <p>
             Welcome to movie book AI, the movie recommendation site that helps
             you choose what to watch.
@@ -17,6 +17,7 @@ const LandingPage: React.FC = () => {
             choices
           </p>
           <p>Use as a guest or create an account to interact with friends!</p>
+          <button>click here to get started</button>
         </div>
       </div>
     </>

@@ -89,10 +89,9 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <LandingPage />
-      <div>
+      <div className=" flex flex-col place-items-center justify-center gap-3">
         <div className="flex justify-end">
-          <div>
+          <div className="pt-8">
             <button
               onClick={() =>
                 setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
@@ -100,9 +99,9 @@ const MoviePage: React.FC = () => {
             >
               {!showUserMedia &&
                 (toggleMedia === "movies" ? (
-                  <span>TV</span>
+                  <span>Search Shows</span>
                 ) : (
-                  <span>Movies</span>
+                  <span>Search Movies</span>
                 ))}
             </button>
           </div>
