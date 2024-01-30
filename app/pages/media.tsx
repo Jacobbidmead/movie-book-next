@@ -9,6 +9,8 @@ import { Movie, Show } from "../types/interfaces";
 import Movies from "../components/Movies";
 import Shows from "../components/Shows";
 
+// TODO: ifx the issue with the empty border showing when on user list
+
 // displays movie search
 
 type MediaView = "movies" | "shows";
@@ -87,24 +89,28 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <div className="px-6 text-6xl text-primary">
-        {toggleMedia === "movies" ? (
-          <div>Searching Movies...</div>
-        ) : (
-          <div>Searching Shows...</div>
-        )}
+      <div className="mb-[100px] flex flex-col justify-center place-items-center">
+        <div className="px-6 mb-4 text-6xl text-primary">
+          {!showUserMedia && toggleMedia === "movies" ? (
+            <div>Searching Movies...</div>
+          ) : (
+            <div>Searching Shows...</div>
+          )}
+        </div>
+
+        <div className="px-6 mt-4 mx-4 py-2 border-border border-button rounded-button w-1/12 text-xs text-light">
+          {showUserMedia ? (
+            <div onClick={showMedia} className="cursor-pointer">
+              Go to search
+            </div>
+          ) : (
+            <div onClick={showMedia} className="cursor-pointer">
+              Go to my list
+            </div>
+          )}
+        </div>
       </div>
-      <div className="px-6 mt-4 mx-4 py-2 border-border border-button rounded-button w-1/12 text-xs text-light">
-        {showUserMedia ? (
-          <div onClick={showMedia} className="cursor-pointer">
-            Go to search
-          </div>
-        ) : (
-          <div onClick={showMedia} className="cursor-pointer">
-            Go to my list
-          </div>
-        )}
-      </div>
+
       <div className="flex flex-col place-items-center justify-center gap-3 pb-64 overflow-auto ">
         <div className="flex justify-end">
           <div className="pt-8 text-primary">

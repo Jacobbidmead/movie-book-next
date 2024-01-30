@@ -1,10 +1,11 @@
 "use client";
 
 // TODO: create function to make text blend into background on scroll to certain height
+// TODO: create scroll function that sends user to search when button is clicked
 const LandingPage: React.FC = () => {
   return (
     <>
-      <div className="h-screen flex place-items-center justify-center flex-col">
+      <div className="h-screen flex place-items-center justify-center flex-col mb-[200px]">
         <div className="text-8xl pb-16 text-primary">MediaBook AI.</div>
         <div className=" flex gap-4 flex-col text-sm text-light w-5/12">
           <p>
