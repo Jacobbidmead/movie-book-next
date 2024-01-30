@@ -62,7 +62,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
   };
 
   return (
-    <div className="h-screen ">
+    <div className="h-screen text-light">
       <button onClick={handleGetRecommendations} disabled={loading}>
         {loading ? <CircularProgress /> : "Get Recommendations"}
       </button>
@@ -70,7 +70,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
       {error && <p>Error: {error}</p>}
 
       {/* <p>{recommendations}</p> */}
-      <div className="grid grid-cols-3 text-sm">
+      <div className="grid grid-cols-3 text-sm text-light">
         {Array.isArray(recommendations.recommendations) &&
           recommendations.recommendations.map((recItem, index) => (
             <div className="flex flex-col p-2 text-center" key={index}>

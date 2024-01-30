@@ -1,5 +1,6 @@
 "use client";
 
+// TODO: create function to make text blend into background on scroll to certain height
 const LandingPage: React.FC = () => {
   return (
     <>

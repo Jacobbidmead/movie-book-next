@@ -87,37 +87,38 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <div className="px-4 text-2xl">
+      <div className="px-6 text-6xl text-primary">
         {toggleMedia === "movies" ? (
-          <div>Searching Movies</div>
+          <div>Searching Movies...</div>
         ) : (
-          <div> Searching Shows</div>
+          <div>Searching Shows...</div>
         )}
       </div>
-      <div className="px-4 text-sm">
+      <div className="px-6 mt-4 mx-4 py-2 border-border border-button rounded-button w-1/12 text-xs text-light">
         {showUserMedia ? (
           <div onClick={showMedia} className="cursor-pointer">
-            Back to search
+            Go to search
           </div>
         ) : (
           <div onClick={showMedia} className="cursor-pointer">
-            My list
+            Go to my list
           </div>
         )}
       </div>
       <div className="flex flex-col place-items-center justify-center gap-3 pb-64 overflow-auto ">
         <div className="flex justify-end">
-          <div className="pt-8">
+          <div className="pt-8 text-primary">
             <button
               onClick={() =>
                 setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
               }
+              className="p-3 border-border border-button rounded-button text-xs text-light"
             >
               {!showUserMedia &&
                 (toggleMedia === "movies" ? (
-                  <span>Search for Shows</span>
+                  <span>Click to search Shows</span>
                 ) : (
-                  <span>Search for Movies</span>
+                  <span>Click to search Movies</span>
                 ))}
             </button>
           </div>
