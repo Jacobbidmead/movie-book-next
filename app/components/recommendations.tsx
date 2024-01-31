@@ -64,7 +64,13 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
   return (
     <div className="h-screen text-light">
       <button onClick={handleGetRecommendations} disabled={loading}>
-        {loading ? <CircularProgress /> : "Get Recommendations"}
+        {loading ? (
+          <CircularProgress />
+        ) : (
+          <span className="p-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
+            Get Recommendations
+          </span>
+        )}
       </button>
 
       {error && <p>Error: {error}</p>}
