@@ -41,7 +41,7 @@ const LandingPage: React.FC = () => {
         </div>
         <button
           onClick={scrollToBottom}
-          className="py-2 mt-12 border-border border-button rounded-button w-2/12 text-xs text-light"
+          className="py-2 mt-12 border-border border-button rounded-button w-2/12 text-xs text-light hover:bg-darkline bg-dark"
         >
           Click here to get started
         </button>
