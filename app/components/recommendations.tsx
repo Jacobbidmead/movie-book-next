@@ -67,7 +67,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
       <div className="flex justify-center pb-12 mt-12">
         <button onClick={handleGetRecommendations} disabled={loading}>
           {loading ? (
-            <CircularProgress />
+            <CircularProgress color="inherit" />
           ) : (
             <span className="p-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
               Get Recommendations

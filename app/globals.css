@@ -44,3 +44,7 @@
   visibility: visible;
   opacity: 1;
 }
+
+.MuiCircularProgress-root {
+  color: white;
+}
