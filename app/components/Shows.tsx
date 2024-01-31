@@ -22,11 +22,11 @@ const Shows: React.FC<ShowProps> = ({
 }) => {
   console.log("Rendering Shows component");
   return (
-    <div className="grid grid-cols-6 text-light">
+    <div className="grid grid-cols-6 text-light text-center p-6">
       {shows.map((show) => (
         <div className="flex flex-col p-2" key={show.id}>
           <div className="tooltip">
-            <h2 className="truncate">
+            <h2 className="truncate text-sm pb-1">
               {show.title.length > 20
                 ? `${show.title.substring(0, 20)}...`
                 : show.title}
@@ -35,7 +35,7 @@ const Shows: React.FC<ShowProps> = ({
               <div className="tooltiptext">{show.title}</div>
             )}
           </div>
-          <p>Rating: {show.vote_average}</p>
+          <p className="text-sm pb-1">Rating: {show.vote_average}</p>
           <img
             src={
               show.poster_path
@@ -44,19 +44,23 @@ const Shows: React.FC<ShowProps> = ({
             }
             alt={show.title}
           />
-
-          {addedMedia.shows[show.id] ? (
-            <div>Saved to list</div>
-          ) : (
-            <button
-              onClick={() => {
-                addMedia(show);
-                handleAddToList(show.id, "show");
-              }}
-            >
-              Save
-            </button>
-          )}
+          <div className="flex justify-center">
+            {addedMedia.shows[show.id] ? (
+              <div className="px-2 py-1.5 rounded-button text-xs border-border border-button w-2/4 mt-2 hover:bg-darkline bg-dark cursor-pointer">
+                Saved to list
+              </div>
+            ) : (
+              <button
+                className="px-2 py-1 rounded-button text-sm border-border border-button w-1/4 mt-2 hover:bg-darkline bg-dark"
+                onClick={() => {
+                  addMedia(show);
+                  handleAddToList(show.id, "show");
+                }}
+              >
+                Save
+              </button>
+            )}
+          </div>
         </div>
       ))}
     </div>
