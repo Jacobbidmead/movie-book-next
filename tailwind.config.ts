@@ -24,9 +24,11 @@ const config = {
     },
     borderRadius: {
       button: "4rem",
+      card: "1rem",
     },
     borderWidth: {
       button: "0.1em",
+      card: "0.1rem",
     },
     container: {
       center: true,
