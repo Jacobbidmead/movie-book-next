@@ -1,11 +1,28 @@
 "use client";
+import { useRef } from "react";
 
-// TODO: create function to make text blend into background on scroll to certain height
-// TODO: create scroll function that sends user to search when button is clicked
 const LandingPage: React.FC = () => {
+  const landingPageRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (landingPageRef.current) {
+      const bottomPostion =
+        landingPageRef.current.offsetTop + landingPageRef.current.clientHeight;
+
+      window.scrollTo({
+        top: bottomPostion,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <>
-      <div className="h-screen flex place-items-center justify-center flex-col mb-[200px]">
+      <div
+        ref={landingPageRef}
+        id="landingPage"
+        className="h-screen flex place-items-center justify-center flex-col mb-[200px]"
+      >
         <div className="text-8xl pb-16 text-primary">MediaBook AI.</div>
         <div className=" flex gap-4 flex-col text-sm text-light w-5/12">
           <p>
@@ -22,7 +39,10 @@ const LandingPage: React.FC = () => {
           </p>
           <p>Use as a guest or create an account to interact with friends!</p>
         </div>
-        <button className="py-2 mt-12 border-border border-button rounded-button w-2/12 text-xs text-light">
+        <button
+          onClick={scrollToBottom}
+          className="py-2 mt-12 border-border border-button rounded-button w-2/12 text-xs text-light"
+        >
           Click here to get started
         </button>
       </div>
