@@ -47,7 +47,7 @@ const Movies: React.FC<MovieProps> = ({
               <div className="pt-1 text-sm">Saved to list</div>
             ) : (
               <button
-                className="px-2 py-1 rounded-button text-sm border-button w-1/4 mt-2"
+                className="px-2 py-1 rounded-button text-sm border-button w-1/4 mt-2 hover:bg-button"
                 onClick={() => {
                   addMedia(movie);
                   handleAddToList(movie.id, "movie");

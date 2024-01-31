@@ -32,9 +32,10 @@ const config = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
-        "md-sm-nav": "1023px",
-        xs: "375px",
+        sm: "480px",
+        md: "768px",
+        lg: "976px",
+        xl: "1440px",
       },
     },
     extend: {
