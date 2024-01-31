@@ -13,12 +13,12 @@ const LandingPage: React.FC = () => {
             you choose what to watch.
           </p>
           <p className="">
-            Search for youre favourite movies & tv shows, add the to your list,
-            then hit the get recommendations button
+            Search for your favourite movies & tv shows, add them to your list,
+            then hit the `get recommendations` button.
           </p>
           <p>
-            The AI langauge model will give you recommendations based on youre
-            choices
+            The AI langauge model will give you recommendations based on your
+            choices.
           </p>
           <p>Use as a guest or create an account to interact with friends!</p>
         </div>
