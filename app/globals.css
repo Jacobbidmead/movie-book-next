@@ -12,7 +12,7 @@
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: black;
+  background-color: rgb(4, 4, 4);
   color: #fff;
   text-align: center;
   border-radius: 6px;
@@ -43,8 +43,4 @@
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
-}
-
-.MuiCircularProgress-root {
-  color: white;
 }

@@ -37,6 +37,7 @@ const Shows: React.FC<ShowProps> = ({
           </div>
           <p className="text-sm pb-1">Rating: {show.vote_average}</p>
           <img
+            className="w-full h-full object-cover"
             src={
               show.poster_path
                 ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
