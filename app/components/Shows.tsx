@@ -22,7 +22,7 @@ const Shows: React.FC<ShowProps> = ({
 }) => {
   console.log("Rendering Shows component");
   return (
-    <div className="grid grid-cols-6">
+    <div className="grid grid-cols-6 text-light">
       {shows.map((show) => (
         <div className="flex flex-col p-2" key={show.id}>
           <div className="tooltip">

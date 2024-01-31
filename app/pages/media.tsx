@@ -89,7 +89,7 @@ const MoviePage: React.FC = () => {
     <>
       <div className="mb-[100px] flex flex-col justify-center place-items-center">
         <div className="px-6 mb-4 text-6xl text-primary">
-          {!showUserMedia && toggleMedia === "movies" ? (
+          {toggleMedia === "movies" ? (
             <div>Searching Movies...</div>
           ) : (
             <div>Searching Shows...</div>
@@ -111,7 +111,7 @@ const MoviePage: React.FC = () => {
 
       <div className="flex flex-col place-items-center justify-center gap-3 pb-64 overflow-auto ">
         <div className="flex justify-end">
-          <div className="pt-8 text-primary">
+          <div className="pt-8 ">
             {!showUserMedia && (
               <button
                 onClick={() =>
