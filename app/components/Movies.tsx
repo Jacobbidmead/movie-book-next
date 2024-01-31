@@ -42,12 +42,14 @@ const Movies: React.FC<MovieProps> = ({
             }
             alt={movie.title}
           />
-          <div>
+          <div className="flex justify-center">
             {addedMedia.movies[movie.id] ? (
-              <div className="pt-1 text-sm">Saved to list</div>
+              <div className="px-2 py-1.5 rounded-button text-xs border-border border-button w-2/4 mt-2 hover:bg-darkline bg-dark cursor-pointer">
+                Saved to list
+              </div>
             ) : (
               <button
-                className="px-2 py-1 rounded-button text-sm border-button w-1/4 mt-2 hover:bg-button"
+                className="px-2 py-1 rounded-button text-sm border-border border-button w-1/4 mt-2 hover:bg-darkline bg-dark"
                 onClick={() => {
                   addMedia(movie);
                   handleAddToList(movie.id, "movie");
