@@ -96,7 +96,7 @@ const MoviePage: React.FC = () => {
           )}
         </div>
 
-        <div className="px-6 mt-4 mx-4 py-2 border-border border-button rounded-button w-1/12 text-xs text-light hover:bg-darkline bg-dark">
+        <div className="px-6 mt-4 mx-4 py-1 border-border border-button rounded-button w-1/12 text-xs text-light hover:bg-darkline bg-dark">
           {showUserMedia ? (
             <div onClick={showMedia} className="cursor-pointer">
               Go to search
@@ -117,7 +117,7 @@ const MoviePage: React.FC = () => {
                 onClick={() =>
                   setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
                 }
-                className="p-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark"
+                className="py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark"
               >
                 {toggleMedia === "movies" ? (
                   <span>Click to search Shows</span>

@@ -62,7 +62,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
   };
 
   return (
-    <div className="h-screen text-light">
+    <div className=" text-light">
       <button onClick={handleGetRecommendations} disabled={loading}>
         {loading ? (
           <CircularProgress />
