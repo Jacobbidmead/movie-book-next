@@ -23,8 +23,10 @@ const LandingPage: React.FC = () => {
         id="landingPage"
         className="h-screen flex place-items-center justify-center flex-col mb-[200px]"
       >
-        <div className="text-8xl pb-16 text-primary">MediaBook AI.</div>
-        <div className=" flex gap-4 flex-col text-sm text-light w-5/12">
+        <div className="lg:text-8xl sm:text-4xl pb-16 text-primary">
+          MediaBook AI.
+        </div>
+        <div className=" flex gap-4 flex-col lg:text-sm sm:text-xs sm:text-center text-light w-5/12">
           <p>
             Welcome to MediaBook AI, the media recommendation site that helps
             you choose what to watch.
@@ -41,7 +43,7 @@ const LandingPage: React.FC = () => {
         </div>
         <button
           onClick={scrollToBottom}
-          className="py-2 mt-12 border-border border-button rounded-button w-2/12 text-xs text-light hover:bg-darkline bg-dark"
+          className="py-2 mt-12 border-border border-button rounded-button lg:w-2/12 sm:w-1/2 text-xs text-light hover:bg-darkline bg-dark"
         >
           Click here to get started
         </button>

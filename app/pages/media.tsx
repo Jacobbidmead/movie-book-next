@@ -88,7 +88,7 @@ const MoviePage: React.FC = () => {
   return (
     <>
       <div className="mb-[100px] flex flex-col justify-center place-items-center">
-        <div className="px-6 mb-4 text-6xl text-primary">
+        <div className="px-6 mb-4 lg:text-6xl sm:text-2xl text-primary">
           {toggleMedia === "movies" ? (
             <div>Searching Movies...</div>
           ) : (
@@ -96,7 +96,7 @@ const MoviePage: React.FC = () => {
           )}
         </div>
 
-        <div className="px-6 mt-4 mx-4 py-1 border-border border-button rounded-button w-1/12 text-xs text-light hover:bg-darkline bg-dark">
+        <div className="px-6 mt-4 mx-4 py-1 border-border border-button rounded-button lg:w-1/12 sm:w-2/5 sm:text-center text-xs text-light hover:bg-darkline bg-dark">
           {showUserMedia ? (
             <div onClick={showMedia} className="cursor-pointer">
               Go to search

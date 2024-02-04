@@ -33,12 +33,12 @@ const config = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        sm: "480px",
-        md: "768px",
-        lg: "976px",
-        xl: "1440px",
-      },
+    },
+    screens: {
+      sm: "380px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
     },
     extend: {
       keyframes: {
