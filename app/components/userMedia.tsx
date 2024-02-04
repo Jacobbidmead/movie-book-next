@@ -15,7 +15,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
   return (
     <>
       {mediaArray.length > 0 ? (
-        <div className="grid grid-cols-6 text-light text-center p-6">
+        <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6">
           {mediaArray.map((savedMediaItem) => (
             <div className="flex flex-col p-2" key={savedMediaItem.id}>
               <div className="tooltip">
@@ -32,6 +32,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
                 Rating: {savedMediaItem.vote_average}
               </p>
               <img
+                className="w-full h-full object-cover"
                 src={
                   savedMediaItem.poster_path
                     ? `https://image.tmdb.org/t/p/w500${savedMediaItem.poster_path}`

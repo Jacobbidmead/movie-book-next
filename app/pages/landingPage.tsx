@@ -23,10 +23,10 @@ const LandingPage: React.FC = () => {
         id="landingPage"
         className="h-screen flex place-items-center justify-center flex-col mb-[200px]"
       >
-        <div className="lg:text-8xl sm:text-4xl pb-16 text-primary">
+        <div className="lg:text-8xl sm:text-5xl pb-16 text-primary">
           MediaBook AI.
         </div>
-        <div className=" flex gap-4 flex-col lg:text-sm sm:text-xs sm:text-center text-light w-5/12">
+        <div className=" flex gap-4 flex-col lg:text-sm sm:text-xs sm:text-center text-light lg:w-5/12 sm:w-11/12">
           <p>
             Welcome to MediaBook AI, the media recommendation site that helps
             you choose what to watch.

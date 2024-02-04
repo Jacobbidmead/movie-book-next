@@ -22,7 +22,7 @@ const Shows: React.FC<ShowProps> = ({
 }) => {
   console.log("Rendering Shows component");
   return (
-    <div className="grid grid-cols-6 text-light text-center p-6">
+    <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6">
       {shows.map((show) => (
         <div className="flex flex-col p-2" key={show.id}>
           <div className="tooltip">
@@ -47,12 +47,12 @@ const Shows: React.FC<ShowProps> = ({
           />
           <div className="flex justify-center">
             {addedMedia.shows[show.id] ? (
-              <div className="px-2 py-1.5 rounded-button text-xs border-border border-button w-2/4 mt-2 hover:bg-darkline bg-dark cursor-pointer">
+              <div className="px-2 py-1.5 rounded-button text-xs border-border border-button lg:w-2/4 sm:w-9/12 mt-2 hover:bg-darkline bg-dark cursor-pointer">
                 Saved to list
               </div>
             ) : (
               <button
-                className="px-2 py-1 rounded-button text-sm border-border border-button w-1/4 mt-2 hover:bg-darkline bg-dark"
+                className="px-2 py-1 rounded-button text-sm border-border border-button lg:w-1/4 sm:w-1/2 mt-2 hover:bg-darkline bg-dark"
                 onClick={() => {
                   addMedia(show);
                   handleAddToList(show.id, "show");

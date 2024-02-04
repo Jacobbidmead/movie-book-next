@@ -79,7 +79,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
       {error && <p>Error: {error}</p>}
 
       {/* <p>{recommendations}</p> */}
-      <div className="grid grid-cols-3 gap-4 place-items-centertext-sm text-light w-4/5 ">
+      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4 place-items-centertext-sm text-light w-4/5 ">
         {Array.isArray(recommendations.recommendations) &&
           recommendations.recommendations.map((recItem, index) => (
             <div
@@ -87,10 +87,12 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
               key={index}
             >
               <div>
-                <h3 className="text-4xl p-3 border-b-card border-border">
+                <h3 className="lg:text-4xl sm:text-lg p-3 border-b-card border-border">
                   {recItem.title}
                 </h3>
-                <p className="text-md p-6">{recItem.description}</p>
+                <p className="lg:text-md sm:text-xs p-6">
+                  {recItem.description}
+                </p>
               </div>
               {/* <img src={recItem.poster_path} alt={recItem.title} /> */}
             </div>
