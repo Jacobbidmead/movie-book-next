@@ -8,6 +8,7 @@ import UserMedia from "../components/userMedia";
 import { Movie, Show } from "../types/interfaces";
 import Movies from "../components/Movies";
 import Shows from "../components/Shows";
+import { motion } from "framer-motion";
 
 // displays movie search
 
@@ -96,7 +97,11 @@ const MoviePage: React.FC = () => {
           )}
         </div>
 
-        <div className="px-6 mt-4 mx-4 py-1 border-border border-button rounded-button lg:w-1/12 sm:w-2/5 sm:text-center text-xs text-light hover:bg-darkline bg-dark">
+        <motion.div
+          whileTap={{ scale: 0.9 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          className="px-6 mt-4 mx-4 py-1 border-border border-button rounded-button lg:w-1/12 sm:w-2/5 sm:text-center text-xs text-light hover:bg-darkline bg-dark"
+        >
           {showUserMedia ? (
             <div onClick={showMedia} className="cursor-pointer">
               Go to search
@@ -106,14 +111,16 @@ const MoviePage: React.FC = () => {
               Go to my list
             </div>
           )}
-        </div>
+        </motion.div>
       </div>
 
       <div className="flex flex-col place-items-center justify-center gap-3 pb-64 overflow-auto ">
         <div className="flex justify-end">
           <div className="pt-8 ">
             {!showUserMedia && (
-              <button
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 onClick={() =>
                   setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
                 }
@@ -124,7 +131,7 @@ const MoviePage: React.FC = () => {
                 ) : (
                   <span>Click to search Movies</span>
                 )}
-              </button>
+              </motion.button>
             )}
           </div>
         </div>

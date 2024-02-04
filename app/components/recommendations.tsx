@@ -8,6 +8,7 @@
 import React, { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
 import { CircularProgress } from "@mui/material";
+import { motion } from "framer-motion";
 
 interface Recommendation {
   title: string;
@@ -65,7 +66,12 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
   return (
     <>
       <div className="flex justify-center pb-12 mt-12">
-        <button onClick={handleGetRecommendations} disabled={loading}>
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          onClick={handleGetRecommendations}
+          disabled={loading}
+        >
           {loading ? (
             <CircularProgress color="inherit" />
           ) : (
@@ -73,7 +79,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
               Get Recommendations
             </span>
           )}
-        </button>
+        </motion.button>
       </div>
 
       {error && <p>Error: {error}</p>}

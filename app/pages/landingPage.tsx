@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import { motion } from "framer-motion";
 
 const LandingPage: React.FC = () => {
   const landingPageRef = useRef<HTMLDivElement>(null);
@@ -41,12 +42,14 @@ const LandingPage: React.FC = () => {
           </p>
           <p>Use as a guest or create an account to interact with friends!</p>
         </div>
-        <button
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
           onClick={scrollToBottom}
           className="py-2 mt-12 border-border border-button rounded-button lg:w-2/12 sm:w-1/2 text-xs text-light hover:bg-darkline bg-dark"
         >
           Click here to get started
-        </button>
+        </motion.button>
       </div>
     </>
   );

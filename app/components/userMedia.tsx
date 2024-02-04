@@ -3,6 +3,7 @@
 import React from "react";
 import { Movie, Show } from "../types/interfaces";
 import Recommendations from "./recommendations";
+import { motion } from "framer-motion";
 
 interface UserMediaProps {
   savedMedia: (Movie | Show)[];
@@ -42,14 +43,17 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
               />
 
               <div>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   className="px-2 py-1 rounded-button text-sm border-border border-button w-1/2 mt-2 hover:bg-darkline bg-dark"
                   onClick={() => {
                     removeMedia(savedMediaItem.id);
                   }}
                 >
                   Remove
-                </button>
+                </motion.button>
               </div>
             </div>
           ))}
