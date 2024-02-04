@@ -150,6 +150,7 @@ const MoviePage: React.FC = () => {
                 addMedia={addMedia}
                 handleAddToList={handleAddToList}
                 addedMedia={addedMedia}
+                removeMedia={removeMedia}
               />
             ) : (
               <MemoizedShows
@@ -157,6 +158,7 @@ const MoviePage: React.FC = () => {
                 addMedia={addMedia}
                 addedMedia={addedMedia}
                 handleAddToList={handleAddToList}
+                removeMedia={removeMedia}
               />
             )}
           </>

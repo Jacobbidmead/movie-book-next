@@ -12,6 +12,7 @@ interface ShowProps {
   addMedia: (mediaToSave: Show) => void;
   handleAddToList: (mediaId: string, mediaType: "movie" | "show") => void;
   addedMedia: AddedMediaState;
+  removeMedia: (mediaId: string) => void;
 }
 
 const Shows: React.FC<ShowProps> = ({
@@ -19,6 +20,7 @@ const Shows: React.FC<ShowProps> = ({
   addMedia,
   handleAddToList,
   addedMedia,
+  removeMedia,
 }) => {
   console.log("Rendering Shows component");
   return (

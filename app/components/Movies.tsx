@@ -10,6 +10,7 @@ interface MovieProps {
   addMedia: (mediaToSave: Movie) => void;
   handleAddToList: (mediaId: string, mediaType: "movie" | "show") => void;
   addedMedia: AddedMediaState;
+  removeMedia: (mediaId: string) => void;
 }
 
 const Movies: React.FC<MovieProps> = ({
@@ -17,6 +18,7 @@ const Movies: React.FC<MovieProps> = ({
   addMedia,
   addedMedia,
   handleAddToList,
+  removeMedia,
 }) => {
   console.log("Rendering Movies component");
   return (
