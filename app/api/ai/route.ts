@@ -54,48 +54,37 @@ export async function POST(req: NextRequest) {
       Please provide at least 3 recommendations
     `;
 
-    const openAIResponse = await openai.chat.completions.create({
-      messages: [{ role: "system", content: prompt }],
+    const stream = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
+      messages: [{ role: "system", content: prompt }],
+      stream: true,
     });
 
-    console.log("OpenAI Response:", openAIResponse);
+    let fullResponse = "";
+    for await (const chunk of stream) {
+      fullResponse += chunk.choices[0]?.delta?.content || "";
+    }
 
-    if (
-      openAIResponse &&
-      openAIResponse.choices &&
-      openAIResponse.choices.length > 0
-    ) {
-      let recommendations;
-
-      try {
-        // Attempt to parse the content as JSON
-        recommendations = JSON.parse(openAIResponse.choices[0].message.content);
-      } catch (parseError) {
-        // Handle the case where parsing fails
-        console.error("Error parsing OpenAI response:", parseError);
-        return new NextResponse(
-          JSON.stringify({ error: "Error parsing recommendations" }),
-          {
-            status: 500,
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-      }
-
-      return NextResponse.json(recommendations);
-    } else {
-      throw new Error("Invalid response structure from OpenAI API");
+    try {
+      const recommendations = JSON.parse(fullResponse);
+      return new NextResponse(JSON.stringify(recommendations), {
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (parseError) {
+      console.error("Error parsing OpenAI response:", parseError);
+      return new NextResponse(
+        JSON.stringify({ error: "Error parsing recommendations" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
     }
   } catch (error) {
     console.error("Error in API function:", error);
     return new NextResponse(JSON.stringify({ error }), {
       status: 500,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
   }
 }
