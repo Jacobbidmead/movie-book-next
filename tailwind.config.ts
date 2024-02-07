@@ -18,7 +18,7 @@ const config = {
       card: "#181816",
       light: "#f4f4f5",
       darkline: "#18181b",
-      primary: "#16a34a",
+      primary: "#2DFFA7",
       muted: "#71717a",
       border: "rgba(224, 211, 218, 0.26)",
     },
