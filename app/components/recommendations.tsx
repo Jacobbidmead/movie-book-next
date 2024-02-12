@@ -54,7 +54,6 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
       const data = await response.json();
       console.log("Fetched data:", data);
       setRecommendations(data);
-      console.log("Updated state:", recommendations);
     } catch (error) {
       setError("An error occurred while fetching recommendations.");
       setRecommendations({ recommendations: [] }); // Reset to initial empty state

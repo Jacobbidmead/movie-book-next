@@ -6,6 +6,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+export const revalidate = 0;
 export const runtime = "edge";
 
 type MediaItem = Movie | Show;
