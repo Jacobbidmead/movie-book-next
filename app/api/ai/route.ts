@@ -6,6 +6,8 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+export const runtime = "edge";
+
 type MediaItem = Movie | Show;
 
 export async function POST(req: NextRequest) {
