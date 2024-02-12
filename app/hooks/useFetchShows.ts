@@ -25,10 +25,9 @@ export const useFetchShows = () => {
       })
       .then((data) => {
         if (data && data.results) {
-          // Standardize the naming convention for TV shows
           const standardizedShows = data.results.map((show: Show) => ({
             ...show,
-            title: show.original_name, // Rename "name" to "title"
+            title: show.original_name,
           }));
           setShows(standardizedShows);
         }

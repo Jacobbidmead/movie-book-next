@@ -5,11 +5,9 @@ const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
 export const useFetchMovies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false); // Add type annotation for isLoading
-  const [error, setError] = useState<string | null>(null); // Add type annotation for error
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const fetchMovies = useCallback((query: string = "") => {
-    // Add type annotation for query
     setIsLoading(true);
     setError(null);
 
@@ -25,9 +23,7 @@ export const useFetchMovies = () => {
         return res.json();
       })
       .then((data: { results: Movie[] }) => {
-        // Add type annotation for data
         if (data && data.results) {
-          // Log movies with missing titles
           const moviesWithMissingTitles = data.results.filter(
             (movie: Movie) => !movie.title
           );
@@ -39,7 +35,6 @@ export const useFetchMovies = () => {
         }
       })
       .catch((error: Error) => {
-        // Add type annotation for error
         setError(error.message);
       })
       .finally(() => {
