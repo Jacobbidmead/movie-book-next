@@ -91,9 +91,9 @@ const MoviePage: React.FC = () => {
       <div className="mb-[100px] flex flex-col justify-center place-items-center">
         <div className="px-6 mb-4 lg:text-6xl sm:text-2xl text-primary">
           {toggleMedia === "movies" ? (
-            <div>Searching Movies...</div>
+            <div>Searching Movies</div>
           ) : (
-            <div>Searching Shows...</div>
+            <div>Searching Shows</div>
           )}
         </div>
 
@@ -114,7 +114,7 @@ const MoviePage: React.FC = () => {
         </motion.div>
       </div>
 
-      <div className="flex flex-col place-items-center justify-center gap-3 pb-64 overflow-auto ">
+      <div className="flex flex-col place-items-center justify-center gap-3 lg:pb-56 sm:pb-24 overflow-auto ">
         <div className="flex justify-end">
           <div className="pt-8 ">
             {!showUserMedia && (
