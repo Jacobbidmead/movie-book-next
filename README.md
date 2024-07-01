@@ -1,6 +1,6 @@
 MediaBook AI
 
-As yet, the app is still in beta, 'it works on my device', however I am currently trying to make changes so it
+As yet, the app is still in beta.
 
 Overview -
 
