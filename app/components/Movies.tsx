@@ -24,18 +24,14 @@ const Movies: React.FC<MovieProps> = ({
 }) => {
   console.log("Rendering Movies component");
   return (
-    <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6">
+    <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6 h-screen">
       {movies.map((movie) => (
-        <div className="flex flex-col p-2" key={movie.id}>
+        <div className="flex flex-col p-4" key={movie.id}>
           <div className="tooltip">
             <h2 className="truncate text-sm pb-1">
-              {movie.title.length > 20
-                ? `${movie.title.substring(0, 20)}...`
-                : movie.title}
+              {movie.title.length > 20 ? `${movie.title.substring(0, 20)}...` : movie.title}
             </h2>
-            {movie.title.length > 20 && (
-              <div className="tooltiptext">{movie.title}</div>
-            )}
+            {movie.title.length > 20 && <div className="tooltiptext">{movie.title}</div>}
           </div>
           <p className="text-sm pb-2">Rating: {movie.vote_average}</p>
           <img
@@ -58,8 +54,7 @@ const Movies: React.FC<MovieProps> = ({
                 onClick={() => {
                   addMedia(movie);
                   handleAddToList(movie.id, "movie");
-                }}
-              >
+                }}>
                 Save
               </button>
             )}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Search from "../atoms/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import { useFetchShows } from "../hooks/useFetchShows";
@@ -9,7 +9,7 @@ import Button from "../components/Button";
 import { Movie, Show } from "../types/interfaces";
 import Movies from "../components/Movies";
 import Shows from "../components/Shows";
-import { motion } from "framer-motion";
+import Nav from "../components/Nav";
 
 // displays movie search
 
@@ -79,34 +79,15 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <div className=" flex flex-row justify-center place-items-center  bg-obsidian h-full">
-        <div className="flex place-items-center justify-center flex-col m-3">
-          <Search onSearch={handleSearch} />
-        </div>
+      <Nav
+        handleSearch={handleSearch}
+        showMedia={showMedia}
+        showUserMedia={showUserMedia}
+        handleToggleMedia={handleToggleMedia}
+        toggleMedia={toggleMedia}
+      />
 
-        <Button
-          onClick={showMedia}
-          className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
-          {" "}
-          {showUserMedia ? (
-            <div className="cursor-pointer">Search</div>
-          ) : (
-            <div className="cursor-pointer">My list</div>
-          )}
-        </Button>
-
-        <Button
-          onClick={handleToggleMedia}
-          className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
-          {toggleMedia === "movies" ? (
-            <span>Search for Shows</span>
-          ) : (
-            <span>Search for Movies</span>
-          )}
-        </Button>
-      </div>
-
-      <div className="flex flex-col place-items-center justify-center gap-3 lg:pb-56 sm:pb-24 overflow-auto bg-oxford h-screen">
+      <div className="flex flex-col place-items-center justify-center gap-3  mt-24 overflow-auto bg-oxford h-screen">
         {showUserMedia ? (
           <UserMedia savedMedia={savedMedia} removeMedia={removeMedia} />
         ) : (
