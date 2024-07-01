@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
 import { CircularProgress } from "@mui/material";
 import { motion } from "framer-motion";
+import Button from "../components/Button";
 
 interface Recommendation {
   title: string;
@@ -63,19 +64,11 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
   return (
     <>
       <div className="flex justify-center pb-12 mt-12">
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        <Button
           onClick={handleGetRecommendations}
-          disabled={loading}>
-          {loading ? (
-            <CircularProgress color="inherit" />
-          ) : (
-            <span className="p-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
-              Get Recommendations
-            </span>
-          )}
-        </motion.button>
+          className="p-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
+          {loading ? <CircularProgress color="inherit" /> : <span>Get Recommendations</span>}
+        </Button>
       </div>
 
       {error && <p>Error: {error}</p>}

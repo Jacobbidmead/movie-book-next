@@ -96,7 +96,7 @@ const MoviePage: React.FC = () => {
     <>
       <div className=" flex flex-row justify-center place-items-center max-h-full">
         <div className="flex place-items-center justify-center flex-col m-3">
-          {!showUserMedia && <Search onSearch={handleSearch} />}
+          <Search onSearch={handleSearch} />
         </div>
 
         <Button
@@ -104,9 +104,9 @@ const MoviePage: React.FC = () => {
           className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
           {" "}
           {showUserMedia ? (
-            <div className="cursor-pointer">Go to search</div>
+            <div className="cursor-pointer">Search</div>
           ) : (
-            <div className="cursor-pointer">Go to my list</div>
+            <div className="cursor-pointer">My list</div>
           )}
         </Button>
 
@@ -114,9 +114,9 @@ const MoviePage: React.FC = () => {
           onClick={handleToggleMedia}
           className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
           {toggleMedia === "movies" ? (
-            <span>Click to search Shows</span>
+            <span>Search for Shows</span>
           ) : (
-            <span>Click to search Movies</span>
+            <span>Search for Movies</span>
           )}
         </Button>
       </div>
