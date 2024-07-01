@@ -88,20 +88,11 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <div className="mb-[100px] flex flex-col justify-center place-items-center">
-        <div className="px-6 mb-4 lg:text-6xl sm:text-2xl text-primary">
-          {toggleMedia === "movies" ? (
-            <div>Searching Movies</div>
-          ) : (
-            <div>Searching Shows</div>
-          )}
-        </div>
-
+      <div className=" flex flex-col justify-center place-items-center max-h-full">
         <motion.div
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          className="px-6 mt-4 mx-4 py-1 border-border border-button rounded-button lg:w-1/12 sm:w-2/5 sm:text-center text-xs text-light hover:bg-darkline bg-dark"
-        >
+          className="px-6 mt-4 mx-4 py-1 border-border border-button rounded-button lg:w-1/12 sm:w-2/5 sm:text-center text-xs text-light hover:bg-darkline bg-dark">
           {showUserMedia ? (
             <div onClick={showMedia} className="cursor-pointer">
               Go to search
@@ -121,11 +112,8 @@ const MoviePage: React.FC = () => {
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                onClick={() =>
-                  setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")
-                }
-                className="py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark"
-              >
+                onClick={() => setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")}
+                className="py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
                 {toggleMedia === "movies" ? (
                   <span>Click to search Shows</span>
                 ) : (
