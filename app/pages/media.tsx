@@ -67,9 +67,6 @@ const MoviePage: React.FC = () => {
 
   // toggles between searched media and saved media
   // each time the onClick is called, the state toggles between true and false
-  const showMedia = () => {
-    setShowUserMedia((prevState) => !prevState);
-  };
 
   // changes the state of the button ui to let the user know when some media has succesfully been saved to thier list
   const handleAddToList = (mediaId: string, mediaType: "movie" | "show") => {
@@ -91,26 +88,27 @@ const MoviePage: React.FC = () => {
     setToggleMedia(toggleMedia === "movies" ? "shows" : "movies");
   };
 
+  const showMedia = () => {
+    setShowUserMedia((prevState) => !prevState);
+  };
+
   return (
     <>
       <div className=" flex flex-row justify-center place-items-center max-h-full">
         <div className="flex place-items-center justify-center flex-col m-3">
           {!showUserMedia && <Search onSearch={handleSearch} />}
         </div>
-        <motion.div
-          whileTap={{ scale: 0.9 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          className="py-2 px-3  border-border border-button rounded-button w-2/5 sm:text-center text-xs text-light hover:bg-darkline bg-dark">
+
+        <Button
+          onClick={showMedia}
+          className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
+          {" "}
           {showUserMedia ? (
-            <div onClick={showMedia} className="cursor-pointer">
-              Go to search
-            </div>
+            <div className="cursor-pointer">Go to search</div>
           ) : (
-            <div onClick={showMedia} className="cursor-pointer">
-              Go to my list
-            </div>
+            <div className="cursor-pointer">Go to my list</div>
           )}
-        </motion.div>
+        </Button>
 
         <Button
           onClick={handleToggleMedia}
