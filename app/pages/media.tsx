@@ -94,7 +94,7 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <div className=" flex flex-row justify-center place-items-center max-h-full">
+      <div className=" flex flex-row justify-center place-items-center  bg-obsidian h-full">
         <div className="flex place-items-center justify-center flex-col m-3">
           <Search onSearch={handleSearch} />
         </div>
@@ -121,7 +121,7 @@ const MoviePage: React.FC = () => {
         </Button>
       </div>
 
-      <div className="flex flex-col place-items-center justify-center gap-3 lg:pb-56 sm:pb-24 overflow-auto ">
+      <div className="flex flex-col place-items-center justify-center gap-3 lg:pb-56 sm:pb-24 overflow-auto bg-oxfordblue">
         {showUserMedia ? (
           <UserMedia savedMedia={savedMedia} removeMedia={removeMedia} />
         ) : (

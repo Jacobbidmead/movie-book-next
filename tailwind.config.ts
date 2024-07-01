@@ -21,6 +21,8 @@ const config = {
       primary: "#2DFFA7",
       muted: "#71717a",
       border: "rgba(224, 211, 218, 0.26)",
+      oxford: "#212A37",
+      obsidian: " #0B1215",
     },
     borderRadius: {
       button: "4rem",
