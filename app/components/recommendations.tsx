@@ -46,9 +46,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
       console.log("Status Code:", response.status);
 
       if (!response.ok) {
-        throw new Error(
-          `Network response was not ok, status: ${response.status}`
-        );
+        throw new Error(`Network response was not ok, status: ${response.status}`);
       }
 
       const data = await response.json();
@@ -56,7 +54,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
       setRecommendations(data);
     } catch (error) {
       setError("An error occurred while fetching recommendations.");
-      setRecommendations({ recommendations: [] }); // Reset to initial empty state
+      setRecommendations({ recommendations: [] });
     } finally {
       setLoading(false);
     }
@@ -69,8 +67,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
           onClick={handleGetRecommendations}
-          disabled={loading}
-        >
+          disabled={loading}>
           {loading ? (
             <CircularProgress color="inherit" />
           ) : (
@@ -89,15 +86,12 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
           recommendations.recommendations.map((recItem, index) => (
             <div
               className="flex mt-8 text-center text-light border-button rounded-card border-border"
-              key={index}
-            >
+              key={index}>
               <div>
                 <h3 className="lg:text-4xl sm:text-lg p-3 border-b-card border-border">
                   {recItem.title}
                 </h3>
-                <p className="lg:text-md sm:text-xs p-6">
-                  {recItem.description}
-                </p>
+                <p className="lg:text-md sm:text-xs p-6">{recItem.description}</p>
               </div>
               {/* <img src={recItem.poster_path} alt={recItem.title} /> */}
             </div>
