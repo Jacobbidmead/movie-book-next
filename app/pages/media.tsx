@@ -112,7 +112,9 @@ const MoviePage: React.FC = () => {
           )}
         </motion.div>
 
-        <Button onClick={handleToggleMedia}>
+        <Button
+          onClick={handleToggleMedia}
+          className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
           {toggleMedia === "movies" ? (
             <span>Click to search Shows</span>
           ) : (
