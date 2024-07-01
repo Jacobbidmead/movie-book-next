@@ -5,6 +5,7 @@ import Search from "../atoms/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import { useFetchShows } from "../hooks/useFetchShows";
 import UserMedia from "../components/userMedia";
+import Button from "../components/Button";
 import { Movie, Show } from "../types/interfaces";
 import Movies from "../components/Movies";
 import Shows from "../components/Shows";
@@ -103,6 +104,8 @@ const MoviePage: React.FC = () => {
             </div>
           )}
         </motion.div>
+
+        <Button />
       </div>
 
       <div className="flex flex-col place-items-center justify-center gap-3 lg:pb-56 sm:pb-24 overflow-auto ">
