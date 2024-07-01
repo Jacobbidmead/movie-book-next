@@ -26,7 +26,7 @@ const Movies: React.FC<MovieProps> = ({
   return (
     <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6 pt-24 ">
       {movies.map((movie) => (
-        <div className="flex flex-col p-4" key={movie.id}>
+        <div className="flex flex-col p-4 " key={movie.id}>
           <div className="tooltip">
             <h2 className="truncate text-sm pb-1">
               {movie.title.length > 20 ? `${movie.title.substring(0, 20)}...` : movie.title}

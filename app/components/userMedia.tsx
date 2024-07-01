@@ -16,7 +16,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
   return (
     <>
       {mediaArray.length > 0 ? (
-        <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6">
+        <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6 pt-24">
           {mediaArray.map((savedMediaItem) => (
             <div className="flex flex-col p-2" key={savedMediaItem.id}>
               <div className="tooltip">
@@ -29,9 +29,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
                   <div className="tooltiptext">{savedMediaItem.title}</div>
                 )}
               </div>
-              <p className="text-center text-sm pb-1">
-                Rating: {savedMediaItem.vote_average}
-              </p>
+              <p className="text-center text-sm pb-1">Rating: {savedMediaItem.vote_average}</p>
               <img
                 className="w-full h-full object-cover"
                 src={
@@ -49,8 +47,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
                   className="px-2 py-1 rounded-button text-sm border-border border-button w-1/2 mt-2 hover:bg-darkline bg-dark"
                   onClick={() => {
                     removeMedia(savedMediaItem.id);
-                  }}
-                >
+                  }}>
                   Remove
                 </motion.button>
               </div>
@@ -58,7 +55,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
           ))}
         </div>
       ) : (
-        <div className="text-center text-light">Nothing saved yet</div>
+        <div className="text-center text-light pt-24">Nothing saved yet</div>
       )}
 
       <Recommendations savedMedia={savedMedia} />

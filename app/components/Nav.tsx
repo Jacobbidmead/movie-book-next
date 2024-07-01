@@ -19,7 +19,7 @@ const Nav: React.FC<NavProps> = ({
   handleToggleMedia,
   toggleMedia,
 }) => {
-  const [navOpacity, setNavOpacity] = useState("rgba(114, 114, 114, 0)");
+  const [navOpacity, setNavOpacity] = useState("rgba(114, 114, 114, 0.1)");
   const [navBorder, setNavBorder] = useState("none");
 
   useEffect(() => {
@@ -42,30 +42,35 @@ const Nav: React.FC<NavProps> = ({
     <div className="floating-nav-container">
       <div
         className="floating-nav"
-        style={{ backgroundColor: navOpacity, border: navBorder, borderRadius: "10px" }}>
-        <div className="flex place-items-center justify-center flex-col m-3">
+        style={{
+          backgroundColor: navOpacity,
+          border: navBorder,
+          borderRadius: "10px",
+        }}>
+        <div className="flex place-items-center  ">
           <Search onSearch={handleSearch} />
         </div>
+        <div className="flex items-center space-x-4">
+          <Button
+            onClick={showMedia}
+            className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs   hover:bg-darkline bg-dark ">
+            {showUserMedia ? (
+              <div className="cursor-pointer">Search</div>
+            ) : (
+              <div className="cursor-pointer">My list</div>
+            )}
+          </Button>
 
-        <Button
-          onClick={showMedia}
-          className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
-          {showUserMedia ? (
-            <div className="cursor-pointer">Search</div>
-          ) : (
-            <div className="cursor-pointer">My list</div>
-          )}
-        </Button>
-
-        <Button
-          onClick={handleToggleMedia}
-          className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
-          {toggleMedia === "movies" ? (
-            <span>Search for Shows</span>
-          ) : (
-            <span>Search for Movies</span>
-          )}
-        </Button>
+          <Button
+            onClick={handleToggleMedia}
+            className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs hover:bg-darkline bg-dark">
+            {toggleMedia === "movies" ? (
+              <span>Search for Shows</span>
+            ) : (
+              <span>Search for Movies</span>
+            )}
+          </Button>
+        </div>
       </div>
     </div>
   );

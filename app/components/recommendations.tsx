@@ -63,7 +63,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
 
   return (
     <>
-      <div className="flex justify-center pb-12 mt-12">
+      <div className="flex justify-center pb-12 mt-12 pt-24">
         <Button
           onClick={handleGetRecommendations}
           className="p-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">

@@ -25,7 +25,7 @@ const config = {
       obsidian: " #0B1215",
     },
     borderRadius: {
-      button: "4rem",
+      button: "2rem",
       card: "1rem",
     },
     borderWidth: {
