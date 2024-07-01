@@ -1,17 +1,13 @@
 "use client";
 
 import React, { useState, useCallback, useEffect } from "react";
-import Search from "../atoms/search";
 import { useFetchMovies } from "../hooks/useFetchMovies";
 import { useFetchShows } from "../hooks/useFetchShows";
 import UserMedia from "../components/userMedia";
-import Button from "../components/Button";
 import { Movie, Show } from "../types/interfaces";
 import Movies from "../components/Movies";
 import Shows from "../components/Shows";
 import Nav from "../components/Nav";
-
-// displays movie search
 
 type MediaView = "movies" | "shows";
 
@@ -87,7 +83,7 @@ const MoviePage: React.FC = () => {
         toggleMedia={toggleMedia}
       />
 
-      <div className="flex flex-col place-items-center justify-center gap-3  mt-24 overflow-auto bg-oxford h-screen">
+      <div className="flex flex-col place-items-center justify-center gap-3 bg-oxford ">
         {showUserMedia ? (
           <UserMedia savedMedia={savedMedia} removeMedia={removeMedia} />
         ) : (

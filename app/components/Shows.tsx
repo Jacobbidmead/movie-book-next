@@ -24,26 +24,20 @@ const Shows: React.FC<ShowProps> = ({
 }) => {
   console.log("Rendering Shows component");
   return (
-    <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6">
+    <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6 pt-24">
       {shows.map((show) => (
         <div className="flex flex-col p-2" key={show.id}>
           <div className="tooltip">
             <h2 className="truncate text-sm pb-1">
-              {show.title.length > 20
-                ? `${show.title.substring(0, 20)}...`
-                : show.title}
+              {show.title.length > 20 ? `${show.title.substring(0, 20)}...` : show.title}
             </h2>
-            {show.title.length > 20 && (
-              <div className="tooltiptext">{show.title}</div>
-            )}
+            {show.title.length > 20 && <div className="tooltiptext">{show.title}</div>}
           </div>
           <p className="text-sm pb-1">Rating: {show.vote_average}</p>
           <img
             className="w-full h-full object-cover"
             src={
-              show.poster_path
-                ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
-                : "/image.png"
+              show.poster_path ? `https://image.tmdb.org/t/p/w500${show.poster_path}` : "/image.png"
             }
             alt={show.title}
           />
@@ -58,8 +52,7 @@ const Shows: React.FC<ShowProps> = ({
                 onClick={() => {
                   addMedia(show);
                   handleAddToList(show.id, "show");
-                }}
-              >
+                }}>
                 Save
               </button>
             )}
