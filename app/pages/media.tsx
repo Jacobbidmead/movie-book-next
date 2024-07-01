@@ -89,11 +89,14 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <div className=" flex flex-col justify-center place-items-center max-h-full">
+      <div className=" flex flex-row justify-center place-items-center max-h-full">
+        <div className="flex place-items-center justify-center flex-col m-3">
+          {!showUserMedia && <Search onSearch={handleSearch} />}
+        </div>
         <motion.div
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          className="px-6 mt-4 mx-4 py-1 border-border border-button rounded-button lg:w-1/12 sm:w-2/5 sm:text-center text-xs text-light hover:bg-darkline bg-dark">
+          className="py-2 px-3  border-border border-button rounded-button lg:w-1/12 sm:w-2/5 sm:text-center text-xs text-light hover:bg-darkline bg-dark">
           {showUserMedia ? (
             <div onClick={showMedia} className="cursor-pointer">
               Go to search
@@ -125,10 +128,6 @@ const MoviePage: React.FC = () => {
               </motion.button>
             )}
           </div>
-        </div>
-
-        <div className="flex place-items-center justify-center flex-col">
-          {!showUserMedia && <Search onSearch={handleSearch} />}
         </div>
 
         {showUserMedia ? (
