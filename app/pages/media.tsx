@@ -43,32 +43,17 @@ const MoviePage: React.FC = () => {
     });
   }, []);
 
-  // Function to remove a media item (either a movie or a show) from the saved list.
-
   const removeMedia = (mediaId: string) => {
-    // Update the 'savedMedia' state.
-    // This state holds an array of all saved media items.
-    setSavedMedia((prevMedia) =>
-      // Filter out the media item that matches the given 'mediaId'.
-      // This effectively removes the item from the list of saved media.
-      prevMedia.filter((media) => media.id !== mediaId)
-    );
-    // Update the 'addedMedia' state.
+    setSavedMedia((prevMedia) => prevMedia.filter((media) => media.id !== mediaId));
 
-    // This state is used to track whether each individual media item is saved or not.
-    // It has a structure that differentiates between 'movies' and 'shows'.
     setAddedMedia((prevAdded) => ({
-      ...prevAdded, // Spread the existing state to maintain other entries.
-      // Remove the entry with the given 'mediaId' from both 'movies' and 'shows'.
+      ...prevAdded,
+
       movies: { ...prevAdded.movies, [mediaId]: undefined },
       shows: { ...prevAdded.shows, [mediaId]: undefined },
     }));
   };
 
-  // toggles between searched media and saved media
-  // each time the onClick is called, the state toggles between true and false
-
-  // changes the state of the button ui to let the user know when some media has succesfully been saved to thier list
   const handleAddToList = (mediaId: string, mediaType: "movie" | "show") => {
     setAddedMedia((prevAdded) => ({
       ...prevAdded,
@@ -121,7 +106,7 @@ const MoviePage: React.FC = () => {
         </Button>
       </div>
 
-      <div className="flex flex-col place-items-center justify-center gap-3 lg:pb-56 sm:pb-24 overflow-auto bg-oxfordblue">
+      <div className="flex flex-col place-items-center justify-center gap-3 lg:pb-56 sm:pb-24 overflow-auto bg-oxford h-screen">
         {showUserMedia ? (
           <UserMedia savedMedia={savedMedia} removeMedia={removeMedia} />
         ) : (
