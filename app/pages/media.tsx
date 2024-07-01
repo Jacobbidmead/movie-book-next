@@ -96,7 +96,7 @@ const MoviePage: React.FC = () => {
         <motion.div
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          className="py-2 px-3  border-border border-button rounded-button lg:w-1/12 sm:w-2/5 sm:text-center text-xs text-light hover:bg-darkline bg-dark">
+          className="py-2 px-3  border-border border-button rounded-button w-2/5 sm:text-center text-xs text-light hover:bg-darkline bg-dark">
           {showUserMedia ? (
             <div onClick={showMedia} className="cursor-pointer">
               Go to search
