@@ -1,14 +1,20 @@
 import { motion } from "framer-motion";
 
-const Button: React.FC = () => {
+interface ButtonProps {
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  children?: React.ReactNode;
+}
+
+const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
   return (
     <>
-      <motion.div
+      <motion.button
         whileTap={{ scale: 0.9 }}
+        onClick={onClick}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
         className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
-        Button
-      </motion.div>
+        {children}
+      </motion.button>
     </>
   );
 };

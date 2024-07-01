@@ -87,6 +87,10 @@ const MoviePage: React.FC = () => {
     fetchShows(query);
   };
 
+  const handleToggleMedia = () => {
+    setToggleMedia(toggleMedia === "movies" ? "shows" : "movies");
+  };
+
   return (
     <>
       <div className=" flex flex-row justify-center place-items-center max-h-full">
@@ -108,28 +112,16 @@ const MoviePage: React.FC = () => {
           )}
         </motion.div>
 
-        <Button />
+        <Button onClick={handleToggleMedia}>
+          {toggleMedia === "movies" ? (
+            <span>Click to search Shows</span>
+          ) : (
+            <span>Click to search Movies</span>
+          )}
+        </Button>
       </div>
 
       <div className="flex flex-col place-items-center justify-center gap-3 lg:pb-56 sm:pb-24 overflow-auto ">
-        <div className="flex justify-end">
-          <div className="pt-8 ">
-            {!showUserMedia && (
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                onClick={() => setToggleMedia(toggleMedia === "movies" ? "shows" : "movies")}
-                className="py-2 px-3 border-border border-button rounded-button text-xs text-light hover:bg-darkline bg-dark">
-                {toggleMedia === "movies" ? (
-                  <span>Click to search Shows</span>
-                ) : (
-                  <span>Click to search Movies</span>
-                )}
-              </motion.button>
-            )}
-          </div>
-        </div>
-
         {showUserMedia ? (
           <UserMedia savedMedia={savedMedia} removeMedia={removeMedia} />
         ) : (
