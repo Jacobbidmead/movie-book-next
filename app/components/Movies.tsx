@@ -1,7 +1,7 @@
 "use client";
 
 import { Movie } from "../types/interfaces";
-import Button from "./Button";
+import Footer from "./Footer";
 
 interface AddedMediaState {
   movies: { [key: string]: boolean };
@@ -36,7 +36,7 @@ const Movies: React.FC<MovieProps> = ({
           </div>
           <p className="text-sm pb-2">Rating: {movie.vote_average}</p>
           <img
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover shadow-2xl shadow-obsidian"
             src={
               movie.poster_path
                 ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`

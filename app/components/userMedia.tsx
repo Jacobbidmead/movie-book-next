@@ -31,7 +31,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
               </div>
               <p className="text-center text-sm pb-1">Rating: {savedMediaItem.vote_average}</p>
               <img
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover shadow-2xl shadow-obsidian"
                 src={
                   savedMediaItem.poster_path
                     ? `https://image.tmdb.org/t/p/w500${savedMediaItem.poster_path}`
