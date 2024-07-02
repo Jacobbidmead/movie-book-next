@@ -25,7 +25,7 @@ const MoviePage: React.FC = () => {
   const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
   const MemoizedMovies = React.memo(Movies);
   const MemoizedShows = React.memo(Shows);
-  const [openInfo, setOpenInfo] = useState(false);
+  const [openInfo, setOpenInfo] = useState(true);
 
   const addMedia = useCallback((media: Movie | Show) => {
     console.log("addMedia called for:", media.id);
