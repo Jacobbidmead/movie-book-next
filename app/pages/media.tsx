@@ -8,6 +8,7 @@ import { Movie, Show } from "../types/interfaces";
 import Movies from "../components/Movies";
 import Shows from "../components/Shows";
 import Nav from "../components/Nav";
+import Header from "../components/Header";
 
 type MediaView = "movies" | "shows";
 
@@ -75,6 +76,7 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
+      <Header />
       <Nav
         handleSearch={handleSearch}
         showMedia={showMedia}
