@@ -53,7 +53,7 @@ const Nav: React.FC<NavProps> = ({
         <div className="flex items-center space-x-4">
           <Button
             onClick={showMedia}
-            className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs   hover:bg-darkline bg-dark ">
+            className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs custom-button ">
             {showUserMedia ? (
               <div className="cursor-pointer">Search</div>
             ) : (
@@ -63,7 +63,7 @@ const Nav: React.FC<NavProps> = ({
 
           <Button
             onClick={handleToggleMedia}
-            className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs hover:bg-darkline bg-dark">
+            className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs custom-button">
             {toggleMedia === "movies" ? (
               <span>Search for Shows</span>
             ) : (

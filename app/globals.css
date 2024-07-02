@@ -70,3 +70,16 @@
   z-index: 3;
   padding-top: 20px;
 }
+
+/* Custom button */
+
+.custom-button {
+  background-color: #94a3b81a;
+  box-shadow: inset 0 1px 0 0 #ffffff0d;
+  opacity: 0.5;
+}
+
+.custom-button:hover {
+  opacity: 1;
+  transition: 0.2s ease;
+}

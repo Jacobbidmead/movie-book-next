@@ -83,7 +83,7 @@ const MoviePage: React.FC = () => {
         toggleMedia={toggleMedia}
       />
 
-      <div className="flex flex-col place-items-center justify-center gap-3 bg-oxford ">
+      <div className="flex flex-col place-items-center justify-center gap-3 bg-night ">
         {showUserMedia ? (
           <UserMedia savedMedia={savedMedia} removeMedia={removeMedia} />
         ) : (

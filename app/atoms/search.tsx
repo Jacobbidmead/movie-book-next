@@ -19,7 +19,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
 
   return (
     <input
-      className="form-input  px-5 py-1.5 rounded-button border-border border-button rounded-md bg-dark  text-light text-sm w-11/12 outline-none"
+      className="form-input  px-5 py-1.5 rounded-button border-border border-button rounded-md bg-night  text-light text-sm w-11/12 outline-none"
       type="text"
       value={inputValue}
       onChange={(e) => setInputValue(e.target.value)}

@@ -23,6 +23,8 @@ const config = {
       border: "rgba(224, 211, 218, 0.26)",
       oxford: "#212A37",
       obsidian: " #0B1215",
+      slate: "rgba(148, 163, 184, 0.1)",
+      night: "rgb(15, 23, 42 )",
     },
     borderRadius: {
       button: "2rem",
@@ -31,6 +33,9 @@ const config = {
     borderWidth: {
       button: "0.1em",
       card: "0.1rem",
+    },
+    shadow: {
+      buttonshadow: "box-shadow: inset 0 1px 0 0 #ffffff0d",
     },
     container: {
       center: true,
