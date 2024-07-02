@@ -43,12 +43,12 @@ const Shows: React.FC<ShowProps> = ({
           />
           <div className="flex justify-center">
             {addedMedia.shows[show.id] ? (
-              <div className="px-2 py-1.5 rounded-button text-xs border-border border-button lg:w-2/4 sm:w-9/12 mt-2 hover:bg-darkline bg-dark cursor-pointer">
+              <div className="px-2 py-1.5 rounded-button text-xs border-border border-button lg:w-2/4 sm:w-9/12 mt-2 custom-button cursor-pointer">
                 Saved to list
               </div>
             ) : (
               <button
-                className="px-2 py-1 rounded-button text-sm border-border border-button lg:w-1/4 sm:w-1/2 mt-2 hover:bg-darkline bg-dark"
+                className="px-2 py-1 rounded-button text-sm border-border border-button lg:w-1/4 sm:w-1/2 mt-2 custom-button"
                 onClick={() => {
                   addMedia(show);
                   handleAddToList(show.id, "show");

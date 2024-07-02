@@ -16,7 +16,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
   return (
     <>
       {mediaArray.length > 0 ? (
-        <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6 pt-24">
+        <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6 pt-24 ">
           {mediaArray.map((savedMediaItem) => (
             <div className="flex flex-col p-2" key={savedMediaItem.id}>
               <div className="tooltip">
@@ -44,7 +44,7 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  className="px-2 py-1 rounded-button text-sm border-border border-button w-1/2 mt-2 hover:bg-darkline bg-dark"
+                  className="px-2 py-1 rounded-button text-sm border-border border-button w-1/3 mt-2 custom-button"
                   onClick={() => {
                     removeMedia(savedMediaItem.id);
                   }}>
