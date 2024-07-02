@@ -1,4 +1,10 @@
-const Header: React.FC = () => {
+"use client";
+
+interface HeaderProps {
+  handleOpenInfo: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ handleOpenInfo }) => {
   return (
     <>
       <div className="px-12 py-8 mb-8 text-xl border-border opacity-50 border-b-[2px] text-light flex justify-start">
@@ -28,6 +34,9 @@ const Header: React.FC = () => {
               fill="#E5594F"
             />
           </svg>
+        </div>
+        <div>
+          <button onClick={handleOpenInfo}>info</button>
         </div>
       </div>
     </>

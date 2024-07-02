@@ -9,6 +9,7 @@ import Movies from "../components/Movies";
 import Shows from "../components/Shows";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
+import Info from "../components/Info";
 
 type MediaView = "movies" | "shows";
 
@@ -24,6 +25,7 @@ const MoviePage: React.FC = () => {
   const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
   const MemoizedMovies = React.memo(Movies);
   const MemoizedShows = React.memo(Shows);
+  const [openInfo, setOpenInfo] = useState(false);
 
   const addMedia = useCallback((media: Movie | Show) => {
     console.log("addMedia called for:", media.id);
@@ -74,9 +76,17 @@ const MoviePage: React.FC = () => {
     setShowUserMedia((prevState) => !prevState);
   };
 
+  const handleOpenInfo = () => {
+    setOpenInfo(true);
+  };
+
+  const handleCloseInfo = () => {
+    setOpenInfo(false);
+  };
+
   return (
     <>
-      <Header />
+      <Header handleOpenInfo={handleOpenInfo} />
       <Nav
         handleSearch={handleSearch}
         showMedia={showMedia}
@@ -84,6 +94,10 @@ const MoviePage: React.FC = () => {
         handleToggleMedia={handleToggleMedia}
         toggleMedia={toggleMedia}
       />
+
+      <Info isOpen={openInfo} onClose={handleCloseInfo}>
+        Test info
+      </Info>
 
       <div className="flex flex-col place-items-center justify-center gap-3 bg-night ">
         {showUserMedia ? (
