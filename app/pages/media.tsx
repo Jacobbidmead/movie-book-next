@@ -25,7 +25,7 @@ const MoviePage: React.FC = () => {
   const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
   const MemoizedMovies = React.memo(Movies);
   const MemoizedShows = React.memo(Shows);
-  const [openInfo, setOpenInfo] = useState(true);
+  const [openInfo, setOpenInfo] = useState(false);
 
   const addMedia = useCallback((media: Movie | Show) => {
     console.log("addMedia called for:", media.id);
@@ -96,7 +96,16 @@ const MoviePage: React.FC = () => {
       />
 
       <Info isOpen={openInfo} onClose={handleCloseInfo}>
-        Test info
+        <h2 className="p-2"> MediaBook AI</h2>
+        <p>
+          Welcome to MediaBook AI, a tool that helps you decide what to watch using AI integration.
+        </p>
+        <p>Search for movies and tv shows, add them to your list</p>
+        <p>Switch between Movies & Tv shows, and your saved list, using the navigation</p>
+        <p>
+          Then the get recommendations button, the AI will find movies & shows based on your taste
+        </p>
+        <p>Sign up to save you choices, or use as a guest</p>
       </Info>
 
       <div className="flex flex-col place-items-center justify-center gap-3 bg-night ">

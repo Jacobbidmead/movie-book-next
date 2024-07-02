@@ -8,7 +8,7 @@ const Header: React.FC<HeaderProps> = ({ handleOpenInfo }) => {
   return (
     <>
       <div className="px-12 py-8 mb-8 text-xl border-border opacity-50 border-b-[2px] text-light flex justify-start">
-        <div>MovieBook AI</div>
+        <div>MediaBook AI</div>
         <div className="px-4">
           <svg
             width="28px"
