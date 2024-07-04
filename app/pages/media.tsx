@@ -10,10 +10,12 @@ import Shows from "../components/Shows";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Info from "../components/Info";
+import Burger from "../components/Burger";
 
 type MediaView = "movies" | "shows";
 
 const MoviePage: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 501);
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const { shows, fetchShows } = useFetchShows();
   const [savedMedia, setSavedMedia] = useState<(Movie | Show)[]>([]);
@@ -23,9 +25,23 @@ const MoviePage: React.FC = () => {
     shows: {},
   });
   const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
+  const [openInfo, setOpenInfo] = useState(false);
   const MemoizedMovies = React.memo(Movies);
   const MemoizedShows = React.memo(Shows);
-  const [openInfo, setOpenInfo] = useState(false);
+
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth < 501);
+  };
+
+  // Set up the event listener when the component mounts
+  useEffect(() => {
+    window.addEventListener("resize", checkMobile);
+
+    // Cleanup the listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []); // The empty array means this useEffect runs once when the component mounts.
 
   const addMedia = useCallback((media: Movie | Show) => {
     console.log("addMedia called for:", media.id);
@@ -87,13 +103,18 @@ const MoviePage: React.FC = () => {
   return (
     <>
       <Header handleOpenInfo={handleOpenInfo} />
-      <Nav
-        handleSearch={handleSearch}
-        showMedia={showMedia}
-        showUserMedia={showUserMedia}
-        handleToggleMedia={handleToggleMedia}
-        toggleMedia={toggleMedia}
-      />
+
+      {isMobile ? (
+        <Burger />
+      ) : (
+        <Nav
+          handleSearch={handleSearch}
+          showMedia={showMedia}
+          showUserMedia={showUserMedia}
+          handleToggleMedia={handleToggleMedia}
+          toggleMedia={toggleMedia}
+        />
+      )}
 
       <Info isOpen={openInfo} onClose={handleCloseInfo}>
         <h2 className="p-2"> MediaBook AI</h2>

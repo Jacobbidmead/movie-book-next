@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import Box from "@mui/joy/Box";
 import IconButton from "@mui/joy/IconButton";
