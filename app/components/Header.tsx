@@ -1,10 +1,12 @@
 "use client";
+import Burger from "./Burger";
 
 interface HeaderProps {
   handleOpenInfo: () => void;
+  isMobile: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ handleOpenInfo }) => {
+const Header: React.FC<HeaderProps> = ({ handleOpenInfo, isMobile }) => {
   return (
     <>
       <div className="px-12 py-8 mb-8 text-xl border-border opacity-50 border-b-[2px] text-light flex justify-start">
@@ -38,6 +40,7 @@ const Header: React.FC<HeaderProps> = ({ handleOpenInfo }) => {
         <div>
           <button onClick={handleOpenInfo}>info</button>
         </div>
+        {isMobile ? <Burger /> : null}
       </div>
     </>
   );

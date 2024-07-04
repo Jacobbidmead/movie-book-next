@@ -10,7 +10,6 @@ import Shows from "../components/Shows";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Info from "../components/Info";
-import Burger from "../components/Burger";
 
 type MediaView = "movies" | "shows";
 
@@ -102,18 +101,20 @@ const MoviePage: React.FC = () => {
 
   return (
     <>
-      <Header handleOpenInfo={handleOpenInfo} />
-
       {isMobile ? (
-        <Burger />
+        <Header handleOpenInfo={handleOpenInfo} isMobile={isMobile} />
       ) : (
-        <Nav
-          handleSearch={handleSearch}
-          showMedia={showMedia}
-          showUserMedia={showUserMedia}
-          handleToggleMedia={handleToggleMedia}
-          toggleMedia={toggleMedia}
-        />
+        <>
+          <Header handleOpenInfo={handleOpenInfo} isMobile={isMobile} />
+
+          <Nav
+            handleSearch={handleSearch}
+            showMedia={showMedia}
+            showUserMedia={showUserMedia}
+            handleToggleMedia={handleToggleMedia}
+            toggleMedia={toggleMedia}
+          />
+        </>
       )}
 
       <Info isOpen={openInfo} onClose={handleCloseInfo}>
