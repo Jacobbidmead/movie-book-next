@@ -19,7 +19,7 @@ interface MediaProps {
 }
 
 const MoviePage: React.FC<MediaProps> = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 501);
+  const [isMobile, setIsMobile] = useState<boolean>(true);
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const { shows, fetchShows } = useFetchShows();
   const [savedMedia, setSavedMedia] = useState<(Movie | Show)[]>([]);
@@ -33,19 +33,19 @@ const MoviePage: React.FC<MediaProps> = () => {
   const MemoizedMovies = React.memo(Movies);
   const MemoizedShows = React.memo(Shows);
 
-  const checkMobile = () => {
-    setIsMobile(window.innerWidth < 501);
-  };
-
-  // Set up the event listener when the component mounts
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 501);
+    };
+
+    checkMobile(); // Check mobile status on mount
     window.addEventListener("resize", checkMobile);
 
     // Cleanup the listener when the component unmounts
     return () => {
       window.removeEventListener("resize", checkMobile);
     };
-  }, []); // The empty array means this useEffect runs once when the component mounts.
+  }, []);
 
   const addMedia = useCallback((media: Movie | Show) => {
     console.log("addMedia called for:", media.id);
