@@ -14,11 +14,7 @@ import Search from "../atoms/search";
 
 type MediaView = "movies" | "shows";
 
-interface MediaProps {
-  onSearch: (query: string) => void;
-}
-
-const MoviePage: React.FC<MediaProps> = () => {
+const MoviePage: React.FC = () => {
   const [isMobile, setIsMobile] = useState<boolean>(true);
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const { shows, fetchShows } = useFetchShows();
