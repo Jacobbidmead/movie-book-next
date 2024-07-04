@@ -10,6 +10,7 @@ const Header: React.FC<HeaderProps> = ({ handleOpenInfo, isMobile }) => {
   return (
     <>
       <div className="px-12 py-8 mb-8 text-xl border-border opacity-50 border-b-[2px] text-light flex justify-start">
+        {isMobile ? <Burger /> : null}
         <div>MediaBook AI</div>
         <div className="px-4">
           <svg
@@ -37,10 +38,11 @@ const Header: React.FC<HeaderProps> = ({ handleOpenInfo, isMobile }) => {
             />
           </svg>
         </div>
-        <div>
-          <button onClick={handleOpenInfo}>info</button>
-        </div>
-        {isMobile ? <Burger /> : null}
+        {isMobile ? null : (
+          <div>
+            <button onClick={handleOpenInfo}>info</button>
+          </div>
+        )}
       </div>
     </>
   );

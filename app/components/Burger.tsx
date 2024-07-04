@@ -13,8 +13,8 @@ export default function Burger() {
 
   return (
     <React.Fragment>
-      <IconButton color="neutral" style={{ padding: "20px" }} onClick={() => setOpen(true)}>
-        x
+      <IconButton color="neutral" onClick={() => setOpen(true)}>
+        Burger
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <Box
@@ -25,7 +25,6 @@ export default function Burger() {
             ml: "auto",
             mt: 1,
             mr: 2,
-            backgroundColor: "black",
           }}>
           <ModalClose id="close-icon" sx={{ padding: "14px" }} />
         </Box>
@@ -36,23 +35,21 @@ export default function Burger() {
             flex: "none",
             fontSize: "xl",
             "& > div": { paddingLeft: "40px" },
-            backgroundColor: "black",
           }}>
           <ListItemButton
             sx={{
-              paddingTop: "50px",
+              paddingTop: "60px",
               fontSize: "20px",
-            }}></ListItemButton>
-
-          <ListItemButton sx={{ paddingTop: "55px", fontSize: "20px" }}>
-            <a
-              href="https://github.com/Jacobbidmead"
-              target="_blank"
-              rel="noreferrer"
-              className="burger-link">
-              GitHub
-            </a>
+            }}>
+            Movies
           </ListItemButton>
+
+          <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>TV Shows</ListItemButton>
+          <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>My List</ListItemButton>
+          <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>
+            My Recommendations
+          </ListItemButton>
+          <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>Info</ListItemButton>
         </List>
       </Drawer>
     </React.Fragment>

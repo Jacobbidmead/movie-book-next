@@ -10,10 +10,15 @@ import Shows from "../components/Shows";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Info from "../components/Info";
+import Search from "../atoms/search";
 
 type MediaView = "movies" | "shows";
 
-const MoviePage: React.FC = () => {
+interface MediaProps {
+  onSearch: (query: string) => void;
+}
+
+const MoviePage: React.FC<MediaProps> = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 501);
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const { shows, fetchShows } = useFetchShows();
@@ -117,15 +122,22 @@ const MoviePage: React.FC = () => {
         </>
       )}
 
+      {isMobile ? (
+        <div className="flex justify-center px-8">
+          <Search onSearch={handleSearch} />{" "}
+        </div>
+      ) : null}
+
       <Info isOpen={openInfo} onClose={handleCloseInfo}>
         <h2 className="p-2"> MediaBook AI</h2>
         <p>
           Welcome to MediaBook AI, a tool that helps you decide what to watch using AI integration.
         </p>
         <p>Search for movies and tv shows, add them to your list</p>
-        <p>Switch between Movies & Tv shows, and your saved list, using the navigation</p>
+        <p>Switch between Movies & Tv shows, saved media & recommendations</p>
         <p>
-          Then the get recommendations button, the AI will find movies & shows based on your taste
+          Press the get recommendations button and the AI will find movies & shows based on your
+          taste
         </p>
         <p>Sign up to save you choices, or use as a guest</p>
       </Info>
