@@ -7,8 +7,10 @@ import Drawer from "@mui/joy/Drawer";
 import List from "@mui/joy/List";
 import ListItemButton from "@mui/joy/ListItemButton";
 import ModalClose from "@mui/joy/ModalClose";
+import useMediaStore from "../store/useMediaStore";
 
 export default function Burger() {
+  const { toggleMedia, handleToggleMedia } = useMediaStore();
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -37,14 +39,18 @@ export default function Burger() {
             "& > div": { paddingLeft: "40px" },
           }}>
           <ListItemButton
+            onClick={handleToggleMedia}
             sx={{
-              paddingTop: "60px",
+              paddingTop: "40px",
               fontSize: "20px",
             }}>
-            Movies
+            {toggleMedia === "movies" ? (
+              <span>Search for Shows</span>
+            ) : (
+              <span>Search for Movies</span>
+            )}
           </ListItemButton>
 
-          <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>TV Shows</ListItemButton>
           <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>My List</ListItemButton>
           <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>
             My Recommendations
