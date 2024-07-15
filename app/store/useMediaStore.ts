@@ -8,6 +8,11 @@ const useMediaStore = create<MediaState>((set) => ({
     set((state) => ({
       toggleMedia: state.toggleMedia === "movies" ? "shows" : "movies",
     })),
+  showUserMedia: false,
+  showMedia: () =>
+    set((state) => ({
+      showUserMedia: !state.showUserMedia,
+    })),
 }));
 
 export default useMediaStore;

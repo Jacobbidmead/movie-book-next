@@ -10,7 +10,7 @@ import ModalClose from "@mui/joy/ModalClose";
 import useMediaStore from "../store/useMediaStore";
 
 export default function Burger() {
-  const { toggleMedia, handleToggleMedia } = useMediaStore();
+  const { toggleMedia, handleToggleMedia, showMedia, showUserMedia } = useMediaStore();
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -51,7 +51,9 @@ export default function Burger() {
             )}
           </ListItemButton>
 
-          <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>My List</ListItemButton>
+          <ListItemButton onClick={showMedia} sx={{ paddingTop: "10px", fontSize: "20px" }}>
+            {showUserMedia ? "Search" : "My List"}
+          </ListItemButton>
           <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>
             My Recommendations
           </ListItemButton>

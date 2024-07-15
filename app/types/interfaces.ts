@@ -25,5 +25,7 @@ export type MediaView = "movies" | "shows";
 
 export interface MediaState {
   toggleMedia: MediaView;
+  showUserMedia: boolean;
   handleToggleMedia: () => void;
+  showMedia: () => void;
 }

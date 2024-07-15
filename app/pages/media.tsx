@@ -16,13 +16,13 @@ import useMediaStore from "../store/useMediaStore";
 type MediaView = "movies" | "shows";
 
 const MoviePage: React.FC = () => {
-  const { toggleMedia, handleToggleMedia } = useMediaStore();
+  const { toggleMedia, handleToggleMedia, showMedia, showUserMedia } = useMediaStore();
 
   const [isMobile, setIsMobile] = useState<boolean>(true);
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const { shows, fetchShows } = useFetchShows();
   const [savedMedia, setSavedMedia] = useState<(Movie | Show)[]>([]);
-  const [showUserMedia, setShowUserMedia] = useState<boolean>(false);
+
   const [addedMedia, setAddedMedia] = useState({
     movies: {},
     shows: {},
@@ -85,10 +85,6 @@ const MoviePage: React.FC = () => {
   const handleSearch = (query: string) => {
     fetchMovies(query);
     fetchShows(query);
-  };
-
-  const showMedia = () => {
-    setShowUserMedia((prevState) => !prevState);
   };
 
   const handleOpenInfo = () => {
