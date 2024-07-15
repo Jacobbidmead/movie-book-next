@@ -11,10 +11,13 @@ import Nav from "../components/Nav";
 import Header from "../components/Header";
 import Info from "../components/Info";
 import Search from "../atoms/search";
+import useMediaStore from "../store/useMediaStore";
 
 type MediaView = "movies" | "shows";
 
 const MoviePage: React.FC = () => {
+  const { toggleMedia, handleToggleMedia } = useMediaStore();
+
   const [isMobile, setIsMobile] = useState<boolean>(true);
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const { shows, fetchShows } = useFetchShows();
@@ -24,7 +27,7 @@ const MoviePage: React.FC = () => {
     movies: {},
     shows: {},
   });
-  const [toggleMedia, setToggleMedia] = useState<MediaView>("movies");
+
   const [openInfo, setOpenInfo] = useState(false);
   const MemoizedMovies = React.memo(Movies);
   const MemoizedShows = React.memo(Shows);
@@ -82,10 +85,6 @@ const MoviePage: React.FC = () => {
   const handleSearch = (query: string) => {
     fetchMovies(query);
     fetchShows(query);
-  };
-
-  const handleToggleMedia = () => {
-    setToggleMedia(toggleMedia === "movies" ? "shows" : "movies");
   };
 
   const showMedia = () => {

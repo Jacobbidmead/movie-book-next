@@ -21,3 +21,9 @@ export interface LoginRequestBody {
   username: string;
   password: string;
 }
+export type MediaView = "movies" | "shows";
+
+export interface MediaState {
+  toggleMedia: MediaView;
+  handleToggleMedia: () => void;
+}
