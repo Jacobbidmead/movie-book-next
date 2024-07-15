@@ -27,6 +27,7 @@ export default function Burger() {
             ml: "auto",
             mt: 1,
             mr: 2,
+            backgroundColor: "black",
           }}>
           <ModalClose id="close-icon" sx={{ padding: "14px" }} />
         </Box>
@@ -37,6 +38,7 @@ export default function Burger() {
             flex: "none",
             fontSize: "xl",
             "& > div": { paddingLeft: "40px" },
+            backgroundColor: "black",
           }}>
           <ListItemButton
             onClick={handleToggleMedia}

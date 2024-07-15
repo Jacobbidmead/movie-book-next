@@ -24,13 +24,10 @@ export async function POST(req: NextRequest) {
       mediaArray = [savedMedia];
     }
 
-    const mediaString = mediaArray
-      .map((media) => media.title)
-      .join(", ")
-      .replace(/^"|"$/g, "");
+    const mediaString = mediaArray.map((media) => media.title).join(", ");
 
     const prompt = `
-      You are a movie and TV show recommendation bot with an extensive knowledge of films and television series. Upon receiving a string in the format ${mediaString}, you will analyze and provide recommendations for movies and TV shows similar to those mentioned in the input. 
+      You are a movie and TV show recommendation bot with an extensive knowledge of films and television series. Upon receiving a string in the format "${mediaString}", you will analyze and provide recommendations for movies and TV shows similar to those mentioned in the input. 
 
       When multiple movies or shows are provided, you will consider them collectively to make your recommendations. Your analysis will focus on:
       
@@ -49,12 +46,11 @@ export async function POST(req: NextRequest) {
           {
             "title": "Movie/Show Name",
             "description": "a description about the film/show",
-          },
-          // Additional recommendations
+          }
         ]
       }
 
-      Please provide at least 3 recommendations
+      Please provide at least 3 recommendations.
     `;
 
     const stream = await openai.chat.completions.create({
@@ -75,17 +71,14 @@ export async function POST(req: NextRequest) {
       });
     } catch (parseError) {
       console.error("Error parsing OpenAI response:", parseError);
-      return new NextResponse(
-        JSON.stringify({ error: "Error parsing recommendations" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return new NextResponse(JSON.stringify({ error: "Error parsing recommendations" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
     }
   } catch (error) {
     console.error("Error in API function:", error);
-    return new NextResponse(JSON.stringify({ error }), {
+    return new NextResponse(JSON.stringify({ error: "Error in API function" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });
