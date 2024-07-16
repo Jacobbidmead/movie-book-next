@@ -21,7 +21,15 @@ export interface LoginRequestBody {
   username: string;
   password: string;
 }
+
 export type MediaView = "movies" | "shows";
+export type ScreenState = "movies" | "shows" | "userMedia" | "recommendations";
+
+export interface Recommendation {
+  title: string;
+  description: string;
+  poster_path: string;
+}
 
 export interface MediaState {
   toggleMedia: MediaView;
@@ -30,4 +38,8 @@ export interface MediaState {
   showMedia: () => void;
   showUserRecs: boolean;
   showRecs: () => void;
+  recommendations: Recommendation[];
+  setRecommendations: (recommendations: Recommendation[]) => void;
+  screenState: ScreenState;
+  setScreenState: (screenState: ScreenState) => void;
 }

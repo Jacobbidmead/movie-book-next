@@ -1,6 +1,5 @@
-// store/useMediaStore.ts
 import { create } from "zustand";
-import { MediaState } from "../types/interfaces";
+import { MediaState, MediaView, ScreenState } from "../types/interfaces";
 
 const useMediaStore = create<MediaState>((set) => ({
   toggleMedia: "movies",
@@ -17,6 +16,16 @@ const useMediaStore = create<MediaState>((set) => ({
   showRecs: () =>
     set((state) => ({
       showUserRecs: !state.showUserRecs,
+    })),
+  recommendations: [],
+  setRecommendations: (recommendations) =>
+    set(() => ({
+      recommendations,
+    })),
+  screenState: "movies",
+  setScreenState: (screenState: ScreenState) =>
+    set(() => ({
+      screenState,
     })),
 }));
 

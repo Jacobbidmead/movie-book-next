@@ -1,79 +1,54 @@
 "use client";
 
+import React from "react";
 import Search from "../atoms/search";
 import Button from "./Button";
-import { useState, useEffect } from "react";
 import useMediaStore from "../store/useMediaStore";
 
 interface NavProps {
   handleSearch: (query: string) => void;
-  showMedia: () => void;
-  showUserMedia: boolean;
-  handleToggleMedia: () => void;
-  toggleMedia: "movies" | "shows";
 }
 
-const Nav: React.FC<NavProps> = ({
-  handleSearch,
-  showMedia,
-  showUserMedia,
-  handleToggleMedia,
-  toggleMedia,
-}) => {
-  const { showUserRecs, showRecs } = useMediaStore();
-  const [navOpacity, setNavOpacity] = useState("rgba(114, 114, 114, 0.1)");
-  const [navBorder, setNavBorder] = useState("none");
+const Nav: React.FC<NavProps> = ({ handleSearch }) => {
+  const { screenState, setScreenState, toggleMedia, handleToggleMedia, showMedia, showUserMedia } =
+    useMediaStore();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setNavOpacity("rgba(114, 114, 114, 0.2)");
-        setNavBorder("1px solid #404040b5");
-      } else {
-        setNavOpacity("rgba(114, 114, 114, 0)");
-        setNavBorder("none");
-      }
-    };
+  const handleShowMedia = () => {
+    setScreenState("userMedia");
+    showMedia();
+  };
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleToggleMediaView = () => {
+    handleToggleMedia();
+    setScreenState("movies"); // Keep this to ensure the media view is set correctly
+  };
 
   return (
     <div className="floating-nav-container">
       <div
         className="floating-nav"
         style={{
-          backgroundColor: navOpacity,
-          border: navBorder,
+          backgroundColor: "rgba(114, 114, 114, 0.1)", // Adjusted opacity for example
+          border: "1px solid #404040b5",
           borderRadius: "10px",
         }}>
-        <div className="flex place-items-center  ">
+        <div className="flex place-items-center">
           <Search onSearch={handleSearch} />
         </div>
         <div className="flex items-center space-x-4">
           <Button
-            onClick={showMedia}
+            onClick={handleShowMedia}
             className="cursor-pointer lg:py-2 lg:px-3 border-border border-button rounded-button text-xs custom-button shadow-2xl shadow-obsidian">
-            {showUserMedia ? (
-              <div className="cursor-pointer">Search</div>
-            ) : (
-              <div className="cursor-pointer">My list</div>
-            )}
+            {screenState === "userMedia" ? "Search" : "My List"}
           </Button>
 
           <Button
-            onClick={handleToggleMedia}
+            onClick={handleToggleMediaView}
             className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs custom-button">
-            {toggleMedia === "movies" ? (
-              <span>Search for Shows</span>
-            ) : (
-              <span>Search for Movies</span>
-            )}
+            {toggleMedia === "movies" ? "Search for Shows" : "Search for Movies"}
           </Button>
           <Button
-            onClick={showRecs}
+            onClick={() => setScreenState("recommendations")}
             className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs custom-button">
             Recommendations
           </Button>

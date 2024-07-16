@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Movie, Show } from "../types/interfaces";
-import Recommendations from "./recommendations";
 import { motion } from "framer-motion";
 
 interface UserMediaProps {
@@ -57,8 +56,6 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
       ) : (
         <div className="text-center text-light pt-24">Nothing saved yet</div>
       )}
-
-      <Recommendations savedMedia={savedMedia} />
     </>
   );
 };

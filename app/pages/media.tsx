@@ -12,11 +12,13 @@ import Header from "../components/Header";
 import Info from "../components/Info";
 import Search from "../atoms/search";
 import useMediaStore from "../store/useMediaStore";
+import Recommendations from "../components/recommendations";
 
 type MediaView = "movies" | "shows";
 
 const MoviePage: React.FC = () => {
-  const { toggleMedia, handleToggleMedia, showMedia, showUserMedia } = useMediaStore();
+  const { screenState, toggleMedia, handleToggleMedia, showMedia, showUserMedia, showUserRecs } =
+    useMediaStore();
 
   const [isMobile, setIsMobile] = useState<boolean>(true);
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
@@ -96,21 +98,19 @@ const MoviePage: React.FC = () => {
   return (
     <>
       {isMobile ? (
-        <Header handleOpenInfo={handleOpenInfo} isMobile={isMobile} />
+        <Header isMobile={isMobile} handleOpenInfo={handleOpenInfo} />
       ) : (
         <>
-          <Header handleOpenInfo={handleOpenInfo} isMobile={isMobile} />
-
-          <Nav
-            handleSearch={handleSearch}
-            showMedia={showMedia}
-            showUserMedia={showUserMedia}
-            handleToggleMedia={handleToggleMedia}
-            toggleMedia={toggleMedia}
-          />
+          <Header isMobile={isMobile} handleOpenInfo={handleOpenInfo} />
+          <Nav handleSearch={handleSearch} />
         </>
       )}
 
+      {isMobile && (
+        <div className="flex justify-center px-8">
+          <Search onSearch={handleSearch} />
+        </div>
+      )}
       {isMobile ? (
         <div className="flex justify-center px-8">
           <Search onSearch={handleSearch} />{" "}
@@ -131,9 +131,11 @@ const MoviePage: React.FC = () => {
         <p>Sign up to save you choices, or use as a guest</p>
       </Info>
 
-      <div className="flex flex-col place-items-center justify-center gap-3 bg-night ">
-        {showUserMedia ? (
+      <div className="flex flex-col place-items-center justify-center gap-3 bg-night">
+        {screenState === "userMedia" ? (
           <UserMedia savedMedia={savedMedia} removeMedia={removeMedia} />
+        ) : screenState === "recommendations" ? (
+          <Recommendations savedMedia={savedMedia} />
         ) : (
           <>
             {toggleMedia === "movies" ? (
