@@ -63,10 +63,8 @@ const MoviePage: React.FC = () => {
 
   const removeMedia = (mediaId: string) => {
     setSavedMedia((prevMedia) => prevMedia.filter((media) => media.id !== mediaId));
-
     setAddedMedia((prevAdded) => ({
       ...prevAdded,
-
       movies: { ...prevAdded.movies, [mediaId]: undefined },
       shows: { ...prevAdded.shows, [mediaId]: undefined },
     }));

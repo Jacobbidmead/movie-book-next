@@ -8,8 +8,8 @@
 import React, { useState } from "react";
 import { Movie, Show } from "../types/interfaces";
 import { CircularProgress } from "@mui/material";
-import { motion } from "framer-motion";
 import Button from "../components/Button";
+// import UserRecs from "./UserRecs";
 
 interface Recommendation {
   title: string;
@@ -90,6 +90,7 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
             </div>
           ))}
       </div>
+      {/* <UserRecs recommendations={recommendations} /> */}
     </>
   );
 };
