@@ -28,4 +28,6 @@ export interface MediaState {
   showUserMedia: boolean;
   handleToggleMedia: () => void;
   showMedia: () => void;
+  showUserRecs: boolean;
+  showRecs: () => void;
 }

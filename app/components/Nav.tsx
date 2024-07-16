@@ -3,6 +3,7 @@
 import Search from "../atoms/search";
 import Button from "./Button";
 import { useState, useEffect } from "react";
+import useMediaStore from "../store/useMediaStore";
 
 interface NavProps {
   handleSearch: (query: string) => void;
@@ -19,6 +20,7 @@ const Nav: React.FC<NavProps> = ({
   handleToggleMedia,
   toggleMedia,
 }) => {
+  const { showUserRecs, showRecs } = useMediaStore();
   const [navOpacity, setNavOpacity] = useState("rgba(114, 114, 114, 0.1)");
   const [navBorder, setNavBorder] = useState("none");
 
@@ -69,6 +71,11 @@ const Nav: React.FC<NavProps> = ({
             ) : (
               <span>Search for Movies</span>
             )}
+          </Button>
+          <Button
+            onClick={showRecs}
+            className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs custom-button">
+            Recommendations
           </Button>
         </div>
       </div>

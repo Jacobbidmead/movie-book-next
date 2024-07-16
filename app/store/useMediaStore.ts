@@ -13,6 +13,11 @@ const useMediaStore = create<MediaState>((set) => ({
     set((state) => ({
       showUserMedia: !state.showUserMedia,
     })),
+  showUserRecs: false,
+  showRecs: () =>
+    set((state) => ({
+      showUserRecs: !state.showUserRecs,
+    })),
 }));
 
 export default useMediaStore;
