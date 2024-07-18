@@ -1,5 +1,6 @@
 "use client";
 import Burger from "./Burger";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 interface HeaderProps {
   handleOpenInfo: () => void;
@@ -40,7 +41,9 @@ const Header: React.FC<HeaderProps> = ({ handleOpenInfo, isMobile }) => {
         </div>
         {isMobile ? null : (
           <div>
-            <button onClick={handleOpenInfo}>info</button>
+            <button onClick={handleOpenInfo}>
+              <InfoOutlinedIcon />
+            </button>
           </div>
         )}
       </div>

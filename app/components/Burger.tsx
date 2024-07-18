@@ -8,6 +8,7 @@ import List from "@mui/joy/List";
 import ListItemButton from "@mui/joy/ListItemButton";
 import ModalClose from "@mui/joy/ModalClose";
 import useMediaStore from "../store/useMediaStore";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 export default function Burger() {
   const { toggleMedia, handleToggleMedia, showMedia, showUserMedia } = useMediaStore();
@@ -16,7 +17,7 @@ export default function Burger() {
   return (
     <React.Fragment>
       <IconButton color="neutral" onClick={() => setOpen(true)}>
-        Burger
+        <MenuOutlinedIcon />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <Box

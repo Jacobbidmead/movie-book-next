@@ -4,6 +4,11 @@ import React from "react";
 import Search from "../atoms/search";
 import Button from "./Button";
 import useMediaStore from "../store/useMediaStore";
+import BookmarkBorderTwoToneIcon from "@mui/icons-material/BookmarkBorderTwoTone";
+import SearchTwoToneIcon from "@mui/icons-material/SearchTwoTone";
+import LiveTvOutlinedIcon from "@mui/icons-material/LiveTvOutlined";
+import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
+import AutoFixHighOutlinedIcon from "@mui/icons-material/AutoFixHighOutlined";
 
 interface NavProps {
   handleSearch: (query: string) => void;
@@ -38,19 +43,19 @@ const Nav: React.FC<NavProps> = ({ handleSearch }) => {
         <div className="flex items-center space-x-4">
           <Button
             onClick={handleShowMedia}
-            className="cursor-pointer lg:py-2 lg:px-3 border-border border-button rounded-button text-xs custom-button shadow-2xl shadow-obsidian">
-            {screenState === "userMedia" ? "Search" : "My List"}
+            className="cursor-pointer lg:py-2 lg:px-3  rounded-button text-xs custom-button shadow-2xl shadow-obsidian">
+            {screenState === "userMedia" ? <SearchTwoToneIcon /> : <BookmarkBorderTwoToneIcon />}
           </Button>
 
           <Button
             onClick={handleToggleMediaView}
-            className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs custom-button">
-            {toggleMedia === "movies" ? "Search for Shows" : "Search for Movies"}
+            className="cursor-pointer py-2 px-3  rounded-button text-xs custom-button">
+            {toggleMedia === "movies" ? <LiveTvOutlinedIcon /> : <MovieOutlinedIcon />}
           </Button>
           <Button
             onClick={() => setScreenState("recommendations")}
-            className="cursor-pointer py-2 px-3 border-border border-button rounded-button text-xs custom-button">
-            Recommendations
+            className="cursor-pointer py-2 px-3 rounded-button text-xs custom-button">
+            <AutoFixHighOutlinedIcon />
           </Button>
         </div>
       </div>
