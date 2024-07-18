@@ -106,11 +106,6 @@ const MoviePage: React.FC = () => {
         </>
       )}
 
-      {isMobile && (
-        <div className="flex justify-center px-8">
-          <Search onSearch={handleSearch} />
-        </div>
-      )}
       {isMobile ? (
         <div className="flex justify-center px-8">
           <Search onSearch={handleSearch} />{" "}
