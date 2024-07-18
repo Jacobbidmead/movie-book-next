@@ -35,7 +35,7 @@ const MoviePage: React.FC = () => {
 
   useEffect(() => {
     const checkMobile = () => {
-      const currentIsMobile = window.innerWidth < 500;
+      const currentIsMobile = window.innerWidth < 1000;
       setIsMobile(currentIsMobile);
     };
 
