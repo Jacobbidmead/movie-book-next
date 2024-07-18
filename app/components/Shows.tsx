@@ -1,6 +1,8 @@
 "use client";
 
 import { Show } from "../types/interfaces";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 interface AddedMediaState {
   movies: { [key: string]: boolean };
@@ -43,17 +45,17 @@ const Shows: React.FC<ShowProps> = ({
           />
           <div className="flex justify-center">
             {addedMedia.shows[show.id] ? (
-              <div className="px-2 py-1.5 rounded-button text-xs border-border border-button lg:w-2/4 sm:w-9/12 mt-2 custom-button cursor-pointer">
-                Saved to list
+              <div className="px-2 py-1 rounded-button text-sm border-bordern lg:w-1/4 sm:w-1/2 mt-2 custom-button">
+                <AddCircleIcon />
               </div>
             ) : (
               <button
-                className="px-2 py-1 rounded-button text-sm border-border border-button lg:w-1/4 sm:w-1/2 mt-2 custom-button"
+                className="px-2 py-1 rounded-button text-sm border-bordern lg:w-1/4 sm:w-1/2 mt-2 custom-button"
                 onClick={() => {
                   addMedia(show);
                   handleAddToList(show.id, "show");
                 }}>
-                Save
+                <AddCircleOutlineIcon />
               </button>
             )}
           </div>
