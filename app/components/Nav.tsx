@@ -20,7 +20,7 @@ const Nav: React.FC<NavProps> = ({ handleSearch }) => {
 
   const handleToggleMediaView = () => {
     handleToggleMedia();
-    setScreenState("movies"); // Keep this to ensure the media view is set correctly
+    setScreenState("movies");
   };
 
   return (
@@ -28,7 +28,7 @@ const Nav: React.FC<NavProps> = ({ handleSearch }) => {
       <div
         className="floating-nav"
         style={{
-          backgroundColor: "rgba(114, 114, 114, 0.1)", // Adjusted opacity for example
+          backgroundColor: "rgba(114, 114, 114, 0.1)",
           border: "1px solid #404040b5",
           borderRadius: "10px",
         }}>

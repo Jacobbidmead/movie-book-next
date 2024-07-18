@@ -36,7 +36,7 @@ const MoviePage: React.FC = () => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 501);
+      setIsMobile(window.innerWidth < 1266);
     };
 
     checkMobile(); // Check mobile status on mount

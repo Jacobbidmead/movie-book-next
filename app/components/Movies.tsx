@@ -1,7 +1,6 @@
 "use client";
 
 import { Movie } from "../types/interfaces";
-import Footer from "./Footer";
 
 interface AddedMediaState {
   movies: { [key: string]: boolean };
