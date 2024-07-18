@@ -17,10 +17,8 @@ import Recommendations from "../components/recommendations";
 type MediaView = "movies" | "shows";
 
 const MoviePage: React.FC = () => {
-  const { screenState, toggleMedia, handleToggleMedia, showMedia, showUserMedia, showUserRecs } =
-    useMediaStore();
+  const { screenState, toggleMedia, isMobile, setIsMobile } = useMediaStore();
 
-  const [isMobile, setIsMobile] = useState<boolean>(true);
   const { movies, isLoading, error, fetchMovies } = useFetchMovies();
   const { shows, fetchShows } = useFetchShows();
   const [savedMedia, setSavedMedia] = useState<(Movie | Show)[]>([]);
@@ -31,12 +29,14 @@ const MoviePage: React.FC = () => {
   });
 
   const [openInfo, setOpenInfo] = useState(false);
+
   const MemoizedMovies = React.memo(Movies);
   const MemoizedShows = React.memo(Shows);
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1266);
+      const currentIsMobile = window.innerWidth < 500;
+      setIsMobile(currentIsMobile);
     };
 
     checkMobile(); // Check mobile status on mount
@@ -46,7 +46,7 @@ const MoviePage: React.FC = () => {
     return () => {
       window.removeEventListener("resize", checkMobile);
     };
-  }, []);
+  }, [setIsMobile]);
 
   const addMedia = useCallback((media: Movie | Show) => {
     console.log("addMedia called for:", media.id);
@@ -98,19 +98,18 @@ const MoviePage: React.FC = () => {
   return (
     <>
       {isMobile ? (
-        <Header isMobile={isMobile} handleOpenInfo={handleOpenInfo} />
+        <>
+          <Header isMobile={isMobile} handleOpenInfo={handleOpenInfo} />
+          <div className="flex justify-center px-8">
+            <Search onSearch={handleSearch} />
+          </div>
+        </>
       ) : (
         <>
           <Header isMobile={isMobile} handleOpenInfo={handleOpenInfo} />
           <Nav handleSearch={handleSearch} />
         </>
       )}
-
-      {isMobile ? (
-        <div className="flex justify-center px-8">
-          <Search onSearch={handleSearch} />{" "}
-        </div>
-      ) : null}
 
       <Info isOpen={openInfo} onClose={handleCloseInfo}>
         <h2 className="p-2"> MediaBook AI</h2>

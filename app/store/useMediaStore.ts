@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { MediaState, MediaView, ScreenState } from "../types/interfaces";
+import { MediaState, ScreenState } from "../types/interfaces";
 
 const useMediaStore = create<MediaState>((set) => ({
   toggleMedia: "movies",
@@ -26,6 +26,11 @@ const useMediaStore = create<MediaState>((set) => ({
   setScreenState: (screenState: ScreenState) =>
     set(() => ({
       screenState,
+    })),
+  isMobile: false,
+  setIsMobile: (isMobile: boolean) =>
+    set(() => ({
+      isMobile,
     })),
 }));
 

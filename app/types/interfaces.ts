@@ -42,4 +42,6 @@ export interface MediaState {
   setRecommendations: (recommendations: Recommendation[]) => void;
   screenState: ScreenState;
   setScreenState: (screenState: ScreenState) => void;
+  isMobile: boolean;
+  setIsMobile: (isMobile: boolean) => void;
 }
