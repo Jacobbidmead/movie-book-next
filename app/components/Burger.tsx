@@ -16,8 +16,8 @@ export default function Burger() {
 
   return (
     <React.Fragment>
-      <IconButton color="neutral" onClick={() => setOpen(true)}>
-        <MenuOutlinedIcon />
+      <IconButton onClick={() => setOpen(true)}>
+        <MenuOutlinedIcon className="pb-2" />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <Box

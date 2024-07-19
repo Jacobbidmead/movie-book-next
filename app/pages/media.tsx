@@ -112,7 +112,6 @@ const MoviePage: React.FC = () => {
       )}
 
       <Info isOpen={openInfo} onClose={handleCloseInfo}>
-        <h2 className="p-2"> MediaBook AI</h2>
         <p>
           Welcome to MediaBook AI, a tool that helps you decide what to watch using AI integration.
         </p>

@@ -10,9 +10,9 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ handleOpenInfo, isMobile }) => {
   return (
     <>
-      <div className="px-12 py-8 mb-8 text-xl border-border opacity-50 border-b-[2px] text-light flex justify-start">
+      <div className="px-12 py-8 mb-8 text-xl border-border opacity-50 border-b-[2px] text-light flex justify-between">
         {isMobile ? <Burger /> : null}
-        <div>MediaBook AI</div>
+
         <div className="px-4">
           <svg
             width="28px"
@@ -39,6 +39,7 @@ const Header: React.FC<HeaderProps> = ({ handleOpenInfo, isMobile }) => {
             />
           </svg>
         </div>
+        <div>MediaBook AI</div>
         {isMobile ? null : (
           <div>
             <button onClick={handleOpenInfo}>
