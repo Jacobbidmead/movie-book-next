@@ -29,13 +29,6 @@ const Shows: React.FC<ShowProps> = ({
     <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6 pt-24">
       {shows.map((show) => (
         <div className="flex flex-col p-2" key={show.id}>
-          <div className="tooltip">
-            <h2 className="truncate text-sm pb-1">
-              {show.title.length > 20 ? `${show.title.substring(0, 20)}...` : show.title}
-            </h2>
-            {show.title.length > 20 && <div className="tooltiptext">{show.title}</div>}
-          </div>
-          <p className="text-sm pb-1">Rating: {show.vote_average}</p>
           <img
             className="w-full h-full object-cover shadow-2xl shadow-obsidian"
             src={
@@ -43,6 +36,14 @@ const Shows: React.FC<ShowProps> = ({
             }
             alt={show.title}
           />
+          <div className="tooltip">
+            <h2 className="truncate text-sm pb-1 pt-2">
+              {show.title.length > 20 ? `${show.title.substring(0, 20)}...` : show.title}
+            </h2>
+            {show.title.length > 20 && <div className="tooltiptext">{show.title}</div>}
+          </div>
+          <p className="text-sm pb-1">Rating: {show.vote_average}</p>
+
           <div className="flex justify-center">
             {addedMedia.shows[show.id] ? (
               <div className="px-2 py-1 rounded-button text-sm border-bordern lg:w-1/4 sm:w-1/2 mt-2 custom-button">

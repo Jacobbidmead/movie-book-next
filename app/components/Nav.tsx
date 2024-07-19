@@ -25,7 +25,6 @@ const Nav: React.FC<NavProps> = ({ handleSearch }) => {
 
   const handleToggleMediaView = () => {
     handleToggleMedia();
-    setScreenState("movies");
   };
 
   return (

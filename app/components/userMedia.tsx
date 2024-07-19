@@ -19,17 +19,6 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
         <div className="grid lg:grid-cols-6 sm:grid-cols-2 text-light text-center p-6 pt-24 ">
           {mediaArray.map((savedMediaItem) => (
             <div className="flex flex-col p-2" key={savedMediaItem.id}>
-              <div className="tooltip">
-                <h2 className="truncate text-sm pb-1">
-                  {savedMediaItem.title.length > 20
-                    ? `${savedMediaItem.title.substring(0, 20)}...`
-                    : savedMediaItem.title}
-                </h2>
-                {savedMediaItem.title.length > 20 && (
-                  <div className="tooltiptext">{savedMediaItem.title}</div>
-                )}
-              </div>
-              <p className="text-center text-sm pb-1">Rating: {savedMediaItem.vote_average}</p>
               <img
                 className="w-full h-full object-cover shadow-2xl shadow-obsidian"
                 src={
@@ -40,11 +29,23 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
                 alt={savedMediaItem.title}
               />
 
+              <div className="tooltip">
+                <h2 className="truncate text-sm pb-1 pt-2">
+                  {savedMediaItem.title.length > 20
+                    ? `${savedMediaItem.title.substring(0, 20)}...`
+                    : savedMediaItem.title}
+                </h2>
+                {savedMediaItem.title.length > 20 && (
+                  <div className="tooltiptext">{savedMediaItem.title}</div>
+                )}
+              </div>
+              <p className="text-center text-sm pb-1">Rating: {savedMediaItem.vote_average}</p>
+
               <div>
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  className="px-2 py-1 rounded-button text-sm w-1/3 mt-2 custom-button"
+                  className="px-2 py-1 rounded-button text-sm border-bordern lg:w-1/4 sm:w-1/2 mt-2 custom-button"
                   onClick={() => {
                     removeMedia(savedMediaItem.id);
                   }}>
