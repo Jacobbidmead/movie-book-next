@@ -3,6 +3,7 @@
 import React from "react";
 import { Movie, Show } from "../types/interfaces";
 import { motion } from "framer-motion";
+import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
 
 interface UserMediaProps {
   savedMedia: (Movie | Show)[];
@@ -43,11 +44,11 @@ const UserMedia: React.FC<UserMediaProps> = ({ savedMedia, removeMedia }) => {
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  className="px-2 py-1 rounded-button text-sm border-border border-button w-1/3 mt-2 custom-button"
+                  className="px-2 py-1 rounded-button text-sm w-1/3 mt-2 custom-button"
                   onClick={() => {
                     removeMedia(savedMediaItem.id);
                   }}>
-                  Remove
+                  <RemoveCircleOutlineOutlinedIcon />
                 </motion.button>
               </div>
             </div>
