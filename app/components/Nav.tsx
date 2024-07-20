@@ -15,16 +15,26 @@ interface NavProps {
 }
 
 const Nav: React.FC<NavProps> = ({ handleSearch }) => {
-  const { screenState, setScreenState, toggleMedia, handleToggleMedia, showMedia, showUserMedia } =
+  const { screenState, setScreenState, toggleMedia, handleToggleMedia, showMedia, showRecs } =
     useMediaStore();
 
   const handleShowMedia = () => {
-    setScreenState("userMedia");
+    if (screenState === "userMedia") {
+      setScreenState("movies");
+    } else setScreenState("userMedia");
     showMedia();
   };
 
   const handleToggleMediaView = () => {
+    if (screenState === "movies" || "shows") {
+      setScreenState("movies");
+    }
     handleToggleMedia();
+  };
+
+  const handleShowRecommendations = () => {
+    setScreenState("recommendations");
+    showRecs();
   };
 
   return (
@@ -52,7 +62,7 @@ const Nav: React.FC<NavProps> = ({ handleSearch }) => {
             {toggleMedia === "movies" ? <LiveTvOutlinedIcon /> : <MovieOutlinedIcon />}
           </Button>
           <Button
-            onClick={() => setScreenState("recommendations")}
+            onClick={handleShowRecommendations}
             className="cursor-pointer py-2 px-3 rounded-button text-xs custom-button">
             <AutoFixHighOutlinedIcon />
           </Button>

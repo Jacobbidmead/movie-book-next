@@ -90,7 +90,6 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
             </div>
           ))}
       </div>
-      {/* <UserRecs recommendations={recommendations} /> */}
     </>
   );
 };

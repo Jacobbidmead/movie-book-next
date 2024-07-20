@@ -39,10 +39,9 @@ const MoviePage: React.FC = () => {
       setIsMobile(currentIsMobile);
     };
 
-    checkMobile(); // Check mobile status on mount
+    checkMobile();
     window.addEventListener("resize", checkMobile);
 
-    // Cleanup the listener when the component unmounts
     return () => {
       window.removeEventListener("resize", checkMobile);
     };

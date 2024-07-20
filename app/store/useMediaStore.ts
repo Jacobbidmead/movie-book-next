@@ -24,8 +24,8 @@ const useMediaStore = create<MediaState>((set) => ({
     })),
   screenState: "movies",
   setScreenState: (screenState: ScreenState) =>
-    set((state) => ({
-      screenState: state.screenState === "userMedia" ? "movies" : "userMedia",
+    set(() => ({
+      screenState,
     })),
   isMobile: false,
   setIsMobile: (isMobile: boolean) =>
