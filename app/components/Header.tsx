@@ -15,8 +15,8 @@ const Header: React.FC<HeaderProps> = ({ handleOpenInfo, isMobile }) => {
 
         <div className='m:px-4 sm:pt-1'>
           <svg
-            width='28px'
-            height='28px'
+            width='22px'
+            height='22px'
             viewBox='0 0 1024 1024'
             className='icon'
             version='1.1'
@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ handleOpenInfo, isMobile }) => {
             />
           </svg>
         </div>
-        <div className='sm:text-sm sm:p-2'>MediaBook AI</div>
+        <div className='sm:text-xs sm:p-2 xs:text-xs '>MediaBook AI</div>
         {isMobile ? null : (
           <div>
             <button onClick={handleOpenInfo}>
