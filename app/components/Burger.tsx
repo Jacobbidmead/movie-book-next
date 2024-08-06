@@ -37,7 +37,7 @@ export default function Burger() {
   return (
     <React.Fragment>
       <IconButton onClick={() => setOpen(true)}>
-        <MenuOutlinedIcon className='pb-2' />
+        <MenuOutlinedIcon className='p-1' />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <Box
@@ -48,7 +48,7 @@ export default function Burger() {
             ml: "auto",
             mt: 1,
             mr: 2,
-            backgroundColor: "black",
+            backgroundColor: "#0B1215",
           }}>
           <ModalClose id='close-icon' sx={{ padding: "14px" }} />
         </Box>
@@ -57,15 +57,20 @@ export default function Burger() {
           component='nav'
           sx={{
             flex: "none",
-            fontSize: "xl",
+            fontSize: "sm",
             "& > div": { paddingLeft: "40px" },
-            backgroundColor: "black",
+            backgroundColor: "#0B1215",
+            color: "rgba(224, 211, 218, 0.26)",
           }}>
           <ListItemButton
             onClick={handleToggleMediaView}
             sx={{
               paddingTop: "40px",
-              fontSize: "20px",
+              fontSize: "16px",
+
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
             }}>
             {toggleMedia === "movies" ? (
               <span>Search for Shows</span>
@@ -74,17 +79,43 @@ export default function Burger() {
             )}
           </ListItemButton>
 
-          <ListItemButton onClick={handleShowMedia} sx={{ paddingTop: "10px", fontSize: "20px" }}>
+          <ListItemButton
+            onClick={handleShowMedia}
+            sx={{
+              paddingTop: "10px",
+              fontSize: "16px",
+              color: "rgba(224, 211, 218, 0.26)",
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
+            }}>
             {screenState === "userMedia" ? "Search" : "My List"}
           </ListItemButton>
 
           <ListItemButton
             onClick={handleShowRecommendations}
-            sx={{ paddingTop: "10px", fontSize: "20px" }}>
+            sx={{
+              paddingTop: "10px",
+              fontSize: "16px",
+              color: "rgba(224, 211, 218, 0.26)",
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
+            }}>
             My Recommendations
           </ListItemButton>
 
-          <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>Info</ListItemButton>
+          <ListItemButton
+            sx={{
+              paddingTop: "10px",
+              fontSize: "16px",
+              color: "rgba(224, 211, 218, 0.26)",
+              "&:hover": {
+                backgroundColor: "transparent",
+              },
+            }}>
+            Info
+          </ListItemButton>
         </List>
       </Drawer>
     </React.Fragment>

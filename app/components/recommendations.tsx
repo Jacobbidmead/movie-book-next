@@ -63,28 +63,28 @@ const Recommendations: React.FC<SavedUserMediaProps> = ({ savedMedia }) => {
 
   return (
     <>
-      <div className="flex justify-center pb-12 mt-12 pt-24">
+      <div className='flex justify-center pb-12 mt-12 pt-24'>
         <Button
           onClick={handleGetRecommendations}
-          className="p-3 border-border border-button rounded-button text-xs text-light custom-button">
-          {loading ? <CircularProgress color="inherit" /> : <span>Get Recommendations</span>}
+          className='p-3 border-border rounded-button text-xs text-light custom-button'>
+          {loading ? <CircularProgress color='inherit' /> : <span>Get Recommendations</span>}
         </Button>
       </div>
 
       {error && <p>Error: {error}</p>}
 
       {/* <p>{recommendations}</p> */}
-      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4 place-items-centertext-sm text-light w-4/5 ">
+      <div className='grid lg:grid-cols-3 sm:grid-cols-1 gap-4 place-items-centertext-sm text-light w-4/5 '>
         {Array.isArray(recommendations.recommendations) &&
           recommendations.recommendations.map((recItem, index) => (
             <div
-              className="flex mt-8 text-center text-light border-button rounded-card border-border"
+              className='flex mt-8 text-center text-light border-button rounded-card border-border'
               key={index}>
               <div>
-                <h3 className="lg:text-4xl sm:text-lg p-3 border-b-card border-border">
+                <h3 className='lg:text-4xl sm:text-lg p-3 border-b-card border-border'>
                   {recItem.title}
                 </h3>
-                <p className="lg:text-md sm:text-xs p-6">{recItem.description}</p>
+                <p className='lg:text-md sm:text-xs p-6'>{recItem.description}</p>
               </div>
               {/* <img src={recItem.poster_path} alt={recItem.title} /> */}
             </div>

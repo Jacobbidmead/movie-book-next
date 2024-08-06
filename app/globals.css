@@ -94,3 +94,27 @@
   color: white;
   transition: 0.2s ease;
 }
+
+/* drawer */
+
+.MuiDrawer-content {
+  background-color: #0b1215;
+  border-right: 1px solid rgba(224, 211, 218, 0.26);
+}
+
+.MuiListItemButton-root {
+  color: "rgba(224, 211, 218, 0.26)";
+}
+
+.MuiListItemButton-root:hover {
+  background-color: #0b1215 !important;
+  color: #94a3b8 !important;
+}
+
+.MuiModalClose-colorNeutral:hover {
+  background-color: #94a3b8 !important;
+}
+
+.MuiModalClose-colorNeutral {
+  padding: 2px;
+}
