@@ -11,13 +11,33 @@ import useMediaStore from "../store/useMediaStore";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 export default function Burger() {
-  const { toggleMedia, handleToggleMedia, showMedia, showUserMedia } = useMediaStore();
+  const { toggleMedia, handleToggleMedia, showMedia, screenState, setScreenState, showRecs } =
+    useMediaStore();
   const [open, setOpen] = React.useState(false);
+
+  const handleShowMedia = () => {
+    if (screenState === "userMedia") {
+      setScreenState("movies");
+    } else setScreenState("userMedia");
+    showMedia();
+  };
+
+  const handleToggleMediaView = () => {
+    if (screenState === "movies" || "shows") {
+      setScreenState("movies");
+    }
+    handleToggleMedia();
+  };
+
+  const handleShowRecommendations = () => {
+    setScreenState("recommendations");
+    showRecs();
+  };
 
   return (
     <React.Fragment>
       <IconButton onClick={() => setOpen(true)}>
-        <MenuOutlinedIcon className="pb-2" />
+        <MenuOutlinedIcon className='pb-2' />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <Box
@@ -30,11 +50,11 @@ export default function Burger() {
             mr: 2,
             backgroundColor: "black",
           }}>
-          <ModalClose id="close-icon" sx={{ padding: "14px" }} />
+          <ModalClose id='close-icon' sx={{ padding: "14px" }} />
         </Box>
         <List
-          size="lg"
-          component="nav"
+          size='lg'
+          component='nav'
           sx={{
             flex: "none",
             fontSize: "xl",
@@ -42,7 +62,7 @@ export default function Burger() {
             backgroundColor: "black",
           }}>
           <ListItemButton
-            onClick={handleToggleMedia}
+            onClick={handleToggleMediaView}
             sx={{
               paddingTop: "40px",
               fontSize: "20px",
@@ -54,12 +74,16 @@ export default function Burger() {
             )}
           </ListItemButton>
 
-          <ListItemButton onClick={showMedia} sx={{ paddingTop: "10px", fontSize: "20px" }}>
-            {showUserMedia ? "Search" : "My List"}
+          <ListItemButton onClick={handleShowMedia} sx={{ paddingTop: "10px", fontSize: "20px" }}>
+            {screenState === "userMedia" ? "Search" : "My List"}
           </ListItemButton>
-          <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>
+
+          <ListItemButton
+            onClick={handleShowRecommendations}
+            sx={{ paddingTop: "10px", fontSize: "20px" }}>
             My Recommendations
           </ListItemButton>
+
           <ListItemButton sx={{ paddingTop: "10px", fontSize: "20px" }}>Info</ListItemButton>
         </List>
       </Drawer>
