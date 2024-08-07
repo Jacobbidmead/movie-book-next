@@ -98,7 +98,7 @@
 /* drawer */
 
 .MuiDrawer-content {
-  background-color: #0b1215;
+  background-color: rgba(11, 18, 21, 0.1);
   border-right: 1px solid rgba(224, 211, 218, 0.26);
 }
 
@@ -107,12 +107,12 @@
 }
 
 .MuiListItemButton-root:hover {
-  background-color: #0b1215 !important;
+  background-color: transparent !important;
   color: #94a3b8 !important;
 }
 
 .MuiModalClose-colorNeutral:hover {
-  background-color: #94a3b8 !important;
+  background-color: rgba(11, 18, 21, 0.1) !important;
 }
 
 .MuiModalClose-colorNeutral {

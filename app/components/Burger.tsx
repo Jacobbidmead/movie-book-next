@@ -59,7 +59,7 @@ export default function Burger() {
             flex: "none",
             fontSize: "sm",
             "& > div": { paddingLeft: "40px" },
-            backgroundColor: "#0B1215",
+
             color: "rgba(224, 211, 218, 0.26)",
           }}>
           <ListItemButton
