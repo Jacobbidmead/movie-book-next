@@ -9,6 +9,12 @@ import ListItemButton from "@mui/joy/ListItemButton";
 import ModalClose from "@mui/joy/ModalClose";
 import useMediaStore from "../store/useMediaStore";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import BookmarkBorderTwoToneIcon from "@mui/icons-material/BookmarkBorderTwoTone";
+import SearchTwoToneIcon from "@mui/icons-material/SearchTwoTone";
+import LiveTvOutlinedIcon from "@mui/icons-material/LiveTvOutlined";
+import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
+import AutoFixHighOutlinedIcon from "@mui/icons-material/AutoFixHighOutlined";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 export default function Burger() {
   const { toggleMedia, handleToggleMedia, showMedia, screenState, setScreenState, showRecs } =
@@ -73,9 +79,15 @@ export default function Burger() {
               },
             }}>
             {toggleMedia === "movies" ? (
-              <span>Search for Shows</span>
+              <>
+                <LiveTvOutlinedIcon />
+                <span className='pt-[2px]'> Search for Shows</span>
+              </>
             ) : (
-              <span>Search for Movies</span>
+              <>
+                <MovieOutlinedIcon />
+                <span className='pt-[2px]'> Search for Movies</span>
+              </>
             )}
           </ListItemButton>
 
@@ -89,7 +101,15 @@ export default function Burger() {
                 backgroundColor: "transparent",
               },
             }}>
-            {screenState === "userMedia" ? "Search" : "My List"}
+            {screenState === "userMedia" ? (
+              <div>
+                <SearchTwoToneIcon /> Search{" "}
+              </div>
+            ) : (
+              <div>
+                <BookmarkBorderTwoToneIcon /> My list
+              </div>
+            )}
           </ListItemButton>
 
           <ListItemButton
@@ -102,7 +122,7 @@ export default function Burger() {
                 backgroundColor: "transparent",
               },
             }}>
-            My Recommendations
+            <AutoFixHighOutlinedIcon /> My Recommendations
           </ListItemButton>
 
           <ListItemButton
@@ -114,7 +134,7 @@ export default function Burger() {
                 backgroundColor: "transparent",
               },
             }}>
-            Info
+            <InfoOutlinedIcon /> Info
           </ListItemButton>
         </List>
       </Drawer>
